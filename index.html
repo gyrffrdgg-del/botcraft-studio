@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
+        /* ===== СТИЛИ (те же, что и раньше, без изменений) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -42,13 +43,10 @@
             transition: opacity 1.2s ease, transform 1.2s ease;
         }
         #intro.hide { opacity: 0; transform: scale(1.02); pointer-events: none; }
-        #intro h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(48px, 8vw, 100px);
-            font-weight: 400;
-            letter-spacing: 6px;
-            color: #C9A87C;
-            font-style: italic;
+        #intro .logo {
+            max-width: 300px;
+            width: 80%;
+            height: auto;
             opacity: 0;
             animation: introFade 1.8s ease forwards;
         }
@@ -90,7 +88,7 @@
 
         .navbar {
             position: sticky; top: 0; z-index: 100;
-            padding: 24px 0;
+            padding: 16px 0;
             border-bottom: 1px solid rgba(201, 168, 124, 0.08);
             backdrop-filter: blur(16px);
             background: rgba(10, 11, 16, 0.6);
@@ -99,9 +97,14 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .nav-brand {
-            font-family: 'Playfair Display', serif;
-            font-style: italic; font-size: 22px; font-weight: 400;
-            color: #C9A87C; text-decoration: none; letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .nav-brand img {
+            height: 36px;
+            width: auto;
         }
         .nav-links {
             display: flex; gap: 36px;
@@ -213,8 +216,7 @@
         }
         .info-item h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 400;
+            font-size: 22px; font-weight: 400;
             color: #E8E5DC;
             margin-bottom: 8px;
         }
@@ -524,10 +526,18 @@
         footer {
             border-top: 1px solid rgba(201,168,124,0.05);
             padding: 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             color: #4A4D56;
             font-size: 12px;
             font-weight: 300;
             letter-spacing: 0.5px;
+        }
+        footer img {
+            height: 28px;
+            width: auto;
         }
 
         .reveal {
@@ -548,6 +558,7 @@
             #cursor { display: none; }
             body { cursor: auto; }
             .tg-chat { height: 340px; }
+            .nav-brand img { height: 28px; }
         }
         @media (max-width: 480px) {
             .phone-frame { border-radius: 12px; }
@@ -555,6 +566,7 @@
             .chip { font-size: 9px; padding: 4px 10px; }
             .tg-actions { gap: 4px; }
             .action-chip { font-size: 8px; padding: 3px 8px; }
+            .nav-brand img { height: 24px; }
         }
     </style>
 </head>
@@ -563,7 +575,7 @@
     <div id="cursor"><span class="dot"></span></div>
 
     <div id="intro">
-        <h1>BotCraft Studio</h1>
+        <img class="logo" src="https://i.postimg.cc/85BzSCD6/Gemini-Generated-Image-1wcfcd1wcfcd1wcf.png" alt="BotCraft Studio" />
         <div class="sub">инструменты для бизнеса</div>
         <div class="loader"></div>
     </div>
@@ -572,7 +584,9 @@
 
     <nav class="navbar">
         <div class="nav-inner site-wrapper">
-            <a href="#" class="nav-brand">BotCraft Studio</a>
+            <a href="#" class="nav-brand">
+                <img src="https://i.postimg.cc/85BzSCD6/Gemini-Generated-Image-1wcfcd1wcfcd1wcf.png" alt="BotCraft Studio" />
+            </a>
             <div class="nav-links">
                 <a href="#work">Что делаем</a>
                 <a href="#taxi">Такси-бот</a>
@@ -602,8 +616,6 @@
                 </div>
             </div>
         </header>
-
-        <!-- БЕЗ ПСИХОЛОГИЧЕСКОГО БЛОКА (убрали) -->
 
         <!-- ЧТО ДЕЛАЕМ -->
         <section id="work">
@@ -677,7 +689,7 @@
             </div>
         </section>
 
-        <!-- ДЕМО-БОТ -->
+        <!-- ДЕМО-БОТ (УЛУЧШЕННЫЙ) -->
         <section id="demo">
             <h2 class="section-title reveal">Интерактивный прототип</h2>
             <p class="section-sub reveal">Попробуйте сценарии: такси-заказ, смена ролей</p>
@@ -736,7 +748,8 @@
         </section>
 
         <footer>
-            © 2026 BotCraft Studio
+            <img src="https://i.postimg.cc/85BzSCD6/Gemini-Generated-Image-1wcfcd1wcfcd1wcf.png" alt="BotCraft Studio" />
+            <span>© 2026 BotCraft Studio</span>
         </footer>
 
     </div>
@@ -837,7 +850,7 @@
             document.addEventListener('mouseup', () => cursor.classList.remove('active'));
         })();
 
-        // ===== ДЕМО-БОТ (без триггера "scarcity") =====
+        // ===== ДЕМО-БОТ (ЖИВОЙ, БЕЗ ТУПНЯКА) =====
         (function() {
             const chat = document.getElementById('chat');
             const suggestionsEl = document.getElementById('suggestions');
@@ -853,33 +866,26 @@
             let currentRole = 'default';
             let isFirstMessage = true;
 
-            // Психологические триггеры (без дефицита)
-            const psychTriggers = {
-                authority: 'Мы работаем с крупными таксопарками и ритейлерами.',
-                socialProof: 'Нас рекомендуют после первого же внедрения — клиенты видят результат сразу.',
-                reciprocity: 'Мы бесплатно анализируем ваш бизнес-процесс и показываем, что можно улучшить.'
-            };
-
-            // ===== БАЗА ЗНАНИЙ (РОЛЕВАЯ) =====
+            // ===== БАЗА ОТВЕТОВ (расширенная) =====
             const knowledgeBase = {
                 default: {
                     name: 'BotCraft Studio',
                     answers: {
-                        'привет': 'Здравствуйте. Мы настраиваем AI-инструменты для бизнеса. Что вас интересует?',
+                        'привет': 'Здравствуйте! Мы настраиваем AI-инструменты для бизнеса. Спрашивайте, что интересует.',
                         'боты': 'Настраиваем ботов под бизнес-логику: скрипты продаж, автоответчики, интеграцию с CRM. Работаем с Telegram, MAX, VK.',
-                        'такси': 'Такси-бот — это готовое решение для таксопарков. Водители видят заказы, цену, адрес. Могут привязать машину и проверить баланс. Всё в мессенджере.',
-                        'crm': 'Добавляем AI-модули в CRM: прогнозирование, автозаполнение, аналитику. Помогаем продавать больше без лишних движений.',
+                        'такси': 'Такси-бот — это готовое решение для таксопарков. Водители видят заказы, цену, адрес. Могут привязать машину и проверить баланс.',
+                        'crm': 'Добавляем AI-модули в CRM: прогнозирование, автозаполнение, аналитику. Продавайте больше без лишних движений.',
                         'нейросети': 'Подключаем ChatGPT, YandexGPT и другие модели. Обучаем на ваших данных, чтобы они понимали именно ваш бизнес.',
                         'цена': 'Стоимость зависит от задач. Мы даём смету до старта — никаких сюрпризов.',
                         'срок': 'От пары дней до нескольких недель. Зависит от сложности и объёма данных.',
-                        'контакты': 'Напишите в Telegram: @botcraft_studio. Обсудим всё в деталях.',
-                        'помощь': 'Спросите о ботах, нейросетях, такси-боте или CRM — я отвечу по каждому направлению.'
+                        'контакты': 'Напишите в Telegram: @Bot_Craft_Studio. Обсудим всё в деталях.',
+                        'помощь': 'Спросите про ботов, нейросети, такси-бот, CRM. Я отвечу по каждому направлению.'
                     }
                 },
                 taxi: {
                     name: 'Такси-диспетчер',
                     answers: {
-                        'привет': 'Здравствуйте! Я такси-диспетчер. Могу показать, как работает бот для водителей: заказы, цена, статусы. Спросите что-нибудь.',
+                        'привет': 'Здравствуйте! Я такси-диспетчер. Могу показать, как работает бот для водителей: заказы, цена, статусы.',
                         'заказ': 'Пример заказа: водитель получает карточку с адресом, ценой и кнопками «Принять» / «Отклонить». После принятия — статус меняется автоматически.',
                         'цена': 'Цена рассчитывается на основе маршрута и коэффициентов. Водитель видит точную сумму до принятия заказа.',
                         'баланс': 'Бот показывает остаток на счету водителя и историю поездок. Можно запросить в любой момент.',
@@ -900,7 +906,7 @@
                 }
             };
 
-            // Синонимы
+            // ===== СИНОНИМЫ (максимально широкий набор) =====
             const synonyms = {
                 'бот': 'боты',
                 'telegram': 'боты',
@@ -924,35 +930,77 @@
                 'автозаполнение': 'автозаполнение',
                 'аналитика': 'аналитика',
                 'напоминания': 'напоминания',
-                'интеграция': 'интеграция'
+                'интеграция': 'интеграция',
+                // Разговорные фразы
+                'чё': 'помощь',
+                'ну': 'помощь',
+                'давай': 'помощь',
+                'ещё': 'помощь',
+                'го': 'помощь',
+                'расскажи': 'помощь',
+                'покажи': 'помощь',
+                'объясни': 'помощь',
+                'что': 'помощь',
+                'как': 'помощь',
+                'зачем': 'помощь',
+                'почему': 'помощь',
+                'кто': 'помощь'
             };
 
+            // ===== ФУНКЦИЯ ПОЛУЧЕНИЯ ОТВЕТА =====
             function getReply(text, role) {
                 const normalized = text.toLowerCase().trim();
                 const kb = knowledgeBase[role] || knowledgeBase.default;
                 let reply = null;
 
+                // 1. Прямое совпадение
                 for (let key in kb.answers) {
-                    if (normalized.includes(key)) { reply = kb.answers[key]; break; }
+                    if (normalized.includes(key)) {
+                        reply = kb.answers[key];
+                        break;
+                    }
                 }
+
+                // 2. Синонимы
                 if (!reply) {
                     for (let syn in synonyms) {
                         if (normalized.includes(syn)) {
                             const mainKey = synonyms[syn];
-                            if (kb.answers[mainKey]) { reply = kb.answers[mainKey]; break; }
+                            if (kb.answers[mainKey]) {
+                                reply = kb.answers[mainKey];
+                                break;
+                            }
                         }
                     }
                 }
+
+                // 3. Если нашли — возвращаем
                 if (reply) {
                     context.push(text);
                     if (context.length > 3) context.shift();
                     return reply;
                 }
 
-                const trigger = Object.values(psychTriggers)[Math.floor(Math.random() * Object.values(psychTriggers).length)];
-                return `Уточните, пожалуйста. Я могу ответить про ${role === 'taxi' ? 'такси-бот, заказы, баланс, машины' : role === 'crm' ? 'CRM, прогнозы, автозаполнение, аналитику' : 'боты, CRM, нейросети, такси-бот'}. ${trigger}`;
+                // 4. Если ничего не понял — живой человеческий ответ
+                const roleTopics = {
+                    default: 'боты, CRM, нейросети или такси-бот',
+                    taxi: 'такси-бот, заказы, баланс или машины',
+                    crm: 'CRM, прогнозы, автозаполнение или аналитику'
+                };
+                const topic = roleTopics[role] || roleTopics.default;
+                const variants = [
+                    `Не понял. Давай ещё раз. Что именно тебя интересует — ${topic}?`,
+                    `Спрашивай конкретнее. Я могу рассказать про ${topic}.`,
+                    `Окей, давай уточним. Тебе нужна информация про ${topic}?`,
+                    `Я тебя услышал, но не совсем понял. Ты про ${topic}?`
+                ];
+                const randomVariant = variants[Math.floor(Math.random() * variants.length)];
+                context.push(text);
+                if (context.length > 3) context.shift();
+                return randomVariant;
             }
 
+            // ===== ОСТАЛЬНЫЕ ФУНКЦИИ (typeMessage, addBubble, showTyping, hideTyping, scrollToBottom) =====
             function typeMessage(text, element, speed = 22) {
                 return new Promise((resolve) => {
                     let index = 0;
@@ -1005,6 +1053,7 @@
                 chat.scrollTop = chat.scrollHeight;
             }
 
+            // ===== ОТПРАВКА СООБЩЕНИЯ =====
             async function sendMessage(userMessage) {
                 if (!userMessage.trim()) return;
                 const empty = document.getElementById('emptyState');
@@ -1024,6 +1073,7 @@
                 showButtons();
             }
 
+            // ===== КНОПКИ =====
             function showButtons() {
                 suggestionsEl.innerHTML = '';
                 const actions = getActionsForRole(currentRole);
@@ -1079,6 +1129,7 @@
                 }
             }
 
+            // ===== СМЕНА РОЛИ =====
             function switchRole(role) {
                 currentRole = role;
                 const kb = knowledgeBase[role] || knowledgeBase.default;
@@ -1097,6 +1148,7 @@
                 }
             }
 
+            // ===== ОЧИСТКА =====
             function clearHistory() {
                 const msgs = chat.querySelectorAll('.msg');
                 msgs.forEach(el => el.remove());
@@ -1126,6 +1178,7 @@
                 switchRole('default');
             }
 
+            // ===== СТАРТ =====
             async function startDemo() {
                 const empty = document.getElementById('emptyState');
                 if (empty && empty.parentNode) empty.remove();
@@ -1143,12 +1196,14 @@
                 isFirstMessage = false;
             }
 
+            // ===== ОБРАБОТКА ВВОДА =====
             function handleSend() {
                 const text = input.value.trim();
                 if (!text) return;
                 sendMessage(text);
             }
 
+            // ===== СОБЫТИЯ =====
             startBtn.addEventListener('click', startDemo);
             clearBtn.addEventListener('click', clearHistory);
             sendBtn.addEventListener('click', handleSend);
@@ -1165,7 +1220,7 @@
                 if (chat.querySelector('.chat-empty')) startDemo();
             });
 
-            // Ротация плейсхолдера
+            // ===== РОТАЦИЯ ПЛЕЙСХОЛДЕРА =====
             const placeholders = [
                 'спросите что угодно...',
                 'напишите "закажи такси"...',
