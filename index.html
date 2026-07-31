@@ -2,816 +2,676 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
+    <script>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BotCraft Studio — инструменты, которые приносят деньги</title>
-    <meta name="description" content="Интеграция AI в бизнес. Настраиваем ботов, CRM, такси-ботов под ваши задачи. Премиум-сегмент." />
+    <meta name="description" content="Разработка ботов, CRM, сайтов и AI-интеграций под ваш бизнес. Нешаблонные решения." />
+    <link rel="canonical" href="https://botcraftstudio.ru/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://botcraftstudio.ru/" />
+    <meta property="og:title" content="BotCraft Studio — инструменты, которые приносят деньги" />
+    <meta property="og:description" content="Разработка ботов, CRM, сайтов и AI-интеграций под ваш бизнес. Нешаблонные решения." />
+    <meta property="og:image" content="https://botcraftstudio.ru/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-    <!-- ===== ИКОНКИ ===== -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="msapplication-TileColor" content="#0A0B10">
-    <meta name="theme-color" content="#0A0B10">
+    <!-- Яндекс.Метрика -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111198502', 'ym');
+
+        ym(111198502, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/111198502" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
     <style>
-        /* ===== СТИЛИ (те же, что и раньше, без изменений) ===== */
+        :root {
+            --bg: #0A0B10;
+            --text: #E8E5DC;
+            --muted: #9A9DA6;
+            --dim: #6B6E78;
+            --faint: #4A4D56;
+            --accent: #C9A87C;
+            --accent-hover: #D6B892;
+            --accent-soft: rgba(201, 168, 124, 0.08);
+            --status: #6FA98A;
+            --line: rgba(201, 168, 124, 0.08);
+            --line-strong: rgba(201, 168, 124, 0.2);
+            --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --mono: 'IBM Plex Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            --font-weight-light: 300;
+            --font-weight-regular: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --line-height-tight: 1.1;
+            --line-height-normal: 1.5;
+            --line-height-loose: 1.8;
+            --letter-spacing-tight: -0.03em;
+            --letter-spacing-normal: 0;
+            --letter-spacing-wide: 0.08em;
+            --ease: cubic-bezier(.22, .61, .36, 1);
+            --ease-soft: cubic-bezier(.16, 1, .3, 1);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', sans-serif;
-            background: #0A0B10;
-            color: #E8E5DC;
+            font-family: var(--sans);
+            font-weight: var(--font-weight-light);
+            font-size: 18px;
+            line-height: var(--line-height-loose);
+            color: var(--text);
+            background: var(--bg);
             overflow-x: hidden;
-            line-height: 1.5;
-            cursor: default;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
-        ::selection { background: #C9A87C; color: #0A0B10; }
+        ::selection { background: var(--accent); color: var(--bg); }
+        a { color: inherit; text-decoration: none; }
+
+        .site-wrapper { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 768px) { .site-wrapper { padding: 0 20px; } }
+
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent); z-index: 9998; transition: width 0.1s linear; }
 
         #cursor {
-            position: fixed;
-            width: 28px;
-            height: 28px;
-            border: 1px solid rgba(201, 168, 124, 0.4);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.2s, width 0.3s, height 0.3s, border-color 0.3s;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
+            position: fixed; width: 32px; height: 32px;
+            border: 1.5px solid rgba(201, 168, 124, 0.6); border-radius: 50%;
+            pointer-events: none; z-index: 9999;
+            transition: transform 0.15s, width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;
+            transform: translate(-50%, -50%); mix-blend-mode: difference;
         }
-        #cursor.active { width: 50px; height: 50px; border-color: #C9A87C; border-width: 1.5px; }
+        #cursor.active { width: 50px; height: 50px; border-color: var(--accent); border-width: 1.5px; }
+        #cursor.link { width: 8px; height: 8px; background: var(--accent); border-color: var(--accent); }
 
         #intro {
-            position: fixed; inset: 0; z-index: 10000;
-            background: #0A0B10;
+            position: fixed; inset: 0; z-index: 10002; background: var(--bg);
             display: flex; align-items: center; justify-content: center; flex-direction: column;
-            transition: opacity 1.2s ease, transform 1.2s ease;
+            transition: opacity 1.2s ease, transform 1.2s ease; cursor: pointer;
         }
         #intro.hide { opacity: 0; transform: scale(1.02); pointer-events: none; }
-        #intro .logo {
-            max-width: 300px;
-            width: 80%;
-            height: auto;
-            opacity: 0;
-            animation: introFade 1.8s ease forwards;
-        }
-        @keyframes introFade {
-            0% { opacity:0; transform:translateY(20px); }
-            100% { opacity:1; transform:translateY(0); }
-        }
-        #intro .sub {
-            font-size: 13px; font-weight: 300; letter-spacing: 8px; text-transform: uppercase;
-            color: #7A7D86; margin-top: 20px; opacity: 0;
-            animation: introFade 1.8s 0.6s ease forwards;
-        }
-        #intro .loader {
-            margin-top: 40px; width: 100px; height: 1px;
-            background: rgba(201, 168, 124, 0.15); position: relative; overflow: hidden;
-        }
-        #intro .loader::after {
-            content: ''; position: absolute; left: -100%; width: 100%; height: 100%;
-            background: #C9A87C; animation: loadBar 2s ease-in-out forwards;
-        }
+        #intro .logo { opacity: 0; animation: introFade 1.8s ease forwards; text-align: center; }
+        @keyframes introFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        #intro .sub { font-family: var(--mono); font-size: 13px; font-weight: 400; letter-spacing: var(--letter-spacing-wide); text-transform: uppercase; color: var(--dim); margin-top: 20px; opacity: 0; animation: introFade 1.8s 0.6s ease forwards; }
+        #intro .loader { margin-top: 40px; width: 100px; height: 1px; background: rgba(201,168,124,0.15); position: relative; overflow: hidden; }
+        #intro .loader::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: var(--accent); animation: loadBar 2s ease-in-out forwards; }
         @keyframes loadBar { 0% { left: -100%; } 100% { left: 100%; } }
+        #intro .skip-hint { margin-top: 28px; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: var(--faint); opacity: 0; animation: introFade 1.8s 1.2s ease forwards; }
 
-        #three-canvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0; pointer-events: none; opacity: 0.25;
-        }
+        #three-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.25; }
+        body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size: 200px 200px; }
 
-        body::before {
-            content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
-        }
-
-        .site-wrapper {
-            position: relative; z-index: 1;
-            max-width: 1200px; margin: 0 auto; padding: 0 40px;
-        }
+        .wordmark { font-family: var(--serif); font-weight: var(--font-weight-regular); letter-spacing: var(--letter-spacing-tight); display: inline-flex; align-items: baseline; gap: 6px; line-height: 1; }
+        .wordmark .wm-accent { color: var(--accent); font-style: italic; }
+        .wordmark .wm-sub { font-family: var(--mono); font-size: 0.6em; letter-spacing: var(--letter-spacing-wide); text-transform: uppercase; color: var(--muted); font-weight: 400; }
+        .wordmark-lg { font-size: clamp(32px, 6vw, 44px); } .wordmark-lg .wm-sub { font-size: 0.5em; }
+        .wordmark-nav { font-size: 19px; } .wordmark-nav .wm-sub { font-size: 0.5em; letter-spacing: 2px; }
+        .wordmark-sm { font-size: 14px; } .wordmark-sm .wm-sub { font-size: 0.45em; letter-spacing: 1.5px; }
 
         .navbar {
-            position: sticky; top: 0; z-index: 100;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(201, 168, 124, 0.08);
-            backdrop-filter: blur(16px);
+            position: sticky; top: 0; z-index: 100; padding: 16px 0;
+            border-bottom: 1px solid var(--line); backdrop-filter: blur(16px);
             background: rgba(10, 11, 16, 0.6);
         }
-        .nav-inner {
-            display: flex; align-items: center; justify-content: space-between;
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+        .nav-right { display: flex; align-items: center; gap: 26px; }
+        .nav-links { display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; }
+        .nav-links a { color: var(--muted); text-decoration: none; transition: color 0.3s; position: relative; padding: 4px 0; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.4s; }
+        .nav-links a:hover { color: var(--text); } .nav-links a:hover::after { width: 100%; } .nav-links a.current { color: var(--accent); } .nav-links a.current::after { width: 100%; }
+        .nav-cta {
+            font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--bg); background: var(--accent); padding: 9px 20px; transition: background 0.3s;
+            flex-shrink: 0; white-space: nowrap; text-decoration: none;
         }
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
+        .nav-cta:hover { background: var(--accent-hover); }
+        .nav-toggle {
+            display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200;
         }
-        .nav-brand img {
-            height: 36px;
-            width: auto;
-        }
-        .nav-links {
-            display: flex; gap: 36px;
-            font-size: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px;
-        }
-        .nav-links a {
-            color: #9A9DA6; text-decoration: none; transition: 0.3s; position: relative;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 1px; background: #C9A87C; transition: 0.4s;
-        }
-        .nav-links a:hover { color: #E8E5DC; }
-        .nav-links a:hover::after { width: 100%; }
+        .nav-toggle span { width: 22px; height: 1px; background: var(--text); transition: transform 0.3s, opacity 0.3s; display: block; }
+        .nav-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-        .hero {
-            min-height: 85vh;
-            display: flex; align-items: center;
-            padding: 60px 0 80px;
-            position: relative;
+        .mobile-menu {
+            position: fixed; inset: 0; z-index: 150; background: rgba(10, 11, 16, 0.98); backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
         }
-        .hero-content { max-width: 720px; }
-        .hero-badge {
-            font-size: 11px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase;
-            color: #C9A87C;
-            border: 1px solid rgba(201, 168, 124, 0.15);
-            padding: 4px 16px; display: inline-block;
-            margin-bottom: 32px;
-            background: rgba(201, 168, 124, 0.04);
-        }
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-            font-size: clamp(42px, 6vw, 72px);
-            line-height: 1.1;
-            margin-bottom: 24px;
-            color: #E8E5DC;
-        }
-        .hero h1 .strike {
-            text-decoration: line-through;
-            opacity: 0.3;
-            font-weight: 300;
-        }
-        .hero h1 .accent {
-            color: #C9A87C;
-            font-style: italic;
-            display: inline-block;
-            border-bottom: 2px solid rgba(201, 168, 124, 0.2);
-            padding-bottom: 2px;
-        }
-        .hero-sub {
-            font-size: 17px; font-weight: 300;
-            color: #9A9DA6;
-            max-width: 520px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            padding-left: 24px;
-            border-left: 2px solid rgba(201, 168, 124, 0.2);
-        }
-        .hero-cta { display: flex; gap: 20px; flex-wrap: wrap; }
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
+        .mobile-menu a { font-family: var(--serif); font-size: 26px; font-style: italic; color: var(--text); text-decoration: none; opacity: 0.75; transition: opacity 0.3s, color 0.3s; }
+        .mobile-menu a:hover, .mobile-menu a.current { opacity: 1; color: var(--accent); }
+        .mobile-menu .mm-cta { margin-top: 12px; font-family: var(--mono); font-size: 12px; font-style: normal; letter-spacing: 2px; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 12px 32px; }
 
         .btn-primary, .btn-secondary {
-            padding: 14px 40px;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px; font-weight: 500;
-            letter-spacing: 1.5px; text-transform: uppercase;
-            border: none; cursor: pointer; transition: 0.3s;
-            background: transparent;
+            padding: 14px 40px; font-family: var(--sans); font-size: 13px; font-weight: var(--font-weight-medium);
+            letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s, transform 0.3s; background: transparent;
+            display: inline-block; text-decoration: none; will-change: transform;
         }
-        .btn-primary {
-            background: #C9A87C; color: #0A0B10;
-        }
-        .btn-primary:hover {
-            background: #D6B892; transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(201, 168, 124, 0.15);
-        }
-        .btn-secondary {
-            border: 1px solid rgba(201, 168, 124, 0.2);
-            color: #E8E5DC;
-        }
-        .btn-secondary:hover {
-            border-color: #C9A87C; color: #C9A87C; transform: translateY(-2px);
-        }
+        .btn-primary { background: var(--accent); color: var(--bg); }
+        .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 8px 30px rgba(201,168,124,0.15); transform: translateY(-2px); }
+        .btn-secondary { border: 1px solid var(--line-strong); color: var(--text); }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+        .btn-row { display: flex; gap: 20px; flex-wrap: wrap; }
 
-        section { padding: 60px 0; border-top: 1px solid rgba(201, 168, 124, 0.05); }
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px; font-weight: 400;
-            color: #E8E5DC;
-            margin-bottom: 12px;
-        }
-        .section-title::after {
-            content: ''; display: block;
-            width: 40px; height: 2px;
-            background: #C9A87C;
-            margin-top: 10px;
-        }
-        .section-sub {
-            color: #9A9DA6;
-            font-size: 16px; font-weight: 300;
-            max-width: 600px;
-            margin-bottom: 48px;
-        }
+        .hero { min-height: 80vh; display: flex; align-items: center; padding: 60px 0 40px; position: relative; }
+        .hero-content { max-width: 720px; }
+        .hero-badge { font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); border: 1px solid var(--line-strong); padding: 4px 16px; display: inline-block; margin-bottom: 32px; background: var(--accent-soft); }
+        .hero h1 { font-family: var(--serif); font-weight: var(--font-weight-regular); font-size: clamp(42px, 6vw, 72px); line-height: 1.1; margin-bottom: 24px; color: var(--text); }
+        .hero h1 .strike { text-decoration: line-through; opacity: 0.3; font-weight: var(--font-weight-light); }
+        .hero h1 .accent { color: var(--accent); font-style: italic; border-bottom: 2px solid var(--line-strong); padding-bottom: 2px; }
+        .hero-sub { font-size: 17px; font-weight: var(--font-weight-light); color: var(--muted); max-width: 520px; line-height: 1.8; margin-bottom: 40px; padding-left: 24px; border-left: 2px solid var(--line-strong); }
+        .scroll-cue { position: absolute; left: 40px; bottom: 18px; display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); }
+        .scroll-cue .line { width: 28px; height: 1px; background: rgba(201,168,124,0.3); position: relative; overflow: hidden; }
+        .scroll-cue .line::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: var(--accent); animation: scrollCue 2.2s ease-in-out infinite; }
+        @keyframes scrollCue { 0% { left: -100%; } 50% { left: 0; } 100% { left: 100%; } }
+        @media (max-width: 768px) { .scroll-cue { display: none; } }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-        .info-item h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px; font-weight: 400;
-            color: #E8E5DC;
-            margin-bottom: 8px;
-        }
-        .info-item p {
-            color: #9A9DA6;
-            font-size: 15px;
-            line-height: 1.7;
-            font-weight: 300;
-        }
-        .info-item ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 12px;
-        }
-        .info-item ul li {
-            padding: 6px 0;
-            color: #9A9DA6;
-            font-size: 14px;
-            font-weight: 300;
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-        .info-item ul li::before {
-            content: '—';
-            color: #C9A87C;
-        }
+        .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: center; padding: 24px 0 8px; }
+        .stat-num { font-family: var(--serif); font-style: italic; font-size: clamp(30px, 4vw, 42px); color: var(--accent); line-height: 1; }
+        .stat-label { font-size: 11px; font-family: var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
 
-        .demo-section {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(201, 168, 124, 0.06);
-            padding: 30px 20px 20px;
-        }
-        .phone-frame {
-            max-width: 460px;
-            margin: 0 auto;
-            background: #0F1118;
-            border: 1px solid rgba(201, 168, 124, 0.06);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
+        section { padding: 60px 0; border-top: 1px solid var(--line); }
+        .section-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
+        .section-title { font-family: var(--serif); font-size: 32px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 12px; }
+        .section-title::after { content: ''; display: block; width: 40px; height: 2px; background: var(--accent); margin-top: 10px; }
+        .section-sub { color: var(--muted); font-size: 16px; font-weight: var(--font-weight-light); max-width: 600px; margin-bottom: 48px; }
+        .tpl-tag { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--line-strong); color: var(--accent); padding: 2px 10px; border-radius: 20px; margin-left: 10px; vertical-align: middle; }
+
+        .marquee-wrap { padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
+        .marquee-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); text-align: center; margin-bottom: 16px; }
+        .marquee { overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
+        .marquee-track { display: inline-flex; align-items: center; gap: 36px; animation: marqueeScroll 32s linear infinite; width: max-content; }
+        .marquee:hover .marquee-track { animation-play-state: paused; }
+        .marquee-track span { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--muted); display: inline-flex; align-items: center; gap: 36px; white-space: nowrap; }
+        .marquee-track span.dot { font-family: var(--sans); font-style: normal; color: var(--accent); font-size: 12px; }
+        @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .tilt-card { border: 1px solid var(--line); background: linear-gradient(180deg, var(--accent-soft), transparent 40%); padding: 32px 26px; transition: transform 0.15s var(--ease-soft), border-color 0.3s; will-change: transform; }
+        .tilt-card:hover { border-color: var(--accent); }
+        .tilt-card .service-icon { width: 34px; height: 34px; color: var(--accent); margin-bottom: 22px; }
+        .tilt-card .service-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; }
+        .tilt-card h3 { font-family: var(--serif); font-size: 21px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 10px; }
+        .tilt-card p { color: var(--muted); font-size: 14.5px; line-height: 1.7; font-weight: var(--font-weight-light); margin-bottom: 16px; }
+        .tilt-card .card-link { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s; }
+        .tilt-card .card-link:hover { gap: 10px; }
+
+        .taxi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: stretch; }
+        .phone-frame { max-width: 100%; margin: 0 auto; background: #0F1118; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; height: 100%; }
         .phone-frame:hover { transform: scale(1.005); }
+        .tg-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+        .tg-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--bg); flex-shrink: 0; }
+        .tg-name { font-size: 15px; font-weight: var(--font-weight-regular); color: var(--text); }
+        .tg-status { font-family: var(--mono); font-size: 10.5px; color: var(--dim); display: flex; align-items: center; gap: 6px; }
+        .tg-status .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--dim); display: inline-block; }
+        .tg-status .dot.online { background: var(--status); animation: pulse-dot 2s infinite; }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+        .taxi-chat { padding: 16px 14px; background: #0A0C12; display: flex; flex-direction: column; gap: 8px; min-height: 200px; max-height: 260px; overflow-y: auto; flex: 1; }
+        .taxi-chat::-webkit-scrollbar { width: 3px; } .taxi-chat::-webkit-scrollbar-thumb { background: rgba(201,168,124,0.15); border-radius: 4px; }
+        .msg { max-width: 85%; padding: 10px 16px; font-size: 14px; line-height: 1.5; border-radius: 12px; animation: msgAppear 0.3s ease; word-wrap: break-word; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        @keyframes msgAppear { from { opacity: 0; transform: translateY(8px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .msg.bot { align-self: flex-start; background: #1A1F2E; color: #E0DDD4; border-bottom-left-radius: 4px; border-left: 2px solid var(--accent); }
+        .msg.user { align-self: flex-end; background: var(--accent); color: var(--bg); border-bottom-right-radius: 4px; }
+        .taxi-actions { padding: 8px 14px 14px; display: flex; flex-wrap: wrap; gap: 6px; background: #0F1118; border-top: 1px solid var(--line); }
+        .taxi-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--line-strong); color: var(--text); padding: 6px 14px; border-radius: 20px; font-family: var(--sans); font-size: 12px; font-weight: 400; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; letter-spacing: 0.3px; flex: 1; min-width: 80px; }
+        .taxi-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+        .taxi-btn:disabled { opacity: 0.4; pointer-events: none; }
 
-        .tg-header {
-            display: flex; align-items: center; gap: 12px;
-            padding: 14px 16px;
-            border-bottom: 1px solid rgba(201, 168, 124, 0.04);
-        }
-        .tg-avatar {
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            background: #C9A87C;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif; font-style: italic;
-            font-size: 16px; color: #0A0B10;
-            flex-shrink: 0;
-        }
-        .tg-name {
-            font-size: 15px; font-weight: 400;
-            color: #E8E5DC;
-        }
-        .tg-status {
-            font-size: 11px; color: #7A7D86;
-            display: flex; align-items: center; gap: 6px;
-        }
-        .tg-status .dot {
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: #7A7D86;
-            display: inline-block;
-        }
-        .tg-status .dot.online {
-            background: #C9A87C;
-            animation: pulse-dot 2s infinite;
-        }
-        @keyframes pulse-dot {
-            0%,100% { opacity:1; transform:scale(1); }
-            50% { opacity:0.4; transform:scale(0.8); }
-        }
+        .process-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+        .process-step { text-align: center; padding: 20px 10px; border: 1px solid var(--line); background: var(--accent-soft); }
+        .process-step .p-icon { font-family: var(--serif); font-style: italic; font-size: 28px; color: var(--accent); margin-bottom: 12px; }
+        .process-step h4 { font-family: var(--serif); font-size: 18px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 8px; }
+        .process-step p { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: var(--font-weight-light); }
 
-        .tg-chat {
-            height: 400px;
-            overflow-y: auto;
-            padding: 16px 14px;
-            background: #0A0C12;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(201,168,124,0.1) transparent;
-        }
-        .tg-chat::-webkit-scrollbar { width: 3px; }
-        .tg-chat::-webkit-scrollbar-thumb { background: rgba(201,168,124,0.15); border-radius: 4px; }
+        .benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .benefit-item { padding: 24px; border-left: 2px solid var(--accent); background: var(--accent-soft); }
+        .benefit-item h4 { font-family: var(--serif); font-size: 20px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 8px; }
+        .benefit-item p { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: var(--font-weight-light); }
 
-        .chat-empty {
-            margin: auto;
-            text-align: center;
-            color: #4A4D56;
-            font-size: 13px;
-        }
-        .chat-empty .icon { font-size: 28px; opacity: 0.2; font-family: 'Playfair Display', serif; }
+        .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .case-card { border: 1px solid var(--line); padding: 24px; transition: border-color 0.3s, transform 0.3s; }
+        .case-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+        .case-tag { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.3px; color: var(--accent); margin-bottom: 14px; display: block; }
+        .case-card p { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: var(--font-weight-light); }
+        .case-result { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--text); line-height: 1.5; }
 
-        .msg {
-            max-width: 85%;
-            padding: 10px 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            border-radius: 12px;
-            animation: msgAppear 0.3s ease;
-            word-wrap: break-word;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        @keyframes msgAppear {
-            from { opacity:0; transform:translateY(8px) scale(0.97); }
-            to { opacity:1; transform:translateY(0) scale(1); }
-        }
-        .msg.bot {
-            align-self: flex-start;
-            background: #1A1F2E;
-            color: #E0DDD4;
-            border-bottom-left-radius: 4px;
-            border-left: 2px solid #C9A87C;
-        }
-        .msg.user {
-            align-self: flex-end;
-            background: #C9A87C;
-            color: #0A0B10;
-            border-bottom-right-radius: 4px;
-        }
-        .msg .cursor-blink {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background: #C9A87C;
-            margin-left: 2px;
-            vertical-align: text-bottom;
-            animation: blink 0.8s step-end infinite;
-        }
-        @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
-
-        .msg.typing-indicator {
-            align-self: flex-start;
-            display: flex; gap: 4px;
-            padding: 10px 16px;
-            background: #1A1F2E;
-            border-radius: 16px;
-            border-bottom-left-radius: 4px;
-            border-left: 2px solid #C9A87C;
-        }
-        .msg.typing-indicator span {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: #7A7D86;
-            animation: typingBounce 1.4s infinite ease-in-out;
-        }
-        .msg.typing-indicator span:nth-child(2) { animation-delay:0.2s; }
-        .msg.typing-indicator span:nth-child(3) { animation-delay:0.4s; }
-        @keyframes typingBounce {
-            0%,60%,100%{ transform:translateY(0); opacity:0.4; }
-            30%{ transform:translateY(-6px); opacity:1; }
-        }
-
-        .tg-suggestions {
-            padding: 10px 14px;
-            border-top: 1px solid rgba(201,168,124,0.04);
-            display: flex; flex-wrap: wrap; gap: 6px;
-            background: #0F1118;
-        }
-        .chip {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(201,168,124,0.1);
-            color: #9A9DA6;
-            padding: 6px 14px;
-            font-size: 11px;
-            font-weight: 400;
-            cursor: pointer;
-            transition: 0.2s;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
-            border-radius: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .chip .chip-icon {
-            width: 14px;
-            height: 14px;
-            display: inline-block;
-            flex-shrink: 0;
-            color: #9A9DA6;
-            transition: 0.2s;
-        }
-        .chip .chip-icon svg {
-            width: 100%; height: 100%;
-            fill: none; stroke: currentColor; stroke-width: 2;
-            stroke-linecap: round; stroke-linejoin: round;
-        }
-        .chip:hover {
-            border-color: #C9A87C;
-            color: #E8E5DC;
-            background: rgba(201,168,124,0.04);
-        }
-        .chip:hover .chip-icon { color: #C9A87C; }
-
-        .tg-actions {
-            display: flex; gap: 6px;
-            padding: 6px 14px 0;
-            background: #0F1118;
-            flex-wrap: wrap;
-        }
-        .action-chip {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(201,168,124,0.06);
-            color: #7A7D86;
-            padding: 4px 12px;
-            font-size: 10px;
-            font-weight: 400;
-            cursor: pointer;
-            transition: 0.2s;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
-            border-radius: 20px;
-        }
-        .action-chip:hover {
-            border-color: #C9A87C;
-            color: #E8E5DC;
-            background: rgba(201,168,124,0.04);
-        }
-        .action-chip.active-action {
-            border-color: #C9A87C;
-            color: #C9A87C;
-            background: rgba(201,168,124,0.06);
-        }
-
-        .start-btn, .clear-btn {
-            padding: 10px;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.3s;
-            border-radius: 4px;
-            flex: 1;
-        }
-        .start-btn {
-            background: #C9A87C;
-            color: #0A0B10;
-        }
-        .start-btn:hover { background: #D6B892; transform: scale(1.01); }
-        .clear-btn {
-            background: rgba(255,255,255,0.03);
-            color: #7A7D86;
-            border: 1px solid rgba(201,168,124,0.08);
-            flex: 0.4;
-        }
-        .clear-btn:hover { background: rgba(255,255,255,0.06); color: #E8E5DC; }
-
-        .tg-inputbar {
-            display: flex; gap: 8px;
-            padding: 8px 14px 14px;
-            background: #0F1118;
-            border-top: 1px solid rgba(201,168,124,0.04);
-        }
-        .tg-inputbar input {
-            flex: 1;
-            background: #1A1F2E;
-            border: 1px solid rgba(201,168,124,0.06);
-            border-radius: 20px;
-            padding: 8px 16px;
-            color: #E8E5DC;
-            font-size: 13px;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-            transition: 0.3s;
-        }
-        .tg-inputbar input:focus { border-color: rgba(201,168,124,0.3); }
-        .tg-inputbar input::placeholder { color: #4A4D56; font-weight: 300; transition: 0.3s; }
-        .send-btn {
-            background: #C9A87C;
-            border: none;
-            border-radius: 20px;
-            padding: 8px 20px;
-            color: #0A0B10;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-        }
-        .send-btn:hover { background: #D6B892; }
+        .faq-list { display: flex; flex-direction: column; }
+        .faq-item { border-bottom: 1px solid var(--line); padding: 20px 0; }
+        .faq-item:first-child { padding-top: 0; }
+        .faq-item h4 { font-family: var(--serif); font-size: 18px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 8px; }
+        .faq-item p { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: var(--font-weight-light); max-width: 700px; }
 
         .contact-block { text-align: left; padding: 10px 0; }
         .contact-block .btn-primary { font-size: 14px; padding: 16px 48px; }
-        .footnote {
-            color: #4A4D56;
-            font-size: 12px; margin-top: 24px;
-            letter-spacing: 0.5px; font-weight: 300;
-        }
+        .contact-block .btn-secondary { font-size: 14px; padding: 16px 48px; margin-top: 0; display: inline-block; }
+        .footnote { color: var(--faint); font-size: 12px; margin-top: 24px; letter-spacing: 0.5px; font-weight: var(--font-weight-light); }
 
-        footer {
-            border-top: 1px solid rgba(201,168,124,0.05);
-            padding: 24px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            color: #4A4D56;
-            font-size: 12px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
+        .price-tag {
+            display: inline-block; font-family: var(--mono); font-size: 14px; letter-spacing: 1px;
+            border: 1px solid var(--accent); padding: 8px 24px; color: var(--accent); background: var(--accent-soft);
+            margin-bottom: 8px;
         }
-        footer img {
-            height: 28px;
-            width: auto;
-        }
+        .price-tag + .price-tag { margin-left: 12px; }
+        @media (max-width: 480px) { .price-tag + .price-tag { margin-left: 0; } }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
+        footer { border-top: 1px solid var(--line); padding: 32px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; color: var(--faint); font-size: 12px; font-weight: var(--font-weight-light); letter-spacing: 0.5px; }
+        .footer-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+        .footer-links { display: flex; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-links a { color: var(--dim); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--accent); }
+
+        #back-to-top { position: fixed; right: 24px; bottom: 24px; z-index: 90; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-strong); background: rgba(10,11,16,0.7); backdrop-filter: blur(6px); color: var(--accent); cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s, border-color 0.3s; }
+        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        #back-to-top:hover { border-color: var(--accent); }
+        #back-to-top svg { width: 16px; height: 16px; }
+
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         .reveal-delay-1 { transition-delay: 0.1s; }
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
 
+        @media (max-width: 1000px) {
+            .service-grid { grid-template-columns: 1fr 1fr; }
+            .benefit-grid { grid-template-columns: 1fr 1fr; }
+            .process-grid { grid-template-columns: 1fr 1fr; }
+            .taxi-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 900px) {
+            .nav-links { display: none; } .nav-cta { display: none; } .nav-toggle { display: flex; }
+            .case-grid { grid-template-columns: 1fr 1fr; }
+            .process-grid { grid-template-columns: 1fr 1fr; }
+        }
         @media (max-width: 768px) {
             .site-wrapper { padding: 0 20px; }
             .hero h1 { font-size: 32px; }
-            .info-grid { grid-template-columns: 1fr; gap: 30px; }
-            .nav-links { gap: 16px; font-size: 10px; }
-            #cursor { display: none; }
-            body { cursor: auto; }
-            .tg-chat { height: 340px; }
-            .nav-brand img { height: 28px; }
+            .service-grid { grid-template-columns: 1fr; }
+            .benefit-grid { grid-template-columns: 1fr; }
+            .case-grid { grid-template-columns: 1fr; gap: 20px; }
+            .stat-strip { grid-template-columns: 1fr; gap: 24px; }
+            .process-grid { grid-template-columns: 1fr; }
+            .taxi-grid { grid-template-columns: 1fr; }
+            #cursor { display: none; } #three-canvas { display: none; } body { cursor: auto; }
+            footer { flex-direction: column; align-items: flex-start; }
+            .scroll-cue { display: none; } body { font-size: 16px; }
         }
         @media (max-width: 480px) {
             .phone-frame { border-radius: 12px; }
-            .tg-chat { height: 300px; }
-            .chip { font-size: 9px; padding: 4px 10px; }
-            .tg-actions { gap: 4px; }
-            .action-chip { font-size: 8px; padding: 3px 8px; }
-            .nav-brand img { height: 24px; }
+            .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 12px; }
+            .contact-block .btn-primary, .contact-block .btn-secondary { padding: 12px 24px; font-size: 12px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: opacity 0.3s ease; transform: none; }
+            #cursor { display: none; } body { cursor: auto; } body::before { display: none; }
+            .stat-num, .msg, .marquee-track { animation: none !important; }
+            .marquee-track { animation: none !important; }
         }
     </style>
 </head>
-<body>
+<body data-page-name="Главная">
 
-    <div id="cursor"><span class="dot"></span></div>
+    <div id="scroll-progress"></div>
+    <div id="cursor"></div>
 
     <div id="intro">
-        <img class="logo" src="https://i.postimg.cc/85BzSCD6/Gemini-Generated-Image-1wcfcd1wcfcd1wcf.png" alt="BotCraft Studio" />
+        <div class="logo wordmark wordmark-lg">Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span></div>
         <div class="sub">инструменты для бизнеса</div>
         <div class="loader"></div>
+        <div class="skip-hint">нажмите, чтобы пропустить</div>
     </div>
 
     <div id="three-canvas"></div>
 
     <nav class="navbar">
         <div class="nav-inner site-wrapper">
-            <a href="#" class="nav-brand">
-                <img src="https://i.postimg.cc/85BzSCD6/Gemini-Generated-Image-1wcfcd1wcfcd1wcf.png" alt="BotCraft Studio" />
+            <a href="index.html" class="nav-brand" data-page="Главная">
+                <span class="wordmark wordmark-nav">
+                    Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span>
+                    <span style="display:block; font-family:var(--mono); font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--dim); margin-top:-2px;">интеграция AI и автоматизация</span>
+                </span>
             </a>
-            <div class="nav-links">
-                <a href="#work">Что делаем</a>
-                <a href="#taxi">Такси-бот</a>
-                <a href="#demo">Демо</a>
-                <a href="#contact">Контакты</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="index.html" data-page="Главная">Главная</a>
+                    <a href="#work">Услуги</a>
+                    <a href="#taxi">Такси-бот</a>
+                    <a href="#cases">Кейсы</a>
+                    <a href="#process">Процесс</a>
+                    <a href="#contact">Контакты</a>
+                </div>
+                <a href="#contact" class="nav-cta">Обсудить проект</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
             </div>
         </div>
     </nav>
 
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" data-page="Главная">Главная</a>
+        <a href="#work">Услуги</a>
+        <a href="#taxi">Такси-бот</a>
+        <a href="#cases">Кейсы</a>
+        <a href="#process">Процесс</a>
+        <a href="#contact">Контакты</a>
+        <a href="#contact" class="mm-cta">Обсудить проект</a>
+    </div>
+
     <div class="site-wrapper">
 
-        <!-- HERO -->
         <header class="hero" id="hero">
             <div class="hero-content">
                 <div class="hero-badge">интеграция AI</div>
                 <h1>
-                    <span class="strike">Боты</span><br>
-                    <span class="accent">Инструменты</span><br>
-                    которые приносят <span class="accent">деньги</span>
+                    <span class="strike">Ручная работа</span><br>
+                    <span class="accent">Автоматизация</span><br>
+                    которая приносит <span class="accent">деньги</span>
                 </h1>
                 <p class="hero-sub">
-                    Не просто боты, а рабочие инструменты. Настраиваем AI под ваш бизнес — от идеи до запуска.
+                    Ваши менеджеры тратят часы на рутину. Мы настраиваем AI-ботов и CRM, чтобы они работали за вас — быстро, точно, без сбоев.
                 </p>
-                <div class="hero-cta">
+                <div class="hero-cta btn-row">
                     <a href="#contact" class="btn-primary">Обсудить</a>
-                    <a href="#demo" class="btn-secondary">Попробовать</a>
+                    <a href="#cases" class="btn-secondary">Смотреть кейсы</a>
+                </div>
+                <div style="margin-top:28px; font-family:var(--mono); font-size:11px; letter-spacing:1px; color:var(--faint);">
+                    <span>Бесплатный аудит ваших процессов</span>
+                    <span style="margin:0 12px;">·</span>
+                    <span>Фиксированная цена</span>
+                    <span style="margin:0 12px;">·</span>
+                    <span>Гарантия результата</span>
                 </div>
             </div>
+            <div class="scroll-cue"><span class="line"></span> Листайте</div>
         </header>
 
-        <!-- ЧТО ДЕЛАЕМ -->
+        <section id="proof" style="padding-top:0; padding-bottom:20px; border-top:none;">
+            <div class="stat-strip reveal">
+                <div class="stat-item">
+                    <div class="stat-num" data-target="99" data-suffix="+">0</div>
+                    <div class="stat-label">ботов запущено за этот год</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num" data-target="1200" data-suffix="+">0</div>
+                    <div class="stat-label">часов сэкономлено клиентам</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num" data-target="80" data-suffix="%">0</div>
+                    <div class="stat-label">обращений бот закрывает без менеджера</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="marquee-wrap">
+            <div class="marquee-label">Работаем поверх ваших систем</div>
+            <div class="marquee">
+                <div class="marquee-track">
+                    <span>Telegram</span><span class="dot">●</span><span>MAX</span><span class="dot">●</span><span>VK</span><span class="dot">●</span><span>Яндекс Такси</span><span class="dot">●</span><span>amoCRM</span><span class="dot">●</span><span>Bitrix24</span><span class="dot">●</span><span>ChatGPT</span><span class="dot">●</span><span>YandexGPT</span><span class="dot">●</span>
+                    <span>Telegram</span><span class="dot">●</span><span>MAX</span><span class="dot">●</span><span>VK</span><span class="dot">●</span><span>Яндекс Такси</span><span class="dot">●</span><span>amoCRM</span><span class="dot">●</span><span>Bitrix24</span><span class="dot">●</span><span>ChatGPT</span><span class="dot">●</span><span>YandexGPT</span><span class="dot">●</span>
+                </div>
+            </div>
+        </div>
+
         <section id="work">
-            <h2 class="section-title reveal">Что делаем</h2>
-            <p class="section-sub reveal">Не продаём воздух — настраиваем технологии, которые решают задачи</p>
-            <div class="info-grid">
-                <div class="info-item reveal reveal-delay-1">
-                    <h3>Боты под бизнес</h3>
-                    <p>Настраиваем ботов под вашу воронку, скрипты и логику. Подключаем к Telegram, MAX, VK или вашему сайту.</p>
-                    <ul>
-                        <li>Скрипты продаж</li>
-                        <li>Автоответчики</li>
-                        <li>Интеграция с CRM</li>
-                    </ul>
+            <span class="section-eyebrow reveal">Услуги</span>
+            <h2 class="section-title reveal">Что мы строим</h2>
+            <p class="section-sub reveal">Настраиваем AI под вашу воронку и бизнес-процессы. От идеи до запуска.</p>
+            <div class="service-grid">
+                <div class="tilt-card reveal reveal-delay-1">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><circle cx="8.5" cy="11" r="0.6" fill="currentColor" stroke="none"/><circle cx="12" cy="11" r="0.6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="11" r="0.6" fill="currentColor" stroke="none"/></svg></div>
+                    <h3>Под вашу воронку</h3>
+                    <p>Настраиваем ботов под вашу бизнес-логику, скрипты продаж и интеграции. Telegram, MAX, VK или сайт.</p>
+                    <a href="services.html#bots" class="card-link" data-page="Услуги">Подробнее →</a>
                 </div>
-                <div class="info-item reveal reveal-delay-2">
+                <div class="tilt-card reveal reveal-delay-2">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="4" x2="9" y2="20"/></svg></div>
                     <h3>AI в CRM</h3>
-                    <p>Добавляем нейросети в вашу CRM. Прогнозирование продаж, автозаполнение карточек, умные напоминания.</p>
-                    <ul>
-                        <li>Прогнозы по клиентам</li>
-                        <li>Автоматическая обработка заявок</li>
-                        <li>Аналитика в реальном времени</li>
-                    </ul>
+                    <p>Прогнозирование продаж, автозаполнение карточек, умные напоминания — нейросети внутри вашей CRM.</p>
+                    <a href="services.html#crm" class="card-link" data-page="Услуги">Подробнее →</a>
                 </div>
-                <div class="info-item reveal reveal-delay-3">
-                    <h3>Интеграция нейросетей</h3>
-                    <p>Подключаем ChatGPT, YandexGPT и другие модели к вашим процессам. Обучаем на ваших данных.</p>
-                    <ul>
-                        <li>Голосовые ассистенты</li>
-                        <li>Чат-боты с контекстом</li>
-                        <li>Анализ обращений</li>
-                    </ul>
+                <div class="tilt-card reveal reveal-delay-3">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.1"/><circle cx="5" cy="18" r="2.1"/><circle cx="19" cy="12" r="2.1"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><line x1="7" y1="7" x2="16.6" y2="11.2"/><line x1="7" y1="17" x2="16.6" y2="12.8"/><line x1="6.9" y1="6.6" x2="10.7" y2="10.9"/><line x1="6.9" y1="17.4" x2="10.7" y2="13.1"/></svg></div>
+                    <h3>Нейросети</h3>
+                    <p>Подключаем ChatGPT, YandexGPT и другие модели. Обучаем на ваших данных для конкретных задач.</p>
+                    <a href="services.html#neuro" class="card-link" data-page="Услуги">Подробнее →</a>
                 </div>
-                <div class="info-item reveal reveal-delay-1">
-                    <h3>Такси-бот</h3>
-                    <p>Готовое решение для таксопарков. Уведомления, статусы заказов, привязка авто, баланс — всё в одном месте.</p>
-                    <ul>
-                        <li>Интеграция с Яндекс Такси</li>
-                        <li>Работает в MAX и Telegram</li>
-                        <li>Автоматические отчёты</li>
-                    </ul>
+                <div class="tilt-card reveal reveal-delay-1">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/></svg></div>
+                    <h3>Сайты и веб-приложения</h3>
+                    <p>Разрабатываем нешаблонные сайты, лендинги и веб-приложения с интеграцией AI и CRM. Не «сайт-визитка», а рабочий инструмент.</p>
+                    <a href="services.html#web" class="card-link" data-page="Услуги">Подробнее →</a>
                 </div>
             </div>
         </section>
 
-        <!-- ТАКСИ-БОТ ПОДРОБНЕЕ -->
         <section id="taxi">
-            <h2 class="section-title reveal">Такси-бот</h2>
-            <p class="section-sub reveal">Что конкретно он делает</p>
-            <div class="info-grid">
-                <div class="info-item reveal reveal-delay-1">
-                    <h3>Для водителей</h3>
-                    <ul>
-                        <li>Новые заказы — сразу в чат</li>
-                        <li>Адрес подачи и цена — в одном сообщении</li>
-                        <li>Меняет статус заказа кнопкой</li>
-                        <li>Привязывает машину из списка парка</li>
-                        <li>Показывает баланс и историю</li>
-                    </ul>
-                </div>
-                <div class="info-item reveal reveal-delay-2">
-                    <h3>Для диспетчера</h3>
-                    <ul>
-                        <li>Все заказы видны в реальном времени</li>
-                        <li>Автоматические уведомления о смене статуса</li>
-                        <li>История поездок по водителям</li>
-                        <li>Интеграция с Яндекс Такси без лишних движений</li>
-                        <li>Работает в MAX и Telegram</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- ДЕМО-БОТ (УЛУЧШЕННЫЙ) -->
-        <section id="demo">
-            <h2 class="section-title reveal">Интерактивный прототип</h2>
-            <p class="section-sub reveal">Попробуйте сценарии: такси-заказ, смена ролей</p>
-            <div class="demo-section reveal">
-                <div class="phone-frame">
-                    <!-- Шапка -->
-                    <div class="tg-header">
-                        <div class="tg-avatar">B</div>
-                        <div>
-                            <div class="tg-name" id="botName">BotCraft Studio</div>
-                            <div class="tg-status"><span class="dot online"></span> <span id="botStatus">онлайн</span></div>
+            <span class="section-eyebrow reveal">Такси-бот</span>
+            <h2 class="section-title reveal">Что конкретно он делает</h2>
+            <p class="section-sub reveal">Нажмите на кнопки, чтобы увидеть, как бот реагирует</p>
+            <div class="taxi-grid">
+                <div class="reveal reveal-delay-1 taxi-demo" data-role="driver">
+                    <div class="phone-frame">
+                        <div class="tg-header">
+                            <div class="tg-avatar">В</div>
+                            <div><div class="tg-name">Водитель</div><div class="tg-status"><span class="dot online"></span> онлайн</div></div>
+                        </div>
+                        <div class="taxi-chat">
+                            <div class="msg bot">Новый заказ: ул. Тверская, 12 → Шереметьево<br>Цена: 1 450 ₽</div>
+                            <div class="msg bot">Расстояние: 28 км, время подачи: 12 мин</div>
+                        </div>
+                        <div class="taxi-actions">
+                            <button class="taxi-btn" data-action="accept">Принять</button>
+                            <button class="taxi-btn" data-action="decline">Отказаться</button>
+                            <button class="taxi-btn" data-action="complete">Завершить</button>
                         </div>
                     </div>
-
-                    <!-- Чат -->
-                    <div class="tg-chat" id="chat">
-                        <div class="chat-empty" id="emptyState">
-                            <div class="icon">⌨</div>
-                            <div style="font-weight:300; margin-top:4px;">BotCraft Studio</div>
-                            <div style="font-size:12px; color:#3A3D46; margin-top:4px;">Напишите что‑нибудь или выберите сценарий</div>
+                </div>
+                <div class="reveal reveal-delay-2 taxi-demo" data-role="dispatcher">
+                    <div class="phone-frame">
+                        <div class="tg-header">
+                            <div class="tg-avatar">Д</div>
+                            <div><div class="tg-name">Диспетчер</div><div class="tg-status"><span class="dot online"></span> онлайн</div></div>
+                        </div>
+                        <div class="taxi-chat">
+                            <div class="msg bot">Новый заказ №1423: ул. Ленина, 5 → Аэропорт</div>
+                            <div class="msg bot">Время подачи: 20 мин, цена: 1 200 ₽</div>
+                        </div>
+                        <div class="taxi-actions">
+                            <button class="taxi-btn" data-action="assign">Назначить</button>
+                            <button class="taxi-btn" data-action="cancel">Отменить</button>
+                            <button class="taxi-btn" data-action="monitor">Мониторинг</button>
                         </div>
                     </div>
-
-                    <!-- Кнопки смены ролей -->
-                    <div class="tg-actions" id="roleActions">
-                        <button class="action-chip active-action" data-role="default">Ассистент</button>
-                        <button class="action-chip" data-role="taxi">Такси-диспетчер</button>
-                        <button class="action-chip" data-role="crm">CRM-менеджер</button>
-                    </div>
-
-                    <!-- Быстрые кнопки -->
-                    <div class="tg-suggestions" id="suggestions">
-                        <button class="start-btn" id="startBtn">Начать</button>
-                        <button class="clear-btn" id="clearBtn">Очистить</button>
-                    </div>
-
-                    <!-- Поле ввода -->
-                    <div class="tg-inputbar">
-                        <input id="cmdInput" type="text" placeholder="спросите что угодно..." autocomplete="off">
-                        <button class="send-btn" id="sendBtn">→</button>
+                </div>
+                <div class="reveal reveal-delay-3 taxi-demo" data-role="courier">
+                    <div class="phone-frame">
+                        <div class="tg-header">
+                            <div class="tg-avatar">К</div>
+                            <div><div class="tg-name">Курьер</div><div class="tg-status"><span class="dot online"></span> онлайн</div></div>
+                        </div>
+                        <div class="taxi-chat">
+                            <div class="msg bot">Свободная доставка: хлеб, 5 кг, ул. Садовая, 12 → ул. Мира, 8</div>
+                            <div class="msg bot">Оплата: 350 ₽, расстояние: 4 км</div>
+                        </div>
+                        <div class="taxi-actions">
+                            <button class="taxi-btn" data-action="take">Взять заказ</button>
+                            <button class="taxi-btn" data-action="delivered">Доставлен</button>
+                            <button class="taxi-btn" data-action="problem">Проблема</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- КОНТАКТЫ -->
+        <section id="process">
+            <span class="section-eyebrow reveal">Как мы работаем</span>
+            <h2 class="section-title reveal">Процесс</h2>
+            <p class="section-sub reveal">Пять шагов от заявки до запуска</p>
+            <div class="process-grid">
+                <div class="process-step reveal reveal-delay-1"><div class="p-icon">01</div><h4>Заявка</h4><p>Коротко описываете задачу в Telegram — без брифов на 10 страниц.</p></div>
+                <div class="process-step reveal reveal-delay-2"><div class="p-icon">02</div><h4>Диагностика</h4><p>Разбираем процессы, считаем, что реально автоматизировать. План — за 1–2 дня.</p></div>
+                <div class="process-step reveal reveal-delay-3"><div class="p-icon">03</div><h4>Прототип</h4><p>Собираем рабочий макет на ключевых сценариях — видно логику до внедрения.</p></div>
+                <div class="process-step reveal reveal-delay-1"><div class="p-icon">04</div><h4>Внедрение</h4><p>Подключаем к вашим системам: CRM, мессенджеры, Яндекс Такси. Тестируем на реальных данных.</p></div>
+                <div class="process-step reveal reveal-delay-2"><div class="p-icon">05</div><h4>Поддержка</h4><p>Донастраиваем логику по обратной связи, остаёмся на связи после запуска.</p></div>
+            </div>
+        </section>
+
+        <section id="benefits">
+            <span class="section-eyebrow reveal">Почему мы</span>
+            <h2 class="section-title reveal">Преимущества</h2>
+            <p class="section-sub reveal">Коротко о главном</p>
+            <div class="benefit-grid">
+                <div class="benefit-item reveal"><h4>Индивидуальный подход</h4><p>Не продаём коробочные решения — настраиваем логику под ваши задачи и бизнес-процессы.</p></div>
+                <div class="benefit-item reveal"><h4>Работаем через API</h4><p>Интеграции с Telegram, MAX, Яндекс Такси, CRM — без потери данных и безопасности.</p></div>
+                <div class="benefit-item reveal"><h4>Поддержка после запуска</h4><p>Донастраиваем первые недели, а дальше — на договорённости. Мы не бросаем проекты.</p></div>
+                <div class="benefit-item reveal"><h4>Хостинг остаётся у вас</h4><p>Мы не берём на себя хостинг — только логика и интеграции. Всё под вашим контролем.</p></div>
+            </div>
+        </section>
+
+        <section id="cases">
+            <span class="section-eyebrow reveal">Портфолио</span>
+            <h2 class="section-title reveal">Реальные проекты</h2>
+            <p class="section-sub reveal">Примеры работ, которые уже приносят пользу бизнесу.</p>
+            <div class="case-grid">
+                <div class="case-card reveal reveal-delay-1">
+                    <span class="case-tag">Таксопарки и логистика</span>
+                    <p>Боты для водителей такси с интеграцией Яндекс.Такси. Заменяют диспетчерскую, автоматизируют приём заказов, статусы и баланс.</p>
+                    <div class="case-result">Снижение нагрузки на диспетчера на 60%</div>
+                </div>
+                <div class="case-card reveal reveal-delay-2">
+                    <span class="case-tag">Локальная доставка (хлеб)</span>
+                    <p>Два бота: клиентский (подписка на доставку) и курьерский (приём заказов, маршруты, отметки о доставке).</p>
+                    <div class="case-result">Курьеры сами выбирают выгодные заказы — рыночная модель</div>
+                </div>
+                <div class="case-card reveal reveal-delay-3">
+                    <span class="case-tag">Веб-разработка и CRM</span>
+                    <p>Разработали корпоративный сайт для b2b-компании с интеграцией CRM и AI-чат-бота. Автоматизировали сбор заявок и обработку запросов.</p>
+                    <div class="case-result">Заявки обрабатываются в 2 раза быстрее</div>
+                </div>
+            </div>
+            <div class="section-cta reveal">
+                <a href="cases.html" class="btn-secondary" data-page="Кейсы">Все кейсы →</a>
+            </div>
+        </section>
+
+        <section id="faq">
+            <span class="section-eyebrow reveal">Часто спрашивают</span>
+            <h2 class="section-title reveal">Ответы на вопросы</h2>
+            <div class="faq-list">
+                <div class="faq-item reveal"><h4>Какие данные защищены?</h4><p>Работаем через официальные API — Telegram, ваша CRM, Яндекс Такси. Доступ настраивается по ролям. При необходимости подписываем NDA.</p></div>
+                <div class="faq-item reveal"><h4>Сколько это стоит и как долго?</h4><p>Цена и сроки зависят от задачи. Даём смету после бесплатной диагностики — без сюрпризов в процессе. Простые боты — от 1 недели.</p></div>
+                <div class="faq-item reveal"><h4>Кто обеспечивает хостинг?</h4><p>Хостинг и домен остаются у вас. Мы только настраиваем логику и интеграции. Если нужна помощь с хостингом — подскажем, но не хостим сами.</p></div>
+                <div class="faq-item reveal"><h4>Что после запуска?</h4><p>Первые недели донастраиваем логику по вашей обратной связи. Дальше — по договорённости на поддержку.</p></div>
+            </div>
+        </section>
+
         <section id="contact">
-            <div class="contact-block">
-                <h2 class="section-title reveal">Обсудить проект</h2>
-                <p class="section-sub reveal" style="max-width:500px; margin-bottom: 24px;">
-                    Напишите — расскажем, что можно сделать, и сколько это займёт.
+            <div class="contact-block reveal">
+                <span class="section-eyebrow">Обсудить проект</span>
+                <h2 class="section-title">Напишите — расскажем, что можно сделать, и сколько это займёт.</h2>
+                <div>
+                    <span class="price-tag">Боты от 10 000 ₽</span>
+                    <span class="price-tag">Сайты от 50 000 ₽</span>
+                </div>
+                <p class="section-sub" style="margin-bottom:32px;">
+                    Хостинг не предоставляем. Условия обсуждаются индивидуально.
+                    <span style="display:block; font-size:14px; color:var(--accent); margin-top:10px;">Бесплатный расчёт за 15 минут — просто опишите задачу.</span>
                 </p>
-                <a href="https://t.me/Bot_Craft_Studio" class="btn-primary reveal" target="_blank">Написать в Telegram</a>
-                <div class="footnote reveal">Хостинг не предоставляем. Условия обсуждаются индивидуально.</div>
+                <div class="btn-row">
+                    <a href="https://t.me/Bot_Craft_Studio" class="btn-primary" target="_blank">Написать в Telegram</a>
+                    <a href="https://max.ru/id773475339010_bot" class="btn-secondary" target="_blank">Написать в MAX</a>
+                </div>
             </div>
         </section>
 
         <footer>
-            <img src="https://i.postimg.cc/85BzSCD6/Gemini-Generated-Image-1wcfcd1wcfcd1wcf.png" alt="BotCraft Studio" />
-            <span>© 2026 BotCraft Studio</span>
+            <div class="footer-left">
+                <span class="wordmark wordmark-sm">Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span></span>
+                <span>© 2026 BotCraft Studio</span>
+            </div>
+            <div class="footer-links">
+                <a href="#work">Услуги</a>
+                <a href="#cases">Кейсы</a>
+                <a href="#process">Процесс</a>
+                <a href="#contact">Контакты</a>
+                <a href="https://t.me/Bot_Craft_Studio" target="_blank" rel="noopener">Telegram</a>
+                <a href="#">Политика конфиденциальности</a>
+            </div>
         </footer>
-
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
-    </script>
+    <button id="back-to-top" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // ===== ИНТРО =====
         (function() {
-            const intro = document.getElementById('intro');
-            setTimeout(() => {
+            var intro = document.getElementById('intro');
+            var hideIntro = function() {
                 intro.classList.add('hide');
-                setTimeout(() => { intro.style.display = 'none'; }, 1300);
-            }, 2800);
+                setTimeout(function() { intro.style.display = 'none'; }, 800);
+            };
+            setTimeout(hideIntro, 2800);
+            intro.addEventListener('click', hideIntro);
         })();
 
-        // ===== 3D СЦЕНА =====
         (function() {
-            const container = document.getElementById('three-canvas');
-            const scene = new THREE.Scene();
+            var bar = document.getElementById('scroll-progress');
+            window.addEventListener('scroll', function() {
+                var h = document.documentElement;
+                var max = h.scrollHeight - h.clientHeight;
+                var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+                bar.style.width = pct + '%';
+            }, { passive: true });
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof THREE === 'undefined') return;
+            if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            var container = document.getElementById('three-canvas');
+            var scene = new THREE.Scene();
             scene.background = null;
-
-            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+            var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
             camera.position.set(0, 0, 8);
-
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.setClearColor(0x000000, 0);
             container.appendChild(renderer.domElement);
-
-            const group = new THREE.Group();
+            var group = new THREE.Group();
             scene.add(group);
-
-            const geo = new THREE.TorusKnotGeometry(1.5, 0.4, 180, 20);
-            const edges = new THREE.EdgesGeometry(geo);
-            const mat = new THREE.LineBasicMaterial({ color: 0xC9A87C, transparent: true, opacity: 0.15 });
-            const wire = new THREE.LineSegments(edges, mat);
+            var geo = new THREE.TorusKnotGeometry(1.5, 0.4, 180, 20);
+            var edges = new THREE.EdgesGeometry(geo);
+            var mat = new THREE.LineBasicMaterial({ color: 0xC9A87C, transparent: true, opacity: 0.15 });
+            var wire = new THREE.LineSegments(edges, mat);
             wire.rotation.x = 0.5;
             wire.rotation.y = 0.3;
             group.add(wire);
-
-            const geo2 = new THREE.TorusKnotGeometry(1.0, 0.25, 140, 16);
-            const edges2 = new THREE.EdgesGeometry(geo2);
-            const mat2 = new THREE.LineBasicMaterial({ color: 0x7A7D86, transparent: true, opacity: 0.08 });
-            const wire2 = new THREE.LineSegments(edges2, mat2);
+            var geo2 = new THREE.TorusKnotGeometry(1.0, 0.25, 140, 16);
+            var edges2 = new THREE.EdgesGeometry(geo2);
+            var mat2 = new THREE.LineBasicMaterial({ color: 0x7A7D86, transparent: true, opacity: 0.08 });
+            var wire2 = new THREE.LineSegments(edges2, mat2);
             wire2.rotation.x = -0.3;
             wire2.rotation.y = 0.8;
             group.add(wire2);
-
-            let mouseX = 0,
+            var mouseX = 0,
                 mouseY = 0;
-            document.addEventListener('mousemove', (e) => {
+            document.addEventListener('mousemove', function(e) {
                 mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
                 mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
             });
@@ -827,425 +687,166 @@
                 renderer.render(scene, camera);
             }
             animate();
-
-            window.addEventListener('resize', () => {
+            window.addEventListener('resize', function() {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
-        })();
+        });
 
-        // ===== REVEAL =====
         (function() {
-            const reveals = document.querySelectorAll('.reveal');
+            var reveals = document.querySelectorAll('.reveal');
             if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
                         if (entry.isIntersecting) entry.target.classList.add('visible');
                     });
                 }, { threshold: 0.1 });
-                reveals.forEach(el => observer.observe(el));
+                reveals.forEach(function(el) { observer.observe(el); });
+            } else {
+                reveals.forEach(function(el) { el.classList.add('visible'); });
             }
         })();
 
-        // ===== КУРСОР =====
         (function() {
-            const cursor = document.getElementById('cursor');
-            document.addEventListener('mousemove', (e) => {
+            var nums = document.querySelectorAll('.stat-num');
+            if (!nums.length) return;
+
+            function run(el) {
+                var target = parseInt(el.dataset.target, 10);
+                var suffix = el.dataset.suffix || '';
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    el.textContent = target.toLocaleString('ru-RU') + suffix;
+                    return;
+                }
+                var duration = 1400;
+                var start = performance.now();
+
+                function step(now) {
+                    var progress = Math.min((now - start) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.round(eased * target).toLocaleString('ru-RU') + suffix;
+                    if (progress < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            }
+            if ('IntersectionObserver' in window) {
+                var obs = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            run(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.4 });
+                nums.forEach(function(el) { obs.observe(el); });
+            } else {
+                nums.forEach(run);
+            }
+        })();
+
+        (function() {
+            var cursor = document.getElementById('cursor');
+            if (!cursor) return;
+            document.addEventListener('mousemove', function(e) {
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
             });
-            document.addEventListener('mousedown', () => cursor.classList.add('active'));
-            document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+            document.addEventListener('mousedown', function() { cursor.classList.add('active'); });
+            document.addEventListener('mouseup', function() { cursor.classList.remove('active'); });
         })();
 
-        // ===== ДЕМО-БОТ (ЖИВОЙ, БЕЗ ТУПНЯКА) =====
         (function() {
-            const chat = document.getElementById('chat');
-            const suggestionsEl = document.getElementById('suggestions');
-            const input = document.getElementById('cmdInput');
-            const statusLine = document.getElementById('botStatus');
-            const botName = document.getElementById('botName');
-            const startBtn = document.getElementById('startBtn');
-            const clearBtn = document.getElementById('clearBtn');
-            const sendBtn = document.getElementById('sendBtn');
-            const roleBtns = document.querySelectorAll('.action-chip');
-
-            let context = [];
-            let currentRole = 'default';
-            let isFirstMessage = true;
-
-            // ===== БАЗА ОТВЕТОВ (расширенная) =====
-            const knowledgeBase = {
-                default: {
-                    name: 'BotCraft Studio',
-                    answers: {
-                        'привет': 'Здравствуйте! Мы настраиваем AI-инструменты для бизнеса. Спрашивайте, что интересует.',
-                        'боты': 'Настраиваем ботов под бизнес-логику: скрипты продаж, автоответчики, интеграцию с CRM. Работаем с Telegram, MAX, VK.',
-                        'такси': 'Такси-бот — это готовое решение для таксопарков. Водители видят заказы, цену, адрес. Могут привязать машину и проверить баланс.',
-                        'crm': 'Добавляем AI-модули в CRM: прогнозирование, автозаполнение, аналитику. Продавайте больше без лишних движений.',
-                        'нейросети': 'Подключаем ChatGPT, YandexGPT и другие модели. Обучаем на ваших данных, чтобы они понимали именно ваш бизнес.',
-                        'цена': 'Стоимость зависит от задач. Мы даём смету до старта — никаких сюрпризов.',
-                        'срок': 'От пары дней до нескольких недель. Зависит от сложности и объёма данных.',
-                        'контакты': 'Напишите в Telegram: @Bot_Craft_Studio. Обсудим всё в деталях.',
-                        'помощь': 'Спросите про ботов, нейросети, такси-бот, CRM. Я отвечу по каждому направлению.'
-                    }
-                },
-                taxi: {
-                    name: 'Такси-диспетчер',
-                    answers: {
-                        'привет': 'Здравствуйте! Я такси-диспетчер. Могу показать, как работает бот для водителей: заказы, цена, статусы.',
-                        'заказ': 'Пример заказа: водитель получает карточку с адресом, ценой и кнопками «Принять» / «Отклонить». После принятия — статус меняется автоматически.',
-                        'цена': 'Цена рассчитывается на основе маршрута и коэффициентов. Водитель видит точную сумму до принятия заказа.',
-                        'баланс': 'Бот показывает остаток на счету водителя и историю поездок. Можно запросить в любой момент.',
-                        'машина': 'Водитель может привязать машину из списка парка прямо в боте. Без звонков диспетчеру.',
-                        'статус': 'Статусы заказа: поиск водителя, назначен, едет к клиенту, ожидает, клиент в пути, завершён. Бот обновляет их автоматически.'
-                    }
-                },
-                crm: {
-                    name: 'CRM-менеджер',
-                    answers: {
-                        'привет': 'Здравствуйте! Я CRM-менеджер. Расскажу, как AI помогает управлять клиентами и продажами.',
-                        'прогноз': 'AI анализирует историю сделок и показывает прогноз закрытия. Точность — до 85%.',
-                        'автозаполнение': 'Бот автоматически заполняет карточки клиентов из переписок и звонков. Экономит часы работы.',
-                        'аналитика': 'CRM показывает, какие клиенты активны, а какие «засыпают». Помогает вовремя реагировать.',
-                        'напоминания': 'Умные напоминания о задачах и встречах. Ничего не теряется.',
-                        'интеграция': 'Подключаем AI-модули к вашей CRM через API. Без переезда на новую платформу.'
-                    }
-                }
-            };
-
-            // ===== СИНОНИМЫ (максимально широкий набор) =====
-            const synonyms = {
-                'бот': 'боты',
-                'telegram': 'боты',
-                'max': 'такси',
-                'яндекс': 'такси',
-                'автоматизация': 'crm',
-                'чатгпт': 'нейросети',
-                'яндексгпт': 'нейросети',
-                'сколько': 'цена',
-                'стоимость': 'цена',
-                'долго': 'срок',
-                'период': 'срок',
-                'написать': 'контакты',
-                'связаться': 'контакты',
-                'закажи такси': 'заказ',
-                'заказ такси': 'заказ',
-                'баланс': 'баланс',
-                'машина': 'машина',
-                'статус': 'статус',
-                'прогноз': 'прогноз',
-                'автозаполнение': 'автозаполнение',
-                'аналитика': 'аналитика',
-                'напоминания': 'напоминания',
-                'интеграция': 'интеграция',
-                // Разговорные фразы
-                'чё': 'помощь',
-                'ну': 'помощь',
-                'давай': 'помощь',
-                'ещё': 'помощь',
-                'го': 'помощь',
-                'расскажи': 'помощь',
-                'покажи': 'помощь',
-                'объясни': 'помощь',
-                'что': 'помощь',
-                'как': 'помощь',
-                'зачем': 'помощь',
-                'почему': 'помощь',
-                'кто': 'помощь'
-            };
-
-            // ===== ФУНКЦИЯ ПОЛУЧЕНИЯ ОТВЕТА =====
-            function getReply(text, role) {
-                const normalized = text.toLowerCase().trim();
-                const kb = knowledgeBase[role] || knowledgeBase.default;
-                let reply = null;
-
-                // 1. Прямое совпадение
-                for (let key in kb.answers) {
-                    if (normalized.includes(key)) {
-                        reply = kb.answers[key];
-                        break;
-                    }
-                }
-
-                // 2. Синонимы
-                if (!reply) {
-                    for (let syn in synonyms) {
-                        if (normalized.includes(syn)) {
-                            const mainKey = synonyms[syn];
-                            if (kb.answers[mainKey]) {
-                                reply = kb.answers[mainKey];
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                // 3. Если нашли — возвращаем
-                if (reply) {
-                    context.push(text);
-                    if (context.length > 3) context.shift();
-                    return reply;
-                }
-
-                // 4. Если ничего не понял — живой человеческий ответ
-                const roleTopics = {
-                    default: 'боты, CRM, нейросети или такси-бот',
-                    taxi: 'такси-бот, заказы, баланс или машины',
-                    crm: 'CRM, прогнозы, автозаполнение или аналитику'
-                };
-                const topic = roleTopics[role] || roleTopics.default;
-                const variants = [
-                    `Не понял. Давай ещё раз. Что именно тебя интересует — ${topic}?`,
-                    `Спрашивай конкретнее. Я могу рассказать про ${topic}.`,
-                    `Окей, давай уточним. Тебе нужна информация про ${topic}?`,
-                    `Я тебя услышал, но не совсем понял. Ты про ${topic}?`
-                ];
-                const randomVariant = variants[Math.floor(Math.random() * variants.length)];
-                context.push(text);
-                if (context.length > 3) context.shift();
-                return randomVariant;
-            }
-
-            // ===== ОСТАЛЬНЫЕ ФУНКЦИИ (typeMessage, addBubble, showTyping, hideTyping, scrollToBottom) =====
-            function typeMessage(text, element, speed = 22) {
-                return new Promise((resolve) => {
-                    let index = 0;
-                    const interval = setInterval(() => {
-                        if (index < text.length) {
-                            element.textContent += text.charAt(index);
-                            index++;
-                            chat.scrollTop = chat.scrollHeight;
-                        } else {
-                            clearInterval(interval);
-                            resolve();
-                        }
-                    }, speed);
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            document.querySelectorAll('.btn-primary, .btn-secondary').forEach(function(btn) {
+                btn.addEventListener('mousemove', function(e) {
+                    var rect = btn.getBoundingClientRect();
+                    var x = (e.clientX - rect.left - rect.width / 2) * 0.15;
+                    var y = (e.clientY - rect.top - rect.height / 2) * 0.15 - 2;
+                    btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
                 });
-            }
+                btn.addEventListener('mouseleave', function() { btn.style.transform = ''; });
+            });
+        })();
 
-            function addBubble(text, cls, type = 'instant') {
-                const div = document.createElement('div');
-                div.className = 'msg ' + cls;
-                if (cls === 'bot' && type === 'typing') {
-                    div.textContent = '';
-                    chat.appendChild(div);
-                    scrollToBottom();
-                    return typeMessage(text, div, 20);
-                } else {
+        (function() {
+            document.querySelectorAll('.taxi-demo').forEach(function(container) {
+                var chat = container.querySelector('.taxi-chat');
+                var actions = container.querySelector('.taxi-actions');
+                var role = container.dataset.role;
+
+                function addMessage(text, cls) {
+                    var div = document.createElement('div');
+                    div.className = 'msg ' + cls;
                     div.innerHTML = text.replace(/\n/g, '<br>');
                     chat.appendChild(div);
-                    scrollToBottom();
-                    return Promise.resolve();
+                    chat.scrollTop = chat.scrollHeight;
                 }
-            }
 
-            function showTyping() {
-                const div = document.createElement('div');
-                div.className = 'msg typing-indicator';
-                div.id = 'typingIndicator';
-                div.innerHTML = '<span></span><span></span><span></span>';
-                chat.appendChild(div);
-                statusLine.textContent = 'печатает...';
-                scrollToBottom();
-            }
-
-            function hideTyping() {
-                const el = document.getElementById('typingIndicator');
-                if (el) el.remove();
-                statusLine.textContent = 'онлайн';
-            }
-
-            function scrollToBottom() {
-                chat.scrollTop = chat.scrollHeight;
-            }
-
-            // ===== ОТПРАВКА СООБЩЕНИЯ =====
-            async function sendMessage(userMessage) {
-                if (!userMessage.trim()) return;
-                const empty = document.getElementById('emptyState');
-                if (empty && empty.parentNode) empty.remove();
-
-                await addBubble(userMessage, 'user');
-                input.value = '';
-                suggestionsEl.innerHTML = '';
-
-                showTyping();
-                await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 400));
-
-                const reply = getReply(userMessage, currentRole);
-                hideTyping();
-                await addBubble(reply, 'bot', 'typing');
-
-                showButtons();
-            }
-
-            // ===== КНОПКИ =====
-            function showButtons() {
-                suggestionsEl.innerHTML = '';
-                const actions = getActionsForRole(currentRole);
-                actions.forEach(action => {
-                    const btn = document.createElement('button');
-                    btn.className = 'chip';
-                    btn.innerHTML = action.svg + action.label;
-                    btn.addEventListener('click', () => sendMessage(action.msg));
-                    suggestionsEl.appendChild(btn);
-                });
-                const clearChip = document.createElement('button');
-                clearChip.className = 'chip';
-                clearChip.textContent = 'Очистить';
-                clearChip.style.borderColor = 'rgba(255,80,80,0.2)';
-                clearChip.addEventListener('click', clearHistory);
-                suggestionsEl.appendChild(clearChip);
-            }
-
-            function getActionsForRole(role) {
-                const taxiSvg =
-                    `<span class="chip-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/><line x1="8" y1="6" x2="8" y2="3"/><line x1="16" y1="6" x2="16" y2="3"/></svg></span>`;
-                const botSvg =
-                    `<span class="chip-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M6 3v4"/><path d="M18 3v4"/><circle cx="12" cy="14" r="1.5"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/></svg></span>`;
-                const crmSvg =
-                    `<span class="chip-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/></svg></span>`;
-                const common = [
-                    { label: 'Цены', msg: 'сколько стоит', svg: '' },
-                    { label: 'Сроки', msg: 'какие сроки', svg: '' },
-                    { label: 'Контакты', msg: 'контакты', svg: '' }
-                ];
-
-                if (role === 'taxi') {
-                    return [
-                        { label: 'Заказ', msg: 'пример заказа такси', svg: taxiSvg },
-                        { label: 'Баланс', msg: 'показать баланс', svg: taxiSvg },
-                        { label: 'Машина', msg: 'привязать машину', svg: taxiSvg },
-                        ...common
-                    ];
-                } else if (role === 'crm') {
-                    return [
-                        { label: 'Прогноз', msg: 'прогноз продаж', svg: crmSvg },
-                        { label: 'Автозаполнение', msg: 'автозаполнение карточек', svg: crmSvg },
-                        { label: 'Аналитика', msg: 'аналитика клиентов', svg: crmSvg },
-                        ...common
-                    ];
-                } else {
-                    return [
-                        { label: 'Боты', msg: 'расскажи про ботов', svg: botSvg },
-                        { label: 'Такси-бот', msg: 'что такое такси-бот', svg: taxiSvg },
-                        { label: 'CRM', msg: 'что с CRM', svg: crmSvg },
-                        ...common
-                    ];
-                }
-            }
-
-            // ===== СМЕНА РОЛИ =====
-            function switchRole(role) {
-                currentRole = role;
-                const kb = knowledgeBase[role] || knowledgeBase.default;
-                botName.textContent = kb.name;
-                roleBtns.forEach(btn => {
-                    btn.classList.toggle('active-action', btn.dataset.role === role);
-                });
-                showButtons();
-                if (!document.getElementById('emptyState') && chat.children.length > 0) {
-                    const roleNames = {
-                        default: 'Ассистент',
-                        taxi: 'Такси-диспетчер',
-                        crm: 'CRM-менеджер'
-                    };
-                    addBubble(`Переключился на режим «${roleNames[role]}». Спросите что-нибудь по этой теме.`, 'bot');
-                }
-            }
-
-            // ===== ОЧИСТКА =====
-            function clearHistory() {
-                const msgs = chat.querySelectorAll('.msg');
-                msgs.forEach(el => el.remove());
-                const typing = document.getElementById('typingIndicator');
-                if (typing) typing.remove();
-                context = [];
-                const empty = document.getElementById('emptyState');
-                if (!empty) {
-                    const div = document.createElement('div');
-                    div.className = 'chat-empty';
-                    div.id = 'emptyState';
-                    div.innerHTML = `
-                                <div class="icon">⌨</div>
-                                <div style="font-weight:300; margin-top:4px;">BotCraft Studio</div>
-                                <div style="font-size:12px; color:#3A3D46; margin-top:4px;">Напишите что‑нибудь или выберите сценарий</div>
-                            `;
-                    chat.appendChild(div);
-                }
-                isFirstMessage = true;
-                suggestionsEl.innerHTML = `
-                            <button class="start-btn" id="startBtn">Начать</button>
-                            <button class="clear-btn" id="clearBtn">Очистить</button>
-                        `;
-                document.getElementById('startBtn').addEventListener('click', startDemo);
-                document.getElementById('clearBtn').addEventListener('click', clearHistory);
-                statusLine.textContent = 'онлайн';
-                switchRole('default');
-            }
-
-            // ===== СТАРТ =====
-            async function startDemo() {
-                const empty = document.getElementById('emptyState');
-                if (empty && empty.parentNode) empty.remove();
-                if (chat.children.length === 0) {
-                    showTyping();
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                    hideTyping();
-                    const welcome =
-                        `Добро пожаловать в BotCraft Studio. Мы настраиваем AI-инструменты для бизнеса. Выберите роль: Ассистент, Такси-диспетчер или CRM-менеджер. Спросите о чём угодно — я отвечу по делу.`;
-                    await addBubble(welcome, 'bot', 'typing');
-                    showButtons();
-                } else {
-                    showButtons();
-                }
-                isFirstMessage = false;
-            }
-
-            // ===== ОБРАБОТКА ВВОДА =====
-            function handleSend() {
-                const text = input.value.trim();
-                if (!text) return;
-                sendMessage(text);
-            }
-
-            // ===== СОБЫТИЯ =====
-            startBtn.addEventListener('click', startDemo);
-            clearBtn.addEventListener('click', clearHistory);
-            sendBtn.addEventListener('click', handleSend);
-            input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
-
-            roleBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const role = btn.dataset.role;
-                    switchRole(role);
+                actions.addEventListener('click', function(e) {
+                    var btn = e.target.closest('.taxi-btn');
+                    if (!btn) return;
+                    var action = btn.dataset.action;
+                    if (btn.disabled) return;
+                    btn.disabled = true;
+                    setTimeout(function() { btn.disabled = false; }, 800);
+                    var userText = btn.textContent.trim();
+                    addMessage(userText, 'user');
+                    var reply = '';
+                    var delay = 400 + Math.random() * 300;
+                    setTimeout(function() {
+                        switch (role) {
+                            case 'driver':
+                                if (action === 'accept') reply = 'Заказ принят! Водитель направляется к клиенту. Прибытие через 12 мин.';
+                                else if (action === 'decline') reply = 'Заказ отклонён. Поиск другого водителя...';
+                                else if (action === 'complete') reply = 'Поездка завершена! Спасибо. Баланс обновлён: +1 450 ₽';
+                                break;
+                            case 'dispatcher':
+                                if (action === 'assign') reply = 'Водитель Иван (ID 384) назначен на заказ. Время подачи: 20 мин, цена: 1 200 ₽';
+                                else if (action === 'cancel') reply = 'Заказ №1423 отменён. Уведомление отправлено клиенту.';
+                                else if (action === 'monitor') reply = 'Активные заказы: 4. Водители онлайн: 12. Среднее время подачи: 14 мин.';
+                                break;
+                            case 'courier':
+                                if (action === 'take') reply = 'Заказ взят! Адрес забора: ул. Садовая, 12. Заберите хлеб (5 кг) и доставьте по адресу: ул. Мира, 8.';
+                                else if (action === 'delivered') reply = 'Заказ доставлен! Получатель подтвердил. Оплата: +350 ₽ на ваш счёт.';
+                                else if (action === 'problem') reply = 'Проблема зафиксирована. Диспетчер свяжется с вами в течение 5 минут.';
+                                break;
+                        }
+                        addMessage(reply, 'bot');
+                    }, delay);
                 });
             });
+        })();
 
-            chat.addEventListener('click', () => {
-                if (chat.querySelector('.chat-empty')) startDemo();
+        (function() {
+            var btn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 400) btn.classList.add('show');
+                else btn.classList.remove('show');
             });
+            btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        })();
 
-            // ===== РОТАЦИЯ ПЛЕЙСХОЛДЕРА =====
-            const placeholders = [
-                'спросите что угодно...',
-                'напишите "закажи такси"...',
-                'или выберите кнопку'
-            ];
-            let phIndex = 0;
-            setInterval(() => {
-                phIndex = (phIndex + 1) % placeholders.length;
-                input.placeholder = placeholders[phIndex];
-            }, 4000);
+        (function() {
+            var toggle = document.getElementById('navToggle');
+            var menu = document.getElementById('mobileMenu');
+            toggle.addEventListener('click', function() {
+                toggle.classList.toggle('active');
+                menu.classList.toggle('open');
+            });
+            menu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    toggle.classList.remove('active');
+                    menu.classList.remove('open');
+                });
+            });
+        })();
 
-            setTimeout(() => {
-                if (document.getElementById('emptyState')) {
-                    startDemo();
-                }
-            }, 1000);
+        (function() {
+            var current = document.body.dataset.pageName || 'Главная';
+            document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function(a) {
+                if (a.textContent.trim() === current) a.classList.add('current');
+            });
         })();
     </script>
 </body>
