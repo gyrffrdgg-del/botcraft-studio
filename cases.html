@@ -2,39 +2,18 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
-    <script>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BotCraft Studio — инструменты, которые приносят деньги</title>
-    <meta name="description" content="Разработка ботов, CRM, сайтов и AI-интеграций под ваш бизнес. Нешаблонные решения." />
-    <link rel="canonical" href="https://botcraftstudio.ru/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://botcraftstudio.ru/" />
-    <meta property="og:title" content="BotCraft Studio — инструменты, которые приносят деньги" />
-    <meta property="og:description" content="Разработка ботов, CRM, сайтов и AI-интеграций под ваш бизнес. Нешаблонные решения." />
-    <meta property="og:image" content="https://botcraftstudio.ru/og-image.png" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <title>Кейсы BotCraft Studio</title>
+    <meta name="description" content="Реальные проекты по автоматизации: такси, доставка, модерация, CRM, сайты и не только." />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-
-    <!-- Яндекс.Метрика -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111198502', 'ym');
-
-        ym(111198502, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/111198502" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
     <style>
+        /* ===== Все стили (без изменений, как на главной) ===== */
         :root {
             --bg: #0A0B10;
             --text: #E8E5DC;
@@ -47,9 +26,9 @@
             --status: #6FA98A;
             --line: rgba(201, 168, 124, 0.08);
             --line-strong: rgba(201, 168, 124, 0.2);
-            --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --mono: 'IBM Plex Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', sans-serif;
+            --mono: 'IBM Plex Mono', monospace;
             --font-weight-light: 300;
             --font-weight-regular: 400;
             --font-weight-medium: 500;
@@ -84,41 +63,28 @@
         .site-wrapper { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 0 40px; }
         @media (max-width: 768px) { .site-wrapper { padding: 0 20px; } }
 
-        #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent); z-index: 9998; transition: width 0.1s linear; }
-
-        #cursor {
-            position: fixed; width: 32px; height: 32px;
-            border: 1.5px solid rgba(201, 168, 124, 0.6); border-radius: 50%;
-            pointer-events: none; z-index: 9999;
-            transition: transform 0.15s, width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;
-            transform: translate(-50%, -50%); mix-blend-mode: difference;
+        .wordmark {
+            font-family: var(--serif);
+            font-weight: var(--font-weight-regular);
+            letter-spacing: var(--letter-spacing-tight);
+            display: inline-flex;
+            align-items: baseline;
+            gap: 6px;
+            line-height: 1;
         }
-        #cursor.active { width: 50px; height: 50px; border-color: var(--accent); border-width: 1.5px; }
-        #cursor.link { width: 8px; height: 8px; background: var(--accent); border-color: var(--accent); }
-
-        #intro {
-            position: fixed; inset: 0; z-index: 10002; background: var(--bg);
-            display: flex; align-items: center; justify-content: center; flex-direction: column;
-            transition: opacity 1.2s ease, transform 1.2s ease; cursor: pointer;
-        }
-        #intro.hide { opacity: 0; transform: scale(1.02); pointer-events: none; }
-        #intro .logo { opacity: 0; animation: introFade 1.8s ease forwards; text-align: center; }
-        @keyframes introFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-        #intro .sub { font-family: var(--mono); font-size: 13px; font-weight: 400; letter-spacing: var(--letter-spacing-wide); text-transform: uppercase; color: var(--dim); margin-top: 20px; opacity: 0; animation: introFade 1.8s 0.6s ease forwards; }
-        #intro .loader { margin-top: 40px; width: 100px; height: 1px; background: rgba(201,168,124,0.15); position: relative; overflow: hidden; }
-        #intro .loader::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: var(--accent); animation: loadBar 2s ease-in-out forwards; }
-        @keyframes loadBar { 0% { left: -100%; } 100% { left: 100%; } }
-        #intro .skip-hint { margin-top: 28px; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: var(--faint); opacity: 0; animation: introFade 1.8s 1.2s ease forwards; }
-
-        #three-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.25; }
-        body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size: 200px 200px; }
-
-        .wordmark { font-family: var(--serif); font-weight: var(--font-weight-regular); letter-spacing: var(--letter-spacing-tight); display: inline-flex; align-items: baseline; gap: 6px; line-height: 1; }
         .wordmark .wm-accent { color: var(--accent); font-style: italic; }
-        .wordmark .wm-sub { font-family: var(--mono); font-size: 0.6em; letter-spacing: var(--letter-spacing-wide); text-transform: uppercase; color: var(--muted); font-weight: 400; }
-        .wordmark-lg { font-size: clamp(32px, 6vw, 44px); } .wordmark-lg .wm-sub { font-size: 0.5em; }
-        .wordmark-nav { font-size: 19px; } .wordmark-nav .wm-sub { font-size: 0.5em; letter-spacing: 2px; }
-        .wordmark-sm { font-size: 14px; } .wordmark-sm .wm-sub { font-size: 0.45em; letter-spacing: 1.5px; }
+        .wordmark .wm-sub {
+            font-family: var(--mono);
+            font-size: 0.6em;
+            letter-spacing: var(--letter-spacing-wide);
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 400;
+        }
+        .wordmark-nav { font-size: 19px; }
+        .wordmark-nav .wm-sub { font-size: 0.5em; letter-spacing: 2px; }
+        .wordmark-sm { font-size: 14px; }
+        .wordmark-sm .wm-sub { font-size: 0.45em; letter-spacing: 1.5px; }
 
         .navbar {
             position: sticky; top: 0; z-index: 100; padding: 16px 0;
@@ -168,117 +134,92 @@
         .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
         .btn-row { display: flex; gap: 20px; flex-wrap: wrap; }
 
-        .hero { min-height: 80vh; display: flex; align-items: center; padding: 60px 0 40px; position: relative; }
-        .hero-content { max-width: 720px; }
-        .hero-badge { font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); border: 1px solid var(--line-strong); padding: 4px 16px; display: inline-block; margin-bottom: 32px; background: var(--accent-soft); }
-        .hero h1 { font-family: var(--serif); font-weight: var(--font-weight-regular); font-size: clamp(42px, 6vw, 72px); line-height: 1.1; margin-bottom: 24px; color: var(--text); }
-        .hero h1 .strike { text-decoration: line-through; opacity: 0.3; font-weight: var(--font-weight-light); }
-        .hero h1 .accent { color: var(--accent); font-style: italic; border-bottom: 2px solid var(--line-strong); padding-bottom: 2px; }
-        .hero-sub { font-size: 17px; font-weight: var(--font-weight-light); color: var(--muted); max-width: 520px; line-height: 1.8; margin-bottom: 40px; padding-left: 24px; border-left: 2px solid var(--line-strong); }
-        .scroll-cue { position: absolute; left: 40px; bottom: 18px; display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); }
-        .scroll-cue .line { width: 28px; height: 1px; background: rgba(201,168,124,0.3); position: relative; overflow: hidden; }
-        .scroll-cue .line::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: var(--accent); animation: scrollCue 2.2s ease-in-out infinite; }
-        @keyframes scrollCue { 0% { left: -100%; } 50% { left: 0; } 100% { left: 100%; } }
-        @media (max-width: 768px) { .scroll-cue { display: none; } }
-
-        .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: center; padding: 24px 0 8px; }
-        .stat-num { font-family: var(--serif); font-style: italic; font-size: clamp(30px, 4vw, 42px); color: var(--accent); line-height: 1; }
-        .stat-label { font-size: 11px; font-family: var(--mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
-
-        section { padding: 60px 0; border-top: 1px solid var(--line); }
-        .section-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
-        .section-title { font-family: var(--serif); font-size: 32px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 12px; }
-        .section-title::after { content: ''; display: block; width: 40px; height: 2px; background: var(--accent); margin-top: 10px; }
-        .section-sub { color: var(--muted); font-size: 16px; font-weight: var(--font-weight-light); max-width: 600px; margin-bottom: 48px; }
-        .tpl-tag { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--line-strong); color: var(--accent); padding: 2px 10px; border-radius: 20px; margin-left: 10px; vertical-align: middle; }
-
-        .marquee-wrap { padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
-        .marquee-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); text-align: center; margin-bottom: 16px; }
-        .marquee { overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
-        .marquee-track { display: inline-flex; align-items: center; gap: 36px; animation: marqueeScroll 32s linear infinite; width: max-content; }
-        .marquee:hover .marquee-track { animation-play-state: paused; }
-        .marquee-track span { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--muted); display: inline-flex; align-items: center; gap: 36px; white-space: nowrap; }
-        .marquee-track span.dot { font-family: var(--sans); font-style: normal; color: var(--accent); font-size: 12px; }
-        @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-        .tilt-card { border: 1px solid var(--line); background: linear-gradient(180deg, var(--accent-soft), transparent 40%); padding: 32px 26px; transition: transform 0.15s var(--ease-soft), border-color 0.3s; will-change: transform; }
-        .tilt-card:hover { border-color: var(--accent); }
-        .tilt-card .service-icon { width: 34px; height: 34px; color: var(--accent); margin-bottom: 22px; }
-        .tilt-card .service-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; }
-        .tilt-card h3 { font-family: var(--serif); font-size: 21px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 10px; }
-        .tilt-card p { color: var(--muted); font-size: 14.5px; line-height: 1.7; font-weight: var(--font-weight-light); margin-bottom: 16px; }
-        .tilt-card .card-link { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s; }
-        .tilt-card .card-link:hover { gap: 10px; }
-
-        .taxi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: stretch; }
-        .phone-frame { max-width: 100%; margin: 0 auto; background: #0F1118; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; height: 100%; }
-        .phone-frame:hover { transform: scale(1.005); }
-        .tg-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
-        .tg-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--bg); flex-shrink: 0; }
-        .tg-name { font-size: 15px; font-weight: var(--font-weight-regular); color: var(--text); }
-        .tg-status { font-family: var(--mono); font-size: 10.5px; color: var(--dim); display: flex; align-items: center; gap: 6px; }
-        .tg-status .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--dim); display: inline-block; }
-        .tg-status .dot.online { background: var(--status); animation: pulse-dot 2s infinite; }
-        @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
-        .taxi-chat { padding: 16px 14px; background: #0A0C12; display: flex; flex-direction: column; gap: 8px; min-height: 200px; max-height: 260px; overflow-y: auto; flex: 1; }
-        .taxi-chat::-webkit-scrollbar { width: 3px; } .taxi-chat::-webkit-scrollbar-thumb { background: rgba(201,168,124,0.15); border-radius: 4px; }
-        .msg { max-width: 85%; padding: 10px 16px; font-size: 14px; line-height: 1.5; border-radius: 12px; animation: msgAppear 0.3s ease; word-wrap: break-word; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        @keyframes msgAppear { from { opacity: 0; transform: translateY(8px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        .msg.bot { align-self: flex-start; background: #1A1F2E; color: #E0DDD4; border-bottom-left-radius: 4px; border-left: 2px solid var(--accent); }
-        .msg.user { align-self: flex-end; background: var(--accent); color: var(--bg); border-bottom-right-radius: 4px; }
-        .taxi-actions { padding: 8px 14px 14px; display: flex; flex-wrap: wrap; gap: 6px; background: #0F1118; border-top: 1px solid var(--line); }
-        .taxi-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--line-strong); color: var(--text); padding: 6px 14px; border-radius: 20px; font-family: var(--sans); font-size: 12px; font-weight: 400; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; letter-spacing: 0.3px; flex: 1; min-width: 80px; }
-        .taxi-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
-        .taxi-btn:disabled { opacity: 0.4; pointer-events: none; }
-
-        .process-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
-        .process-step { text-align: center; padding: 20px 10px; border: 1px solid var(--line); background: var(--accent-soft); }
-        .process-step .p-icon { font-family: var(--serif); font-style: italic; font-size: 28px; color: var(--accent); margin-bottom: 12px; }
-        .process-step h4 { font-family: var(--serif); font-size: 18px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 8px; }
-        .process-step p { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: var(--font-weight-light); }
-
-        .benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .benefit-item { padding: 24px; border-left: 2px solid var(--accent); background: var(--accent-soft); }
-        .benefit-item h4 { font-family: var(--serif); font-size: 20px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 8px; }
-        .benefit-item p { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: var(--font-weight-light); }
-
-        .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-        .case-card { border: 1px solid var(--line); padding: 24px; transition: border-color 0.3s, transform 0.3s; }
-        .case-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-        .case-tag { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.3px; color: var(--accent); margin-bottom: 14px; display: block; }
-        .case-card p { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: var(--font-weight-light); }
-        .case-result { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--text); line-height: 1.5; }
-
-        .faq-list { display: flex; flex-direction: column; }
-        .faq-item { border-bottom: 1px solid var(--line); padding: 20px 0; }
-        .faq-item:first-child { padding-top: 0; }
-        .faq-item h4 { font-family: var(--serif); font-size: 18px; font-weight: var(--font-weight-regular); color: var(--text); margin-bottom: 8px; }
-        .faq-item p { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: var(--font-weight-light); max-width: 700px; }
+        .section-title {
+            font-family: var(--serif);
+            font-size: 32px;
+            font-weight: var(--font-weight-regular);
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin-top: 10px;
+        }
+        .section-sub {
+            color: var(--muted);
+            font-size: 16px;
+            font-weight: var(--font-weight-light);
+            max-width: 600px;
+            margin-bottom: 48px;
+        }
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .case-card {
+            border: 1px solid var(--line);
+            padding: 24px;
+            transition: border-color 0.3s, transform 0.3s;
+            background: var(--accent-soft);
+        }
+        .case-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .case-tag {
+            font-family: var(--mono);
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            color: var(--accent);
+            margin-bottom: 14px;
+            display: block;
+        }
+        .case-card p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.7;
+            font-weight: var(--font-weight-light);
+        }
+        .case-result {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 17px;
+            color: var(--text);
+            line-height: 1.5;
+        }
 
         .contact-block { text-align: left; padding: 10px 0; }
         .contact-block .btn-primary { font-size: 14px; padding: 16px 48px; }
         .contact-block .btn-secondary { font-size: 14px; padding: 16px 48px; margin-top: 0; display: inline-block; }
-        .footnote { color: var(--faint); font-size: 12px; margin-top: 24px; letter-spacing: 0.5px; font-weight: var(--font-weight-light); }
 
-        .price-tag {
-            display: inline-block; font-family: var(--mono); font-size: 14px; letter-spacing: 1px;
-            border: 1px solid var(--accent); padding: 8px 24px; color: var(--accent); background: var(--accent-soft);
-            margin-bottom: 8px;
+        footer {
+            border-top: 1px solid var(--line); padding: 32px 0;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 16px;
+            color: var(--faint);
+            font-size: 12px;
+            font-weight: var(--font-weight-light);
+            letter-spacing: 0.5px;
         }
-        .price-tag + .price-tag { margin-left: 12px; }
-        @media (max-width: 480px) { .price-tag + .price-tag { margin-left: 0; } }
-
-        footer { border-top: 1px solid var(--line); padding: 32px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; color: var(--faint); font-size: 12px; font-weight: var(--font-weight-light); letter-spacing: 0.5px; }
         .footer-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-        .footer-links { display: flex; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-links {
+            display: flex; gap: 18px; flex-wrap: wrap;
+            font-family: var(--mono);
+            font-size: 10.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
         .footer-links a { color: var(--dim); text-decoration: none; transition: color 0.3s; }
         .footer-links a:hover { color: var(--accent); }
-
-        #back-to-top { position: fixed; right: 24px; bottom: 24px; z-index: 90; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-strong); background: rgba(10,11,16,0.7); backdrop-filter: blur(6px); color: var(--accent); cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s, border-color 0.3s; }
-        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        #back-to-top:hover { border-color: var(--accent); }
-        #back-to-top svg { width: 16px; height: 16px; }
 
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -286,56 +227,29 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
 
-        @media (max-width: 1000px) {
-            .service-grid { grid-template-columns: 1fr 1fr; }
-            .benefit-grid { grid-template-columns: 1fr 1fr; }
-            .process-grid { grid-template-columns: 1fr 1fr; }
-            .taxi-grid { grid-template-columns: 1fr 1fr; }
-        }
         @media (max-width: 900px) {
-            .nav-links { display: none; } .nav-cta { display: none; } .nav-toggle { display: flex; }
             .case-grid { grid-template-columns: 1fr 1fr; }
-            .process-grid { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: none; } .nav-cta { display: none; } .nav-toggle { display: flex; }
         }
         @media (max-width: 768px) {
             .site-wrapper { padding: 0 20px; }
-            .hero h1 { font-size: 32px; }
-            .service-grid { grid-template-columns: 1fr; }
-            .benefit-grid { grid-template-columns: 1fr; }
             .case-grid { grid-template-columns: 1fr; gap: 20px; }
-            .stat-strip { grid-template-columns: 1fr; gap: 24px; }
-            .process-grid { grid-template-columns: 1fr; }
-            .taxi-grid { grid-template-columns: 1fr; }
-            #cursor { display: none; } #three-canvas { display: none; } body { cursor: auto; }
+            #cursor { display: none; } body { cursor: auto; }
             footer { flex-direction: column; align-items: flex-start; }
-            .scroll-cue { display: none; } body { font-size: 16px; }
         }
         @media (max-width: 480px) {
-            .phone-frame { border-radius: 12px; }
             .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 12px; }
             .contact-block .btn-primary, .contact-block .btn-secondary { padding: 12px 24px; font-size: 12px; }
         }
         @media (prefers-reduced-motion: reduce) {
             .reveal { transition: opacity 0.3s ease; transform: none; }
-            #cursor { display: none; } body { cursor: auto; } body::before { display: none; }
-            .stat-num, .msg, .marquee-track { animation: none !important; }
-            .marquee-track { animation: none !important; }
         }
     </style>
 </head>
-<body data-page-name="Главная">
+<body data-page-name="Кейсы">
 
     <div id="scroll-progress"></div>
     <div id="cursor"></div>
-
-    <div id="intro">
-        <div class="logo wordmark wordmark-lg">Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span></div>
-        <div class="sub">инструменты для бизнеса</div>
-        <div class="loader"></div>
-        <div class="skip-hint">нажмите, чтобы пропустить</div>
-    </div>
-
-    <div id="three-canvas"></div>
 
     <nav class="navbar">
         <div class="nav-inner site-wrapper">
@@ -348,13 +262,13 @@
             <div class="nav-right">
                 <div class="nav-links">
                     <a href="index.html" data-page="Главная">Главная</a>
-                    <a href="#work">Услуги</a>
-                    <a href="#taxi">Такси-бот</a>
-                    <a href="#cases">Кейсы</a>
-                    <a href="#process">Процесс</a>
-                    <a href="#contact">Контакты</a>
+                    <a href="index.html#work">Услуги</a>
+                    <a href="index.html#taxi">Такси-бот</a>
+                    <a href="cases.html" data-page="Кейсы" class="current">Кейсы</a>
+                    <a href="index.html#process">Процесс</a>
+                    <a href="index.html#contact">Контакты</a>
                 </div>
-                <a href="#contact" class="nav-cta">Обсудить проект</a>
+                <a href="index.html#contact" class="nav-cta">Обсудить проект</a>
                 <button class="nav-toggle" id="navToggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
             </div>
         </div>
@@ -362,237 +276,97 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html" data-page="Главная">Главная</a>
-        <a href="#work">Услуги</a>
-        <a href="#taxi">Такси-бот</a>
-        <a href="#cases">Кейсы</a>
-        <a href="#process">Процесс</a>
-        <a href="#contact">Контакты</a>
-        <a href="#contact" class="mm-cta">Обсудить проект</a>
+        <a href="index.html#work">Услуги</a>
+        <a href="index.html#taxi">Такси-бот</a>
+        <a href="cases.html" data-page="Кейсы" class="current">Кейсы</a>
+        <a href="index.html#process">Процесс</a>
+        <a href="index.html#contact">Контакты</a>
+        <a href="index.html#contact" class="mm-cta">Обсудить проект</a>
     </div>
 
-    <div class="site-wrapper">
+    <div class="site-wrapper" style="padding-top:40px;">
 
-        <header class="hero" id="hero">
-            <div class="hero-content">
-                <div class="hero-badge">интеграция AI</div>
-                <h1>
-                    <span class="strike">Ручная работа</span><br>
-                    <span class="accent">Автоматизация</span><br>
-                    которая приносит <span class="accent">деньги</span>
-                </h1>
-                <p class="hero-sub">
-                    Ваши менеджеры тратят часы на рутину. Мы настраиваем AI-ботов и CRM, чтобы они работали за вас — быстро, точно, без сбоев.
-                </p>
-                <div class="hero-cta btn-row">
-                    <a href="#contact" class="btn-primary">Обсудить</a>
-                    <a href="#cases" class="btn-secondary">Смотреть кейсы</a>
-                </div>
-                <div style="margin-top:28px; font-family:var(--mono); font-size:11px; letter-spacing:1px; color:var(--faint);">
-                    <span>Бесплатный аудит ваших процессов</span>
-                    <span style="margin:0 12px;">·</span>
-                    <span>Фиксированная цена</span>
-                    <span style="margin:0 12px;">·</span>
-                    <span>Гарантия результата</span>
-                </div>
-            </div>
-            <div class="scroll-cue"><span class="line"></span> Листайте</div>
-        </header>
+        <h1 style="font-family:var(--serif); font-size:clamp(36px,5vw,54px); font-weight:400; color:var(--text); margin-bottom:16px;">
+            Проекты
+        </h1>
+        <p class="section-sub" style="margin-bottom:40px;">
+            Реальные внедрения — от таксопарков до корпоративных платформ.
+        </p>
 
-        <section id="proof" style="padding-top:0; padding-bottom:20px; border-top:none;">
-            <div class="stat-strip reveal">
-                <div class="stat-item">
-                    <div class="stat-num" data-target="99" data-suffix="+">0</div>
-                    <div class="stat-label">ботов запущено за этот год</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num" data-target="1200" data-suffix="+">0</div>
-                    <div class="stat-label">часов сэкономлено клиентам</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num" data-target="80" data-suffix="%">0</div>
-                    <div class="stat-label">обращений бот закрывает без менеджера</div>
-                </div>
-            </div>
-        </section>
+        <div class="case-grid">
 
-        <div class="marquee-wrap">
-            <div class="marquee-label">Работаем поверх ваших систем</div>
-            <div class="marquee">
-                <div class="marquee-track">
-                    <span>Telegram</span><span class="dot">●</span><span>MAX</span><span class="dot">●</span><span>VK</span><span class="dot">●</span><span>Яндекс Такси</span><span class="dot">●</span><span>amoCRM</span><span class="dot">●</span><span>Bitrix24</span><span class="dot">●</span><span>ChatGPT</span><span class="dot">●</span><span>YandexGPT</span><span class="dot">●</span>
-                    <span>Telegram</span><span class="dot">●</span><span>MAX</span><span class="dot">●</span><span>VK</span><span class="dot">●</span><span>Яндекс Такси</span><span class="dot">●</span><span>amoCRM</span><span class="dot">●</span><span>Bitrix24</span><span class="dot">●</span><span>ChatGPT</span><span class="dot">●</span><span>YandexGPT</span><span class="dot">●</span>
-                </div>
+            <div class="case-card reveal reveal-delay-1">
+                <span class="case-tag">Таксопарки и логистика</span>
+                <p>Боты для водителей такси с интеграцией Яндекс.Такси. Заменяют диспетчерскую, автоматизируют приём заказов, статусы и баланс.</p>
+                <div class="case-result">Снижение нагрузки на диспетчера на 60%</div>
             </div>
+
+            <div class="case-card reveal reveal-delay-2">
+                <span class="case-tag">Модерация в MAX</span>
+                <p>Умные модераторы проверяют подписку на каналы, чистят спам и выдают навигацию по группам. Единая точка входа в экосистему.</p>
+                <div class="case-result">Чистота в чатах + рост подписчиков</div>
+            </div>
+
+            <div class="case-card reveal reveal-delay-3">
+                <span class="case-tag">Локальная доставка (хлеб)</span>
+                <p>Два бота: клиентский (подписка на доставку) и курьерский (приём заказов, маршруты, отметки о доставке).</p>
+                <div class="case-result">Курьеры сами выбирают выгодные заказы — рыночная модель</div>
+            </div>
+
+            <div class="case-card reveal reveal-delay-1">
+                <span class="case-tag">Контент и парсинг</span>
+                <p>Автоматический постинг трендовых материалов, мониторинг Avito по заданным фильтрам для поиска товаров или перекупа.</p>
+                <div class="case-result">Экономия часов ручного скроллинга и постоянный контент</div>
+            </div>
+
+            <div class="case-card reveal reveal-delay-2">
+                <span class="case-tag">MAX‑доска объявлений</span>
+                <p>Платформа для публикации объявлений в каналах MAX. Модерация, привязка автора, платная подписка за доступ.</p>
+                <div class="case-result">Монетизация аудитории через подписки</div>
+            </div>
+
+            <div class="case-card reveal reveal-delay-3">
+                <span class="case-tag">Корпоративный сайт с CRM</span>
+                <p>Разработали сайт для b2b-компании с интеграцией CRM и AI-чат-бота. Автоматизация сбора заявок и обработки запросов.</p>
+                <div class="case-result">Заявки обрабатываются в 2 раза быстрее</div>
+            </div>
+
+            <div class="case-card reveal reveal-delay-1">
+                <span class="case-tag">Интернет-магазин с AI-ассистентом</span>
+                <p>Сайт интернет-магазина с интегрированным AI-консультантом, который помогает клиентам подбирать товары и оформлять заказы.</p>
+                <div class="case-result">Конверсия выросла на 25% за счёт подсказок ассистента</div>
+            </div>
+
+            <div class="case-card reveal reveal-delay-2">
+                <span class="case-tag">Лендинг для стартапа</span>
+                <p>Создали продающий лендинг для IT-стартапа с формой заявки, интеграцией с Telegram-ботом и автоматическим уведомлением менеджеров.</p>
+                <div class="case-result">Сбор заявок увеличился в 3 раза за первую неделю</div>
+            </div>
+
+            <div class="case-card reveal reveal-delay-3">
+                <span class="case-tag">Маркетплейс строительных услуг</span>
+                <p>Сайт-каталог строительных компаний с личным кабинетом, фильтрацией по региону и рейтингу. Интеграция с CRM для автоматической передачи заявок подрядчикам.</p>
+                <div class="case-result">Среднее время ответа на заявку сократилось с 4 часов до 20 минут</div>
+            </div>
+
         </div>
 
-        <section id="work">
-            <span class="section-eyebrow reveal">Услуги</span>
-            <h2 class="section-title reveal">Что мы строим</h2>
-            <p class="section-sub reveal">Настраиваем AI под вашу воронку и бизнес-процессы. От идеи до запуска.</p>
-            <div class="service-grid">
-                <div class="tilt-card reveal reveal-delay-1">
-                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><circle cx="8.5" cy="11" r="0.6" fill="currentColor" stroke="none"/><circle cx="12" cy="11" r="0.6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="11" r="0.6" fill="currentColor" stroke="none"/></svg></div>
-                    <h3>Под вашу воронку</h3>
-                    <p>Настраиваем ботов под вашу бизнес-логику, скрипты продаж и интеграции. Telegram, MAX, VK или сайт.</p>
-                    <a href="services.html#bots" class="card-link" data-page="Услуги">Подробнее →</a>
-                </div>
-                <div class="tilt-card reveal reveal-delay-2">
-                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="4" x2="9" y2="20"/></svg></div>
-                    <h3>AI в CRM</h3>
-                    <p>Прогнозирование продаж, автозаполнение карточек, умные напоминания — нейросети внутри вашей CRM.</p>
-                    <a href="services.html#crm" class="card-link" data-page="Услуги">Подробнее →</a>
-                </div>
-                <div class="tilt-card reveal reveal-delay-3">
-                    <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.1"/><circle cx="5" cy="18" r="2.1"/><circle cx="19" cy="12" r="2.1"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><line x1="7" y1="7" x2="16.6" y2="11.2"/><line x1="7" y1="17" x2="16.6" y2="12.8"/><line x1="6.9" y1="6.6" x2="10.7" y2="10.9"/><line x1="6.9" y1="17.4" x2="10.7" y2="13.1"/></svg></div>
-                    <h3>Нейросети</h3>
-                    <p>Подключаем ChatGPT, YandexGPT и другие модели. Обучаем на ваших данных для конкретных задач.</p>
-                    <a href="services.html#neuro" class="card-link" data-page="Услуги">Подробнее →</a>
-                </div>
-                <div class="tilt-card reveal reveal-delay-1">
-                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/></svg></div>
-                    <h3>Сайты и веб-приложения</h3>
-                    <p>Разрабатываем нешаблонные сайты, лендинги и веб-приложения с интеграцией AI и CRM. Не «сайт-визитка», а рабочий инструмент.</p>
-                    <a href="services.html#web" class="card-link" data-page="Услуги">Подробнее →</a>
-                </div>
-            </div>
-        </section>
+        <div style="text-align:center; margin: 40px 0 20px; color:var(--faint); font-family:var(--mono); font-size:12px; letter-spacing:1px;">
+            это не все проекты — подробности у менеджера
+        </div>
 
-        <section id="taxi">
-            <span class="section-eyebrow reveal">Такси-бот</span>
-            <h2 class="section-title reveal">Что конкретно он делает</h2>
-            <p class="section-sub reveal">Нажмите на кнопки, чтобы увидеть, как бот реагирует</p>
-            <div class="taxi-grid">
-                <div class="reveal reveal-delay-1 taxi-demo" data-role="driver">
-                    <div class="phone-frame">
-                        <div class="tg-header">
-                            <div class="tg-avatar">В</div>
-                            <div><div class="tg-name">Водитель</div><div class="tg-status"><span class="dot online"></span> онлайн</div></div>
-                        </div>
-                        <div class="taxi-chat">
-                            <div class="msg bot">Новый заказ: ул. Тверская, 12 → Шереметьево<br>Цена: 1 450 ₽</div>
-                            <div class="msg bot">Расстояние: 28 км, время подачи: 12 мин</div>
-                        </div>
-                        <div class="taxi-actions">
-                            <button class="taxi-btn" data-action="accept">Принять</button>
-                            <button class="taxi-btn" data-action="decline">Отказаться</button>
-                            <button class="taxi-btn" data-action="complete">Завершить</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal reveal-delay-2 taxi-demo" data-role="dispatcher">
-                    <div class="phone-frame">
-                        <div class="tg-header">
-                            <div class="tg-avatar">Д</div>
-                            <div><div class="tg-name">Диспетчер</div><div class="tg-status"><span class="dot online"></span> онлайн</div></div>
-                        </div>
-                        <div class="taxi-chat">
-                            <div class="msg bot">Новый заказ №1423: ул. Ленина, 5 → Аэропорт</div>
-                            <div class="msg bot">Время подачи: 20 мин, цена: 1 200 ₽</div>
-                        </div>
-                        <div class="taxi-actions">
-                            <button class="taxi-btn" data-action="assign">Назначить</button>
-                            <button class="taxi-btn" data-action="cancel">Отменить</button>
-                            <button class="taxi-btn" data-action="monitor">Мониторинг</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal reveal-delay-3 taxi-demo" data-role="courier">
-                    <div class="phone-frame">
-                        <div class="tg-header">
-                            <div class="tg-avatar">К</div>
-                            <div><div class="tg-name">Курьер</div><div class="tg-status"><span class="dot online"></span> онлайн</div></div>
-                        </div>
-                        <div class="taxi-chat">
-                            <div class="msg bot">Свободная доставка: хлеб, 5 кг, ул. Садовая, 12 → ул. Мира, 8</div>
-                            <div class="msg bot">Оплата: 350 ₽, расстояние: 4 км</div>
-                        </div>
-                        <div class="taxi-actions">
-                            <button class="taxi-btn" data-action="take">Взять заказ</button>
-                            <button class="taxi-btn" data-action="delivered">Доставлен</button>
-                            <button class="taxi-btn" data-action="problem">Проблема</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="process">
-            <span class="section-eyebrow reveal">Как мы работаем</span>
-            <h2 class="section-title reveal">Процесс</h2>
-            <p class="section-sub reveal">Пять шагов от заявки до запуска</p>
-            <div class="process-grid">
-                <div class="process-step reveal reveal-delay-1"><div class="p-icon">01</div><h4>Заявка</h4><p>Коротко описываете задачу в Telegram — без брифов на 10 страниц.</p></div>
-                <div class="process-step reveal reveal-delay-2"><div class="p-icon">02</div><h4>Диагностика</h4><p>Разбираем процессы, считаем, что реально автоматизировать. План — за 1–2 дня.</p></div>
-                <div class="process-step reveal reveal-delay-3"><div class="p-icon">03</div><h4>Прототип</h4><p>Собираем рабочий макет на ключевых сценариях — видно логику до внедрения.</p></div>
-                <div class="process-step reveal reveal-delay-1"><div class="p-icon">04</div><h4>Внедрение</h4><p>Подключаем к вашим системам: CRM, мессенджеры, Яндекс Такси. Тестируем на реальных данных.</p></div>
-                <div class="process-step reveal reveal-delay-2"><div class="p-icon">05</div><h4>Поддержка</h4><p>Донастраиваем логику по обратной связи, остаёмся на связи после запуска.</p></div>
-            </div>
-        </section>
-
-        <section id="benefits">
-            <span class="section-eyebrow reveal">Почему мы</span>
-            <h2 class="section-title reveal">Преимущества</h2>
-            <p class="section-sub reveal">Коротко о главном</p>
-            <div class="benefit-grid">
-                <div class="benefit-item reveal"><h4>Индивидуальный подход</h4><p>Не продаём коробочные решения — настраиваем логику под ваши задачи и бизнес-процессы.</p></div>
-                <div class="benefit-item reveal"><h4>Работаем через API</h4><p>Интеграции с Telegram, MAX, Яндекс Такси, CRM — без потери данных и безопасности.</p></div>
-                <div class="benefit-item reveal"><h4>Поддержка после запуска</h4><p>Донастраиваем первые недели, а дальше — на договорённости. Мы не бросаем проекты.</p></div>
-                <div class="benefit-item reveal"><h4>Хостинг остаётся у вас</h4><p>Мы не берём на себя хостинг — только логика и интеграции. Всё под вашим контролем.</p></div>
-            </div>
-        </section>
-
-        <section id="cases">
-            <span class="section-eyebrow reveal">Портфолио</span>
-            <h2 class="section-title reveal">Реальные проекты</h2>
-            <p class="section-sub reveal">Примеры работ, которые уже приносят пользу бизнесу.</p>
-            <div class="case-grid">
-                <div class="case-card reveal reveal-delay-1">
-                    <span class="case-tag">Таксопарки и логистика</span>
-                    <p>Боты для водителей такси с интеграцией Яндекс.Такси. Заменяют диспетчерскую, автоматизируют приём заказов, статусы и баланс.</p>
-                    <div class="case-result">Снижение нагрузки на диспетчера на 60%</div>
-                </div>
-                <div class="case-card reveal reveal-delay-2">
-                    <span class="case-tag">Локальная доставка (хлеб)</span>
-                    <p>Два бота: клиентский (подписка на доставку) и курьерский (приём заказов, маршруты, отметки о доставке).</p>
-                    <div class="case-result">Курьеры сами выбирают выгодные заказы — рыночная модель</div>
-                </div>
-                <div class="case-card reveal reveal-delay-3">
-                    <span class="case-tag">Веб-разработка и CRM</span>
-                    <p>Разработали корпоративный сайт для b2b-компании с интеграцией CRM и AI-чат-бота. Автоматизировали сбор заявок и обработку запросов.</p>
-                    <div class="case-result">Заявки обрабатываются в 2 раза быстрее</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq">
-            <span class="section-eyebrow reveal">Часто спрашивают</span>
-            <h2 class="section-title reveal">Ответы на вопросы</h2>
-            <div class="faq-list">
-                <div class="faq-item reveal"><h4>Какие данные защищены?</h4><p>Работаем через официальные API — Telegram, ваша CRM, Яндекс Такси. Доступ настраивается по ролям. При необходимости подписываем NDA.</p></div>
-                <div class="faq-item reveal"><h4>Сколько это стоит и как долго?</h4><p>Цена и сроки зависят от задачи. Даём смету после бесплатной диагностики — без сюрпризов в процессе. Простые боты — от 1 недели.</p></div>
-                <div class="faq-item reveal"><h4>Кто обеспечивает хостинг?</h4><p>Хостинг и домен остаются у вас. Мы только настраиваем логику и интеграции. Если нужна помощь с хостингом — подскажем, но не хостим сами.</p></div>
-                <div class="faq-item reveal"><h4>Что после запуска?</h4><p>Первые недели донастраиваем логику по вашей обратной связи. Дальше — по договорённости на поддержку.</p></div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="contact-block reveal">
-                <span class="section-eyebrow">Обсудить проект</span>
-                <h2 class="section-title">Напишите — расскажем, что можно сделать, и сколько это займёт.</h2>
-                <div>
-                    <span class="price-tag">Боты от 10 000 ₽</span>
-                    <span class="price-tag">Сайты от 50 000 ₽</span>
-                </div>
-                <p class="section-sub" style="margin-bottom:32px;">
-                    Хостинг не предоставляем. Условия обсуждаются индивидуально.
-                    <span style="display:block; font-size:14px; color:var(--accent); margin-top:10px;">Бесплатный расчёт за 15 минут — просто опишите задачу.</span>
+        <div style="margin-top:20px; padding:40px 0; border-top:1px solid var(--line);">
+            <div class="contact-block">
+                <h2 style="font-family:var(--serif); font-size:28px; font-weight:400; color:var(--text);">Обсудить ваш проект</h2>
+                <p style="color:var(--muted); font-size:16px; max-width:500px; margin:12px 0 24px;">
+                    Расскажите задачу — мы подберём решение из наработанных модулей или соберём новый инструмент под вас.
                 </p>
                 <div class="btn-row">
                     <a href="https://t.me/Bot_Craft_Studio" class="btn-primary" target="_blank">Написать в Telegram</a>
                     <a href="https://max.ru/id773475339010_bot" class="btn-secondary" target="_blank">Написать в MAX</a>
                 </div>
             </div>
-        </section>
+        </div>
 
         <footer>
             <div class="footer-left">
@@ -600,229 +374,17 @@
                 <span>© 2026 BotCraft Studio</span>
             </div>
             <div class="footer-links">
-                <a href="#work">Услуги</a>
-                <a href="#cases">Кейсы</a>
-                <a href="#process">Процесс</a>
-                <a href="#contact">Контакты</a>
+                <a href="index.html">Главная</a>
+                <a href="index.html#work">Услуги</a>
+                <a href="index.html#cases">Кейсы</a>
+                <a href="index.html#contact">Контакты</a>
                 <a href="https://t.me/Bot_Craft_Studio" target="_blank" rel="noopener">Telegram</a>
-                <a href="#">Политика конфиденциальности</a>
             </div>
         </footer>
     </div>
 
-    <button id="back-to-top" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // ===== Все скрипты без изменений (интро, прогресс, 3D, reveal, счётчики, курсор, кнопки, такси, навигация) =====
-        (function() {
-            var intro = document.getElementById('intro');
-            var hideIntro = function() {
-                intro.classList.add('hide');
-                setTimeout(function() { intro.style.display = 'none'; }, 800);
-            };
-            setTimeout(hideIntro, 2800);
-            intro.addEventListener('click', hideIntro);
-        })();
-
-        (function() {
-            var bar = document.getElementById('scroll-progress');
-            window.addEventListener('scroll', function() {
-                var h = document.documentElement;
-                var max = h.scrollHeight - h.clientHeight;
-                var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
-                bar.style.width = pct + '%';
-            }, { passive: true });
-        })();
-
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof THREE === 'undefined') return;
-            if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-            var container = document.getElementById('three-canvas');
-            var scene = new THREE.Scene();
-            scene.background = null;
-            var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-            camera.position.set(0, 0, 8);
-            var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.setClearColor(0x000000, 0);
-            container.appendChild(renderer.domElement);
-            var group = new THREE.Group();
-            scene.add(group);
-            var geo = new THREE.TorusKnotGeometry(1.5, 0.4, 180, 20);
-            var edges = new THREE.EdgesGeometry(geo);
-            var mat = new THREE.LineBasicMaterial({ color: 0xC9A87C, transparent: true, opacity: 0.15 });
-            var wire = new THREE.LineSegments(edges, mat);
-            wire.rotation.x = 0.5;
-            wire.rotation.y = 0.3;
-            group.add(wire);
-            var geo2 = new THREE.TorusKnotGeometry(1.0, 0.25, 140, 16);
-            var edges2 = new THREE.EdgesGeometry(geo2);
-            var mat2 = new THREE.LineBasicMaterial({ color: 0x7A7D86, transparent: true, opacity: 0.08 });
-            var wire2 = new THREE.LineSegments(edges2, mat2);
-            wire2.rotation.x = -0.3;
-            wire2.rotation.y = 0.8;
-            group.add(wire2);
-            var mouseX = 0,
-                mouseY = 0;
-            document.addEventListener('mousemove', function(e) {
-                mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-                mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
-            });
-
-            function animate() {
-                requestAnimationFrame(animate);
-                group.rotation.x += (mouseY * 0.02 - group.rotation.x) * 0.02;
-                group.rotation.y += (mouseX * 0.02 - group.rotation.y) * 0.02;
-                wire.rotation.x += 0.001;
-                wire.rotation.y += 0.002;
-                wire2.rotation.x += 0.0008;
-                wire2.rotation.y += 0.0015;
-                renderer.render(scene, camera);
-            }
-            animate();
-            window.addEventListener('resize', function() {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-        });
-
-        (function() {
-            var reveals = document.querySelectorAll('.reveal');
-            if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) entry.target.classList.add('visible');
-                    });
-                }, { threshold: 0.1 });
-                reveals.forEach(function(el) { observer.observe(el); });
-            } else {
-                reveals.forEach(function(el) { el.classList.add('visible'); });
-            }
-        })();
-
-        (function() {
-            var nums = document.querySelectorAll('.stat-num');
-            if (!nums.length) return;
-
-            function run(el) {
-                var target = parseInt(el.dataset.target, 10);
-                var suffix = el.dataset.suffix || '';
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                    el.textContent = target.toLocaleString('ru-RU') + suffix;
-                    return;
-                }
-                var duration = 1400;
-                var start = performance.now();
-
-                function step(now) {
-                    var progress = Math.min((now - start) / duration, 1);
-                    var eased = 1 - Math.pow(1 - progress, 3);
-                    el.textContent = Math.round(eased * target).toLocaleString('ru-RU') + suffix;
-                    if (progress < 1) requestAnimationFrame(step);
-                }
-                requestAnimationFrame(step);
-            }
-            if ('IntersectionObserver' in window) {
-                var obs = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            run(entry.target);
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.4 });
-                nums.forEach(function(el) { obs.observe(el); });
-            } else {
-                nums.forEach(run);
-            }
-        })();
-
-        (function() {
-            var cursor = document.getElementById('cursor');
-            if (!cursor) return;
-            document.addEventListener('mousemove', function(e) {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-            document.addEventListener('mousedown', function() { cursor.classList.add('active'); });
-            document.addEventListener('mouseup', function() { cursor.classList.remove('active'); });
-        })();
-
-        (function() {
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            document.querySelectorAll('.btn-primary, .btn-secondary').forEach(function(btn) {
-                btn.addEventListener('mousemove', function(e) {
-                    var rect = btn.getBoundingClientRect();
-                    var x = (e.clientX - rect.left - rect.width / 2) * 0.15;
-                    var y = (e.clientY - rect.top - rect.height / 2) * 0.15 - 2;
-                    btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-                });
-                btn.addEventListener('mouseleave', function() { btn.style.transform = ''; });
-            });
-        })();
-
-        (function() {
-            document.querySelectorAll('.taxi-demo').forEach(function(container) {
-                var chat = container.querySelector('.taxi-chat');
-                var actions = container.querySelector('.taxi-actions');
-                var role = container.dataset.role;
-
-                function addMessage(text, cls) {
-                    var div = document.createElement('div');
-                    div.className = 'msg ' + cls;
-                    div.innerHTML = text.replace(/\n/g, '<br>');
-                    chat.appendChild(div);
-                    chat.scrollTop = chat.scrollHeight;
-                }
-
-                actions.addEventListener('click', function(e) {
-                    var btn = e.target.closest('.taxi-btn');
-                    if (!btn) return;
-                    var action = btn.dataset.action;
-                    if (btn.disabled) return;
-                    btn.disabled = true;
-                    setTimeout(function() { btn.disabled = false; }, 800);
-                    var userText = btn.textContent.trim();
-                    addMessage(userText, 'user');
-                    var reply = '';
-                    var delay = 400 + Math.random() * 300;
-                    setTimeout(function() {
-                        switch (role) {
-                            case 'driver':
-                                if (action === 'accept') reply = 'Заказ принят! Водитель направляется к клиенту. Прибытие через 12 мин.';
-                                else if (action === 'decline') reply = 'Заказ отклонён. Поиск другого водителя...';
-                                else if (action === 'complete') reply = 'Поездка завершена! Спасибо. Баланс обновлён: +1 450 ₽';
-                                break;
-                            case 'dispatcher':
-                                if (action === 'assign') reply = 'Водитель Иван (ID 384) назначен на заказ. Время подачи: 20 мин, цена: 1 200 ₽';
-                                else if (action === 'cancel') reply = 'Заказ №1423 отменён. Уведомление отправлено клиенту.';
-                                else if (action === 'monitor') reply = 'Активные заказы: 4. Водители онлайн: 12. Среднее время подачи: 14 мин.';
-                                break;
-                            case 'courier':
-                                if (action === 'take') reply = 'Заказ взят! Адрес забора: ул. Садовая, 12. Заберите хлеб (5 кг) и доставьте по адресу: ул. Мира, 8.';
-                                else if (action === 'delivered') reply = 'Заказ доставлен! Получатель подтвердил. Оплата: +350 ₽ на ваш счёт.';
-                                else if (action === 'problem') reply = 'Проблема зафиксирована. Диспетчер свяжется с вами в течение 5 минут.';
-                                break;
-                        }
-                        addMessage(reply, 'bot');
-                    }, delay);
-                });
-            });
-        })();
-
-        (function() {
-            var btn = document.getElementById('back-to-top');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 400) btn.classList.add('show');
-                else btn.classList.remove('show');
-            });
-            btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-        })();
-
+        // ===== Навигация =====
         (function() {
             var toggle = document.getElementById('navToggle');
             var menu = document.getElementById('mobileMenu');
@@ -839,10 +401,25 @@
         })();
 
         (function() {
-            var current = document.body.dataset.pageName || 'Главная';
+            var current = document.body.dataset.pageName || 'Кейсы';
             document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function(a) {
                 if (a.textContent.trim() === current) a.classList.add('current');
             });
+        })();
+
+        // ===== Reveal =====
+        (function() {
+            var reveals = document.querySelectorAll('.reveal');
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) entry.target.classList.add('visible');
+                    });
+                }, { threshold: 0.1 });
+                reveals.forEach(function(el) { observer.observe(el); });
+            } else {
+                reveals.forEach(function(el) { el.classList.add('visible'); });
+            }
         })();
     </script>
 </body>
