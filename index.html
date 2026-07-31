@@ -18,7 +18,6 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
     <!-- Яндекс.Метрика -->
-    <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -30,13 +29,13 @@
         ym(111198502, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/111198502" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
     <style>
+        /* ===== ВСЕ СТИЛИ (без изменений) ===== */
         :root {
             --bg: #0A0B10;
             --text: #E8E5DC;
@@ -49,9 +48,9 @@
             --status: #6FA98A;
             --line: rgba(201, 168, 124, 0.08);
             --line-strong: rgba(201, 168, 124, 0.2);
-            --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --mono: 'IBM Plex Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', sans-serif;
+            --mono: 'IBM Plex Mono', monospace;
             --font-weight-light: 300;
             --font-weight-regular: 400;
             --font-weight-medium: 500;
@@ -271,9 +270,23 @@
         .price-tag + .price-tag { margin-left: 12px; }
         @media (max-width: 480px) { .price-tag + .price-tag { margin-left: 0; } }
 
-        footer { border-top: 1px solid var(--line); padding: 32px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; color: var(--faint); font-size: 12px; font-weight: var(--font-weight-light); letter-spacing: 0.5px; }
+        footer {
+            border-top: 1px solid var(--line); padding: 32px 0;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 16px;
+            color: var(--faint);
+            font-size: 12px;
+            font-weight: var(--font-weight-light);
+            letter-spacing: 0.5px;
+        }
         .footer-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-        .footer-links { display: flex; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-links {
+            display: flex; gap: 18px; flex-wrap: wrap;
+            font-family: var(--mono);
+            font-size: 10.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
         .footer-links a { color: var(--dim); text-decoration: none; transition: color 0.3s; }
         .footer-links a:hover { color: var(--accent); }
 
@@ -352,7 +365,7 @@
                     <a href="index.html" data-page="Главная">Главная</a>
                     <a href="#work">Услуги</a>
                     <a href="#taxi">Такси-бот</a>
-                    <a href="#cases">Кейсы</a>
+                    <a href="cases.html">Кейсы</a>
                     <a href="#process">Процесс</a>
                     <a href="#contact">Контакты</a>
                 </div>
@@ -366,7 +379,7 @@
         <a href="index.html" data-page="Главная">Главная</a>
         <a href="#work">Услуги</a>
         <a href="#taxi">Такси-бот</a>
-        <a href="#cases">Кейсы</a>
+        <a href="cases.html">Кейсы</a>
         <a href="#process">Процесс</a>
         <a href="#contact">Контакты</a>
         <a href="#contact" class="mm-cta">Обсудить проект</a>
@@ -387,7 +400,7 @@
                 </p>
                 <div class="hero-cta btn-row">
                     <a href="#contact" class="btn-primary">Обсудить</a>
-                    <a href="#cases" class="btn-secondary">Смотреть кейсы</a>
+                    <a href="cases.html" class="btn-secondary">Смотреть кейсы</a>
                 </div>
                 <div style="margin-top:28px; font-family:var(--mono); font-size:11px; letter-spacing:1px; color:var(--faint);">
                     <span>Бесплатный аудит ваших процессов</span>
@@ -594,7 +607,7 @@
                 </p>
                 <div class="btn-row">
                     <a href="https://t.me/Bot_Craft_Studio" class="btn-primary" target="_blank">Написать в Telegram</a>
-                    <a href="https://max.ru/id773475339010_bot" class="btn-secondary" target="_blank">Написать в MAX</a>
+                    <a href="https://max.ru/u/f9LHodD0cOIYKt2-0waplaXIiKugJ0glDXnc0NUIMk-BTSs6_2tSSb1mdzk" class="btn-secondary" target="_blank">Написать в MAX</a>
                 </div>
             </div>
         </section>
@@ -606,11 +619,10 @@
             </div>
             <div class="footer-links">
                 <a href="#work">Услуги</a>
-                <a href="#cases">Кейсы</a>
-                <a href="#process">Процесс</a>
+                <a href="cases.html">Кейсы</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
                 <a href="#contact">Контакты</a>
                 <a href="https://t.me/Bot_Craft_Studio" target="_blank" rel="noopener">Telegram</a>
-                <a href="#">Политика конфиденциальности</a>
             </div>
         </footer>
     </div>
@@ -619,6 +631,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        // ===== Все скрипты (без изменений) =====
         (function() {
             var intro = document.getElementById('intro');
             var hideIntro = function() {
