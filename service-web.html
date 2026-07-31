@@ -316,4 +316,18 @@
     <script>
         (function() {
             var toggle = document.getElementById('navToggle');
-            var menu
+            var menu = document.getElementById('mobileMenu');
+            toggle.addEventListener('click', function() {
+                toggle.classList.toggle('active');
+                menu.classList.toggle('open');
+            });
+            menu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    toggle.classList.remove('active');
+                    menu.classList.remove('open');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
