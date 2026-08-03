@@ -13,12 +13,14 @@
     <meta property="og:description" content="Разработка ботов, CRM, сайтов, платежных систем и AI-интеграций под ваш бизнес. Нешаблонные решения." />
     <meta property="og:image" content="https://botcraftstudio.ru/og-image.png" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- ===== ИКОНКИ (ПРАВИЛЬНЫЕ) ===== -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-<meta name="msapplication-TileColor" content="#0A0B10">
-<meta name="theme-color" content="#0A0B10">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="msapplication-TileColor" content="#0A0B10">
+    <meta name="theme-color" content="#0A0B10">
 
     <!-- Яндекс.Метрика -->
     <script type="text/javascript">
@@ -38,9 +40,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
     <style>
-        /* ===================================================================
-           ВСЕ СТИЛИ (тёмная тема, золотой акцент, адаптив)
-           =================================================================== */
         :root {
             --bg: #0A0B10;
             --text: #E8E5DC;
@@ -89,11 +88,8 @@
         :focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
         .site-wrapper {
-            position: relative;
-            z-index: 1;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 40px;
+            position: relative; z-index: 1;
+            max-width: 1300px; margin: 0 auto; padding: 0 40px;
         }
         @media (max-width: 768px) {
             .site-wrapper { padding: 0 20px; }
@@ -251,8 +247,7 @@
 
         .nav-toggle {
             display: none;
-            flex-direction: column;
-            gap: 5px;
+            flex-direction: column; gap: 5px;
             background: none;
             border: none;
             cursor: pointer;
@@ -346,7 +341,6 @@
         }
         .btn-row { display: flex; gap: 20px; flex-wrap: wrap; }
 
-        /* ===== HERO (универсальный) ===== */
         .hero {
             min-height: 100vh;
             min-height: 100dvh;
@@ -566,7 +560,6 @@
         }
         @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* ===== УСЛУГИ (5 КАРТОЧЕК) ===== */
         .service-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -626,7 +619,6 @@
         }
         .tilt-card .card-link:hover { gap: 10px; }
 
-        /* ===== ТАКСИ-СИМУЛЯТОР ===== */
         .taxi-simulator {
             background: #0F1118;
             border: 1px solid var(--line-strong);
@@ -1216,7 +1208,6 @@
 
     <div class="site-wrapper">
 
-        <!-- ===== HERO (универсальный) ===== -->
         <header class="hero" id="hero">
             <svg class="hero-graphic" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="300" cy="60" r="46" fill="var(--accent)" opacity="0.06"/>
@@ -1284,7 +1275,6 @@
             <div class="scroll-cue"><span class="line"></span> Листайте</div>
         </header>
 
-        <!-- ===== СТАТИСТИКА ===== -->
         <section id="proof" style="padding-top:0; padding-bottom:20px; border-top:none;">
             <div class="stat-strip reveal">
                 <div class="stat-item">
@@ -1302,7 +1292,6 @@
             </div>
         </section>
 
-        <!-- ===== ЛЕНТА ===== -->
         <div class="marquee-wrap">
             <div class="marquee-label">Работаем поверх ваших систем</div>
             <div class="marquee">
@@ -1313,7 +1302,6 @@
             </div>
         </div>
 
-        <!-- ===== УСЛУГИ (5 КАРТОЧЕК) ===== -->
         <section id="work">
             <div class="section-marker reveal"><span class="section-index">01</span><span class="section-rule"></span><span class="section-eyebrow">Услуги</span></div>
             <h2 class="section-title reveal">Что мы строим</h2>
@@ -1352,7 +1340,6 @@
             </div>
         </section>
 
-        <!-- ===== ТАКСИ-СИМУЛЯТОР ===== -->
         <section id="taxi">
             <div class="section-marker reveal"><span class="section-index">02</span><span class="section-rule"></span><span class="section-eyebrow">Такси-бот</span></div>
             <h2 class="section-title reveal">Живой сценарий заказа</h2>
@@ -1406,7 +1393,6 @@
             </div>
         </section>
 
-        <!-- ===== ПРОЦЕСС ===== -->
         <section id="process">
             <div class="section-marker reveal"><span class="section-index">03</span><span class="section-rule"></span><span class="section-eyebrow">Как мы работаем</span></div>
             <h2 class="section-title reveal">Процесс</h2>
@@ -1420,7 +1406,6 @@
             </div>
         </section>
 
-        <!-- ===== ПРЕИМУЩЕСТВА ===== -->
         <section id="benefits">
             <div class="section-marker reveal"><span class="section-index">04</span><span class="section-rule"></span><span class="section-eyebrow">Почему мы</span></div>
             <h2 class="section-title reveal">Преимущества</h2>
@@ -1433,7 +1418,6 @@
             </div>
         </section>
 
-        <!-- ===== КЕЙСЫ ===== -->
         <section id="cases">
             <div class="section-marker reveal"><span class="section-index">05</span><span class="section-rule"></span><span class="section-eyebrow">Портфолио</span></div>
             <h2 class="section-title reveal">Реальные проекты</h2>
@@ -1481,7 +1465,6 @@
             <div class="section-cta reveal"><a href="cases.html" class="btn-secondary" data-page="Кейсы">Все кейсы</a></div>
         </section>
 
-        <!-- ===== HIGHLIGHT ===== -->
         <section class="highlight-band">
             <svg class="hl-graphic" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="100" cy="100" r="86" fill="none" stroke="var(--bg)" stroke-width="10" opacity="0.1"/>
@@ -1493,7 +1476,6 @@
             </div>
         </section>
 
-        <!-- ===== FAQ ===== -->
         <section id="faq">
             <div class="section-marker reveal"><span class="section-index">06</span><span class="section-rule"></span><span class="section-eyebrow">Часто спрашивают</span></div>
             <h2 class="section-title reveal">Ответы на вопросы</h2>
@@ -1505,7 +1487,6 @@
             </div>
         </section>
 
-        <!-- ===== КОНТАКТЫ ===== -->
         <section id="contact">
             <div class="contact-block reveal">
                 <div class="section-marker"><span class="section-index">07</span><span class="section-rule"></span><span class="section-eyebrow">Обсудить проект</span></div>
@@ -1521,7 +1502,6 @@
             </div>
         </section>
 
-        <!-- ===== FOOTER ===== -->
         <footer>
             <div class="footer-left">
                 <span class="wordmark wordmark-sm">Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span></span>
@@ -1542,7 +1522,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // ===== ВСЕ СКРИПТЫ (интро, прогресс, 3D, счётчики, курсор, кнопки, такси-симулятор, навигация) =====
         (function() {
             var intro = document.getElementById('intro');
             var hideIntro = function() {
@@ -1693,7 +1672,6 @@
             });
         })();
 
-        // ===== ТАКСИ-СИМУЛЯТОР =====
         (function() {
             const chat = document.getElementById('phoneChat');
             const actions = document.getElementById('phoneActions');
