@@ -40,6 +40,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
     <style>
+        /* ===== ВСЕ СТИЛИ (без изменений) ===== */
         :root {
             --bg: #0A0B10;
             --text: #E8E5DC;
@@ -88,8 +89,11 @@
         :focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
         .site-wrapper {
-            position: relative; z-index: 1;
-            max-width: 1300px; margin: 0 auto; padding: 0 40px;
+            position: relative;
+            z-index: 1;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
         @media (max-width: 768px) {
             .site-wrapper { padding: 0 20px; }
@@ -1522,6 +1526,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        // ===== ВСЕ СКРИПТЫ (без изменений) =====
         (function() {
             var intro = document.getElementById('intro');
             var hideIntro = function() {
@@ -1672,6 +1677,7 @@
             });
         })();
 
+        // ===== ТАКСИ-СИМУЛЯТОР =====
         (function() {
             const chat = document.getElementById('phoneChat');
             const actions = document.getElementById('phoneActions');
