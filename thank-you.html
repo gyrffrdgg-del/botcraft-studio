@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Спасибо! — BotCraft Studio</title>
+    <meta name="description" content="Спасибо за заявку! Мы свяжемся с вами в ближайшее время." />
+    <meta name="robots" content="noindex, nofollow" /> <!-- Чтобы не индексировать -->
+
+    <!-- Иконки (те же, что на основном сайте) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg: #0A0B10;
+            --text: #E8E5DC;
+            --muted: #9A9DA6;
+            --dim: #6B6E78;
+            --accent: #C9A87C;
+            --accent-soft: rgba(201, 168, 124, 0.08);
+            --line: rgba(201, 168, 124, 0.08);
+            --line-strong: rgba(201, 168, 124, 0.2);
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', sans-serif;
+            --mono: 'IBM Plex Mono', monospace;
+            --font-weight-light: 300;
+            --font-weight-regular: 400;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            font-weight: var(--font-weight-light);
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        ::selection { background: var(--accent); color: var(--bg); }
+
+        .thank-you-box {
+            max-width: 600px;
+            border: 1px solid var(--line-strong);
+            padding: 60px 40px;
+            background: var(--accent-soft);
+        }
+        .thank-you-box h1 {
+            font-family: var(--serif);
+            font-size: clamp(36px, 6vw, 52px);
+            font-weight: var(--font-weight-regular);
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+        .thank-you-box h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+        .thank-you-box p {
+            color: var(--muted);
+            font-size: 17px;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        .thank-you-box .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        .thank-you-box .btn:hover {
+            background: #D6B892;
+        }
+        .thank-you-box .footnote {
+            margin-top: 20px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--dim);
+            letter-spacing: 1px;
+        }
+        .thank-you-box .footnote a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--line-strong);
+        }
+
+        @media (max-width: 480px) {
+            .thank-you-box { padding: 40px 20px; }
+            body { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="thank-you-box">
+        <h1>Спасибо, <span>заявка принята</span></h1>
+        <p>
+            Мы свяжемся с вами в ближайшее время (обычно в течение 15 минут).<br />
+            Если вопрос срочный, напишите нам в <a href="https://t.me/Bot_Craft_Studio" target="_blank" style="color:var(--accent); border-bottom:1px solid var(--line-strong);">Telegram</a>.
+        </p>
+        <a href="/" class="btn">Вернуться на сайт</a>
+        <div class="footnote">
+            <span>BotCraft Studio</span> · <a href="/">botcraftstudio.ru</a>
+        </div>
+    </div>
+
+    <!-- Яндекс.Метрика – цель будет достигнута при загрузке этой страницы -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111198502', 'ym');
+
+        ym(111198502, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        // Дополнительно отправить цель (необязательно, но для надёжности)
+        ym(111198502, 'reachGoal', 'thank_you');
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/111198502" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+</body>
+</html>
