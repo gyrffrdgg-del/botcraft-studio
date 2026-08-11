@@ -39,7 +39,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
     <style>
-        /* ===== ВСЕ СТИЛИ (БЕЗ ИЗМЕНЕНИЙ, ДОБАВЛЕНЫ НОВЫЕ ДЛЯ ФОРМЫ) ===== */
+        /* ===== ВСЕ СТИЛИ (БЕЗ ИЗМЕНЕНИЙ) ===== */
         :root {
             --bg: #0A0B10;
             --text: #E8E5DC;
@@ -477,7 +477,6 @@
         }
 
         section { padding: 60px 0; border-top: 1px solid var(--line); }
-        #taxi { padding: 90px 0; }
         #lead { padding: 80px 0; border-top: 1px solid var(--line); }
         .section-eyebrow {
             font-family: var(--mono);
@@ -514,7 +513,6 @@
         .section-index { font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 1px; }
         .section-marker .section-rule { width: 22px; height: 1px; background: var(--line-strong); }
         .section-marker .section-eyebrow { margin-bottom: 0; }
-        #taxi .section-title { font-size: clamp(32px, 4.4vw, 50px); }
 
         .marquee-wrap {
             padding: 26px 0;
@@ -621,254 +619,6 @@
             transition: gap 0.3s;
         }
         .tilt-card .card-link:hover { gap: 10px; }
-
-        .taxi-simulator {
-            background: #0F1118;
-            border: 1px solid var(--line-strong);
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-        .sim-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--line);
-        }
-        .sim-role-tabs {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-        .role-tab {
-            background: transparent;
-            border: 1px solid var(--line-strong);
-            color: var(--muted);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-family: var(--mono);
-            font-size: 11px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .role-tab:hover { border-color: var(--accent); color: var(--text); }
-        .role-tab.active {
-            background: var(--accent);
-            color: var(--bg);
-            border-color: var(--accent);
-        }
-        .sim-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--mono);
-            font-size: 11px;
-            color: var(--dim);
-        }
-        .status-dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: var(--status);
-            animation: pulse-dot 1.8s infinite;
-        }
-
-        .sim-phone {
-            background: #0A0C12;
-            border: 2px solid var(--line-strong);
-            border-radius: 24px;
-            overflow: hidden;
-            max-width: 480px;
-            margin: 0 auto 24px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-        }
-        .phone-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 18px;
-            background: #0F1118;
-            border-bottom: 1px solid var(--line);
-        }
-        .phone-avatar { font-size: 22px; line-height: 1; }
-        .phone-name {
-            font-weight: var(--font-weight-regular);
-            color: var(--text);
-            font-size: 15px;
-        }
-        .phone-status {
-            font-family: var(--mono);
-            font-size: 10.5px;
-            color: var(--dim);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .phone-order-id {
-            margin-left: auto;
-            font-family: var(--mono);
-            font-size: 11px;
-            color: var(--accent);
-        }
-        .phone-chat {
-            padding: 16px 14px;
-            min-height: 260px;
-            max-height: 340px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background: #0A0C12;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(201,168,124,0.1) transparent;
-        }
-        .phone-chat::-webkit-scrollbar { width: 3px; }
-        .phone-chat::-webkit-scrollbar-thumb { background: rgba(201,168,124,0.15); border-radius: 4px; }
-        .phone-chat .msg {
-            max-width: 85%;
-            padding: 10px 16px;
-            border-radius: 12px;
-            font-size: 14px;
-            line-height: 1.5;
-            animation: msgAppear 0.3s ease;
-            word-wrap: break-word;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .phone-chat .msg.bot {
-            align-self: flex-start;
-            background: #1A1F2E;
-            color: #E0DDD4;
-            border-bottom-left-radius: 4px;
-            border-left: 2px solid var(--accent);
-        }
-        .phone-chat .msg.user {
-            align-self: flex-end;
-            background: var(--accent);
-            color: var(--bg);
-            border-bottom-right-radius: 4px;
-        }
-        .phone-chat .msg.system {
-            align-self: center;
-            background: transparent;
-            color: var(--dim);
-            font-size: 12px;
-            font-style: italic;
-            border: none;
-            box-shadow: none;
-            max-width: 100%;
-        }
-        .typing-indicator {
-            align-self: flex-start;
-            display: flex;
-            gap: 4px;
-            padding: 10px 14px;
-            background: #1A1F2E;
-            border-radius: 16px;
-            border-bottom-left-radius: 4px;
-            border-left: 2px solid var(--accent);
-        }
-        .typing-indicator span {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: var(--muted);
-            animation: typingPulse 1.2s infinite ease-in-out;
-        }
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typingPulse {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-            30% { transform: translateY(-4px); opacity: 1; }
-        }
-        .phone-actions {
-            padding: 10px 14px 14px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            border-top: 1px solid var(--line);
-            background: #0F1118;
-        }
-        .phone-actions .action-btn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--line-strong);
-            color: var(--text);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-family: var(--sans);
-            font-size: 12px;
-            font-weight: 400;
-            cursor: pointer;
-            transition: 0.2s;
-            flex: 1;
-            min-width: 80px;
-            text-align: center;
-        }
-        .phone-actions .action-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--accent-soft);
-        }
-        .phone-actions .action-btn:disabled {
-            opacity: 0.4;
-            pointer-events: none;
-        }
-        .phone-input {
-            display: flex;
-            gap: 8px;
-            padding: 8px 14px 14px;
-            border-top: 1px solid var(--line);
-            background: #0F1118;
-        }
-        .phone-input input {
-            flex: 1;
-            background: #1A1F2E;
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            padding: 8px 16px;
-            color: var(--text);
-            font-size: 13px;
-            outline: none;
-            font-family: var(--sans);
-        }
-        .phone-input input:focus { border-color: var(--accent); }
-        .phone-input input::placeholder { color: var(--dim); }
-        .phone-input button {
-            background: var(--accent);
-            border: none;
-            border-radius: 20px;
-            padding: 8px 16px;
-            color: var(--bg);
-            font-weight: 500;
-            cursor: default;
-            opacity: 0.3;
-        }
-        .sim-info {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--line);
-        }
-        .info-item { text-align: center; }
-        .info-label {
-            display: block;
-            font-family: var(--mono);
-            font-size: 10px;
-            text-transform: uppercase;
-            color: var(--dim);
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-        .info-value {
-            font-family: var(--serif);
-            font-size: 18px;
-            font-style: italic;
-            color: var(--accent);
-        }
 
         .process-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; position: relative; padding-top: 30px; }
         .process-grid::before {
@@ -1049,7 +799,7 @@
             max-width: 700px;
         }
 
-        /* ===== НОВЫЕ СТИЛИ ДЛЯ ФОРМЫ ===== */
+        /* ===== СТИЛИ ДЛЯ ФОРМЫ ===== */
         .lead-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1191,8 +941,6 @@
         #formStatus.success { color: #6FA98A; }
         #formStatus.error { color: #E85A5A; }
 
-        /* ===== КОНЕЦ НОВЫХ СТИЛЕЙ ===== */
-
         .footnote {
             color: var(--faint);
             font-size: 12px;
@@ -1214,7 +962,18 @@
             font-weight: var(--font-weight-light);
             letter-spacing: 0.5px;
         }
-        .footer-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .footer-left .legal {
+            font-size: 11px;
+            color: var(--dim);
+            font-family: var(--mono);
+            letter-spacing: 0.5px;
+        }
         .footer-links {
             display: flex;
             gap: 18px;
@@ -1268,9 +1027,6 @@
             .nav-toggle { display: flex; }
             .case-grid { grid-template-columns: 1fr 1fr; }
             .process-grid { grid-template-columns: 1fr 1fr; }
-            .sim-info { grid-template-columns: 1fr; gap: 12px; }
-            .sim-header { flex-direction: column; align-items: stretch; }
-            .sim-role-tabs { justify-content: center; }
             .lead-grid { grid-template-columns: 1fr; gap: 40px; }
         }
         @media (max-width: 768px) {
@@ -1288,11 +1044,9 @@
             body { font-size: 16px; }
         }
         @media (max-width: 480px) {
-            .phone-frame { border-radius: 12px; }
             .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 12px; }
             .form-card { padding: 24px 16px; }
             .messenger-btn { font-size: 12px; padding: 10px; }
-            .sim-phone { max-width: 100%; }
         }
         @media (prefers-reduced-motion: reduce) {
             .reveal { transition: opacity 0.3s ease; transform: none; }
@@ -1331,7 +1085,6 @@
                 <div class="nav-links">
                     <a href="index.html" data-page="Главная">Главная</a>
                     <a href="#work">Услуги</a>
-                    <a href="#taxi">Такси-бот</a>
                     <a href="#cases">Кейсы</a>
                     <a href="#process">Процесс</a>
                     <a href="#lead">Контакты</a>
@@ -1345,7 +1098,6 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html" data-page="Главная">Главная</a>
         <a href="#work">Услуги</a>
-        <a href="#taxi">Такси-бот</a>
         <a href="#cases">Кейсы</a>
         <a href="#process">Процесс</a>
         <a href="#lead">Контакты</a>
@@ -1486,61 +1238,10 @@
             </div>
         </section>
 
-        <section id="taxi">
-            <div class="section-marker reveal"><span class="section-index">02</span><span class="section-rule"></span><span class="section-eyebrow">Такси-бот</span></div>
-            <h2 class="section-title reveal">Живой сценарий заказа</h2>
-            <p class="section-sub reveal">Переключайте роли и нажимайте кнопки — бот отвечает мгновенно, как в реальном приложении.</p>
-
-            <div class="taxi-simulator reveal">
-                <div class="sim-header">
-                    <div class="sim-role-tabs">
-                        <button class="role-tab active" data-role="driver">Водитель</button>
-                        <button class="role-tab" data-role="dispatcher">Диспетчер</button>
-                        <button class="role-tab" data-role="courier">Курьер</button>
-                        <button class="role-tab" data-role="client">Клиент</button>
-                    </div>
-                    <div class="sim-status">
-                        <span class="status-dot"></span>
-                        <span class="status-text">онлайн</span>
-                    </div>
-                </div>
-
-                <div class="sim-phone">
-                    <div class="phone-header">
-                        <div class="phone-avatar">🚕</div>
-                        <div>
-                            <div class="phone-name" id="phoneName">Такси-диспетчер</div>
-                            <div class="phone-status"><span class="dot online"></span> онлайн</div>
-                        </div>
-                        <div class="phone-order-id" id="orderId">#1423</div>
-                    </div>
-                    <div class="phone-chat" id="phoneChat"></div>
-                    <div class="phone-actions" id="phoneActions"></div>
-                    <div class="phone-input">
-                        <input type="text" placeholder="Сообщение..." disabled>
-                        <button disabled>→</button>
-                    </div>
-                </div>
-
-                <div class="sim-info">
-                    <div class="info-item">
-                        <span class="info-label">Текущий статус</span>
-                        <span class="info-value" id="currentStatus">Ожидание заказа</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Время в системе</span>
-                        <span class="info-value" id="simTime">00:00</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Всего заказов</span>
-                        <span class="info-value" id="orderCount">0</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- ===== СЕКЦИЯ "ТАКСИ-БОТ" УДАЛЕНА ПО ЗАПРОСУ ===== -->
 
         <section id="process">
-            <div class="section-marker reveal"><span class="section-index">03</span><span class="section-rule"></span><span class="section-eyebrow">Как мы работаем</span></div>
+            <div class="section-marker reveal"><span class="section-index">02</span><span class="section-rule"></span><span class="section-eyebrow">Как мы работаем</span></div>
             <h2 class="section-title reveal">Процесс</h2>
             <p class="section-sub reveal">Пять шагов от заявки до запуска</p>
             <div class="process-grid">
@@ -1553,7 +1254,7 @@
         </section>
 
         <section id="benefits">
-            <div class="section-marker reveal"><span class="section-index">04</span><span class="section-rule"></span><span class="section-eyebrow">Почему мы</span></div>
+            <div class="section-marker reveal"><span class="section-index">03</span><span class="section-rule"></span><span class="section-eyebrow">Почему мы</span></div>
             <h2 class="section-title reveal">Преимущества</h2>
             <p class="section-sub reveal">Коротко о главном</p>
             <div class="benefit-grid">
@@ -1565,9 +1266,9 @@
         </section>
 
         <section id="cases">
-            <div class="section-marker reveal"><span class="section-index">05</span><span class="section-rule"></span><span class="section-eyebrow">Портфолио</span></div>
+            <div class="section-marker reveal"><span class="section-index">04</span><span class="section-rule"></span><span class="section-eyebrow">Портфолио</span></div>
             <h2 class="section-title reveal">Реальные проекты</h2>
-            <p class="section-sub reveal">Шесть направлений, где автоматизация уже работает и приносит результаты.</p>
+            <p class="section-sub reveal">Пять направлений, где автоматизация уже работает и приносит результаты.</p>
             <div class="case-grid">
                 <div class="case-card reveal reveal-delay-1 featured">
                     <div class="case-main">
@@ -1583,12 +1284,7 @@
                     <p>Умные модераторы проверяют подписку на каналы, чистят спам и выдают навигацию по группам. Единая точка входа в экосистему.</p>
                     <div class="case-result">Чистота в чатах + рост подписчиков</div>
                 </div>
-                <div class="case-card reveal reveal-delay-3">
-                    <div class="case-banner" aria-hidden="true"><svg viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="45" r="20" fill="none" stroke="var(--accent)" stroke-width="2.2" opacity="0.9"/><circle cx="140" cy="45" r="7" fill="var(--accent)" opacity="0.9"/><g stroke="var(--line-strong)" stroke-width="3" stroke-linecap="round"><line x1="140" y1="12" x2="140" y2="20"/><line x1="140" y1="70" x2="140" y2="78"/><line x1="107" y1="45" x2="115" y2="45"/><line x1="165" y1="45" x2="173" y2="45"/><line x1="116" y1="21" x2="121" y2="26"/><line x1="159" y1="64" x2="164" y2="69"/><line x1="164" y1="21" x2="159" y2="26"/><line x1="121" y1="64" x2="116" y2="69"/></g></svg></div>
-                    <span class="case-tag">Фарминг аккаунтов</span>
-                    <p>Автоматическая регистрация аккаунтов Steam с обходом капчи через нейросети. Панель управления и Telegram-бот для фермы.</p>
-                    <div class="case-result">Массовое производство аккаунтов в автоматическом режиме</div>
-                </div>
+                <!-- КЕЙС "ФАРМИНГ АККАУНТОВ" УДАЛЁН ПО ЗАПРОСУ -->
                 <div class="case-card reveal reveal-delay-1">
                     <div class="case-banner" aria-hidden="true"><svg viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg"><path d="M118 20 L162 20 L172 46 L108 46 Z" fill="var(--accent)" opacity="0.9"/><rect x="108" y="46" width="64" height="26" fill="var(--line-strong)"/><line x1="140" y1="46" x2="140" y2="72" stroke="var(--bg)" stroke-width="1.5"/><path d="M172 55 L200 55 L200 78 L172 78" fill="none" stroke="var(--accent)" stroke-width="2"/><line x1="178" y1="63" x2="194" y2="63" stroke="var(--accent)" stroke-width="1.6"/><line x1="178" y1="70" x2="188" y2="70" stroke="var(--accent)" stroke-width="1.6"/></svg></div>
                     <span class="case-tag">Локальная доставка (хлеб)</span>
@@ -1623,7 +1319,7 @@
         </section>
 
         <section id="faq">
-            <div class="section-marker reveal"><span class="section-index">06</span><span class="section-rule"></span><span class="section-eyebrow">Часто спрашивают</span></div>
+            <div class="section-marker reveal"><span class="section-index">05</span><span class="section-rule"></span><span class="section-eyebrow">Часто спрашивают</span></div>
             <h2 class="section-title reveal">Ответы на вопросы</h2>
             <div class="faq-list">
                 <div class="faq-item reveal"><h4>Какие данные защищены?</h4><p>Работаем через официальные API — Telegram, ваша CRM, Яндекс Такси. Доступ настраивается по ролям. При необходимости подписываем NDA.</p></div>
@@ -1633,10 +1329,10 @@
             </div>
         </section>
 
-        <!-- ===== НОВЫЙ БЛОК ЗАЯВКИ ===== -->
+        <!-- ===== БЛОК ЗАЯВКИ ===== -->
         <section id="lead">
             <div class="section-marker reveal">
-                <span class="section-index">07</span>
+                <span class="section-index">06</span>
                 <span class="section-rule"></span>
                 <span class="section-eyebrow">Оставьте заявку</span>
             </div>
@@ -1657,11 +1353,10 @@
                     </div>
                 </div>
 
-                <!-- Правая часть: форма + мессенджеры -->
+                <!-- Правая часть: форма -->
                 <div class="lead-actions reveal">
                     <div class="form-card">
                         <form id="leadForm" style="display: flex; flex-direction: column; gap: 16px;">
-                            <!-- Имя -->
                             <div class="input-group">
                                 <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -1669,14 +1364,12 @@
                                 </svg>
                                 <input type="text" id="nameInput" placeholder="Ваше имя">
                             </div>
-                            <!-- Телефон -->
                             <div class="input-group">
                                 <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
                                 </svg>
                                 <input type="tel" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
                             </div>
-                            <!-- Кнопка -->
                             <button type="submit" id="submitBtn" class="btn-submit">
                                 <span>Оставить заявку</span>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1709,6 +1402,7 @@
         <footer>
             <div class="footer-left">
                 <span class="wordmark wordmark-sm">Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span></span>
+                <span class="legal">ИП Танский Леонид Анатольевич</span>
                 <span>© 2026 BotCraft Studio</span>
             </div>
             <div class="footer-links">
@@ -1726,7 +1420,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // ===== СКРИПТЫ (без изменений, кроме добавленного для формы) =====
+        // ===== СКРИПТЫ (БЕЗ ИЗМЕНЕНИЙ, ТОЛЬКО ФОРМА) =====
         (function() {
             var intro = document.getElementById('intro');
             var hideIntro = function() {
@@ -1877,218 +1571,6 @@
             });
         })();
 
-        // ===== ТАКСИ-СИМУЛЯТОР =====
-        (function() {
-            const chat = document.getElementById('phoneChat');
-            const actions = document.getElementById('phoneActions');
-            const statusText = document.getElementById('currentStatus');
-            const orderCountEl = document.getElementById('orderCount');
-            const simTimeEl = document.getElementById('simTime');
-            const phoneName = document.getElementById('phoneName');
-            const orderId = document.getElementById('orderId');
-            const roleTabs = document.querySelectorAll('.role-tab');
-
-            let currentRole = 'driver';
-            let orderCount = 0;
-            let timerInterval;
-            let seconds = 0;
-
-            const scenarios = {
-                driver: {
-                    name: 'Водитель',
-                    status: 'Ожидание заказа',
-                    messages: [
-                        { type: 'bot', text: 'Новый заказ: ул. Тверская, 12 → Шереметьево\nЦена: 1 450 ₽' },
-                        { type: 'bot', text: 'Расстояние: 28 км, время подачи: 12 мин' }
-                    ],
-                    actions: [
-                        { label: '✅ Принять', action: 'accept_driver' },
-                        { label: '❌ Отказаться', action: 'decline_driver' },
-                        { label: '🏁 Завершить', action: 'complete_driver' }
-                    ],
-                    replies: {
-                        accept_driver: { status: 'В пути', bot: 'Заказ принят! Водитель направляется к клиенту. Прибытие через 12 мин.' },
-                        decline_driver: { status: 'Поиск другого водителя', bot: 'Заказ отклонён. Поиск другого водителя...' },
-                        complete_driver: { status: 'Поездка завершена', bot: 'Поездка завершена! Спасибо. Баланс обновлён: +1 450 ₽' }
-                    }
-                },
-                dispatcher: {
-                    name: 'Диспетчер',
-                    status: 'Мониторинг заказов',
-                    messages: [
-                        { type: 'bot', text: 'Новый заказ №1423: ул. Ленина, 5 → Аэропорт' },
-                        { type: 'bot', text: 'Время подачи: 20 мин, цена: 1 200 ₽' }
-                    ],
-                    actions: [
-                        { label: '👤 Назначить', action: 'assign' },
-                        { label: '🚫 Отменить', action: 'cancel' },
-                        { label: '📊 Мониторинг', action: 'monitor' }
-                    ],
-                    replies: {
-                        assign: { status: 'Водитель назначен', bot: 'Водитель Иван (ID 384) назначен на заказ. Время подачи: 20 мин, цена: 1 200 ₽' },
-                        cancel: { status: 'Заказ отменён', bot: 'Заказ №1423 отменён. Уведомление отправлено клиенту.' },
-                        monitor: { status: 'Активные заказы: 4', bot: 'Активные заказы: 4. Водители онлайн: 12. Среднее время подачи: 14 мин.' }
-                    }
-                },
-                courier: {
-                    name: 'Курьер',
-                    status: 'Ожидание заказа',
-                    messages: [
-                        { type: 'bot', text: 'Свободная доставка: хлеб, 5 кг, ул. Садовая, 12 → ул. Мира, 8' },
-                        { type: 'bot', text: 'Оплата: 350 ₽, расстояние: 4 км' }
-                    ],
-                    actions: [
-                        { label: '📦 Взять заказ', action: 'take' },
-                        { label: '✅ Доставлен', action: 'delivered' },
-                        { label: '⚠️ Проблема', action: 'problem' }
-                    ],
-                    replies: {
-                        take: { status: 'Заказ взят', bot: 'Заказ взят! Адрес забора: ул. Садовая, 12. Заберите хлеб (5 кг) и доставьте по адресу: ул. Мира, 8.' },
-                        delivered: { status: 'Доставлен', bot: 'Заказ доставлен! Получатель подтвердил. Оплата: +350 ₽ на ваш счёт.' },
-                        problem: { status: 'Проблема', bot: 'Проблема зафиксирована. Диспетчер свяжется с вами в течение 5 минут.' }
-                    }
-                },
-                client: {
-                    name: 'Клиент',
-                    status: 'Выбор заказа',
-                    messages: [
-                        { type: 'bot', text: 'Куда поедем? Напишите адрес или выберите из частых.' },
-                        { type: 'system', text: 'Клиент выбрал: Аэропорт' },
-                        { type: 'bot', text: 'Отлично! Подача через 12 мин. Стоимость: 1 200 ₽' }
-                    ],
-                    actions: [
-                        { label: '🚗 Заказать такси', action: 'order' },
-                        { label: '💰 Оплатить', action: 'pay' },
-                        { label: '⭐ Оценить поездку', action: 'rate' }
-                    ],
-                    replies: {
-                        order: { status: 'Поиск водителя', bot: 'Ищем ближайшего водителя... Подача через 12 мин.' },
-                        pay: { status: 'Оплачено', bot: 'Оплата прошла успешно. Спасибо, что выбрали нас!' },
-                        rate: { status: 'Оценка 5⭐', bot: 'Спасибо за высокую оценку! Рады были вас видеть.' }
-                    }
-                }
-            };
-
-            function addMessage(text, type, delay) {
-                return new Promise(function(resolve) {
-                    var div = document.createElement('div');
-                    div.className = 'msg ' + type;
-                    if (type === 'system') {
-                        div.textContent = text;
-                        chat.appendChild(div);
-                        chat.scrollTop = chat.scrollHeight;
-                        resolve();
-                        return;
-                    }
-                    if (type === 'bot' && delay > 0) {
-                        var typing = document.createElement('div');
-                        typing.className = 'typing-indicator';
-                        typing.innerHTML = '<span></span><span></span><span></span>';
-                        chat.appendChild(typing);
-                        chat.scrollTop = chat.scrollHeight;
-                        setTimeout(function() {
-                            typing.remove();
-                            div.textContent = '';
-                            chat.appendChild(div);
-                            chat.scrollTop = chat.scrollHeight;
-                            var index = 0;
-                            var chars = text.split('');
-                            var interval = setInterval(function() {
-                                if (index < chars.length) {
-                                    div.textContent += chars[index];
-                                    index++;
-                                    chat.scrollTop = chat.scrollHeight;
-                                } else {
-                                    clearInterval(interval);
-                                    resolve();
-                                }
-                            }, 20);
-                        }, delay);
-                    } else {
-                        div.textContent = text;
-                        chat.appendChild(div);
-                        chat.scrollTop = chat.scrollHeight;
-                        resolve();
-                    }
-                });
-            }
-
-            function clearChat() {
-                chat.innerHTML = '';
-            }
-
-            async function loadRole(role) {
-                clearChat();
-                var scenario = scenarios[role];
-                if (!scenario) return;
-                phoneName.textContent = scenario.name;
-                statusText.textContent = scenario.status;
-                orderId.textContent = '#' + Math.floor(1000 + Math.random() * 9000);
-                orderCount++;
-                await addMessage('Добро пожаловать в систему!', 'system');
-                for (var i = 0; i < scenario.messages.length; i++) {
-                    var msg = scenario.messages[i];
-                    await addMessage(msg.text, msg.type, i * 800);
-                }
-                renderActions(role);
-            }
-
-            function renderActions(role) {
-                var scenario = scenarios[role];
-                actions.innerHTML = '';
-                scenario.actions.forEach(function(action) {
-                    var btn = document.createElement('button');
-                    btn.className = 'action-btn';
-                    btn.textContent = action.label;
-                    btn.dataset.action = action.action;
-                    btn.addEventListener('click', function() { handleAction(role, action.action); });
-                    actions.appendChild(btn);
-                });
-            }
-
-            async function handleAction(role, actionKey) {
-                var scenario = scenarios[role];
-                var reply = scenario.replies[actionKey];
-                if (!reply) return;
-                document.querySelectorAll('.action-btn').forEach(function(b) { b.disabled = true; });
-                var actionLabel = scenario.actions.find(function(a) { return a.action === actionKey; })?.label || actionKey;
-                await addMessage(actionLabel, 'user');
-                await new Promise(function(resolve) { setTimeout(resolve, 600); });
-                await addMessage(reply.bot, 'bot', 400);
-                statusText.textContent = reply.status;
-                document.querySelectorAll('.action-btn').forEach(function(b) { b.disabled = false; });
-                orderCountEl.textContent = orderCount;
-            }
-
-            function switchRole(role) {
-                currentRole = role;
-                roleTabs.forEach(function(tab) {
-                    tab.classList.toggle('active', tab.dataset.role === role);
-                });
-                loadRole(role);
-            }
-
-            function startTimer() {
-                if (timerInterval) clearInterval(timerInterval);
-                timerInterval = setInterval(function() {
-                    seconds++;
-                    var mins = String(Math.floor(seconds / 60)).padStart(2, '0');
-                    var secs = String(seconds % 60).padStart(2, '0');
-                    simTimeEl.textContent = mins + ':' + secs;
-                }, 1000);
-            }
-
-            roleTabs.forEach(function(tab) {
-                tab.addEventListener('click', function() {
-                    var role = this.dataset.role;
-                    if (role !== currentRole) switchRole(role);
-                });
-            });
-
-            switchRole('driver');
-            startTimer();
-        })();
-
         (function() {
             var btn = document.getElementById('back-to-top');
             window.addEventListener('scroll', function() {
@@ -2128,7 +1610,7 @@
             const statusEl = document.getElementById('formStatus');
             const submitBtn = document.getElementById('submitBtn');
 
-            // Маска для телефона: только цифры и +
+            // Маска для телефона
             phoneInput.addEventListener('input', function(e) {
                 let value = this.value.replace(/[^\d+]/g, '');
                 if (value.length > 0 && !value.startsWith('+')) {
@@ -2149,7 +1631,6 @@
                     return;
                 }
 
-                // Блокируем кнопку
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = 'Отправка...';
                 statusEl.textContent = '';
@@ -2169,7 +1650,6 @@
                         statusEl.className = 'success';
                         phoneInput.value = '';
                         nameInput.value = '';
-                        // Редирект на страницу спасибо через 2 секунды
                         setTimeout(() => {
                             window.location.href = '/thank-you.html';
                         }, 2000);
