@@ -39,7 +39,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
     <style>
-        /* ===== ВСЕ СТИЛИ (БЕЗ ИЗМЕНЕНИЙ) ===== */
+        /* ===== ВСЕ СТИЛИ (БЕЗ ИЗМЕНЕНИЙ, ДОБАВЛЕНЫ НОВЫЕ ДЛЯ ФОРМЫ) ===== */
         :root {
             --bg: #0A0B10;
             --text: #E8E5DC;
@@ -478,7 +478,7 @@
 
         section { padding: 60px 0; border-top: 1px solid var(--line); }
         #taxi { padding: 90px 0; }
-        #contact { padding: 90px 0 70px; }
+        #lead { padding: 80px 0; border-top: 1px solid var(--line); }
         .section-eyebrow {
             font-family: var(--mono);
             font-size: 11px;
@@ -1049,9 +1049,150 @@
             max-width: 700px;
         }
 
-        .contact-block { text-align: left; padding: 10px 0; }
-        .contact-block .btn-primary { font-size: 14px; padding: 16px 48px; }
-        .contact-block .btn-secondary { font-size: 14px; padding: 16px 48px; margin-top: 0; display: inline-block; }
+        /* ===== НОВЫЕ СТИЛИ ДЛЯ ФОРМЫ ===== */
+        .lead-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .lead-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        .form-card {
+            background: rgba(255,255,255,0.015);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(201,168,124,0.1);
+            border-radius: 24px;
+            padding: 32px 28px 28px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-card:hover {
+            border-color: rgba(201,168,124,0.25);
+            box-shadow: 0 20px 60px rgba(201,168,124,0.04);
+        }
+
+        .input-group {
+            position: relative;
+        }
+        .input-group .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 14px 14px 14px 44px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(201,168,124,0.08);
+            border-radius: 14px;
+            color: var(--text);
+            font-size: 15px;
+            font-family: var(--sans);
+            transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+        .input-group input:focus {
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.07);
+            box-shadow: 0 0 0 3px rgba(201,168,124,0.08);
+        }
+        .input-group input::placeholder {
+            color: var(--dim);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: var(--sans);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.3px;
+            margin-top: 4px;
+        }
+        .btn-submit:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201,168,124,0.2);
+        }
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .form-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 18px 0 14px;
+        }
+        .form-divider .line {
+            flex: 1;
+            height: 1px;
+            background: rgba(201,168,124,0.08);
+        }
+        .form-divider .label {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--dim);
+            white-space: nowrap;
+        }
+
+        .messenger-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(201,168,124,0.1);
+            border-radius: 14px;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 500;
+            font-family: var(--sans);
+            text-decoration: none;
+            transition: background 0.3s, border-color 0.3s, transform 0.2s;
+        }
+        .messenger-btn:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        #formStatus {
+            text-align: center;
+            font-size: 14px;
+            color: var(--muted);
+            min-height: 1.5em;
+            transition: color 0.3s;
+            margin-top: -6px;
+        }
+        #formStatus.success { color: #6FA98A; }
+        #formStatus.error { color: #E85A5A; }
+
+        /* ===== КОНЕЦ НОВЫХ СТИЛЕЙ ===== */
+
         .footnote {
             color: var(--faint);
             font-size: 12px;
@@ -1130,6 +1271,7 @@
             .sim-info { grid-template-columns: 1fr; gap: 12px; }
             .sim-header { flex-direction: column; align-items: stretch; }
             .sim-role-tabs { justify-content: center; }
+            .lead-grid { grid-template-columns: 1fr; gap: 40px; }
         }
         @media (max-width: 768px) {
             .site-wrapper { padding: 0 20px; }
@@ -1148,7 +1290,8 @@
         @media (max-width: 480px) {
             .phone-frame { border-radius: 12px; }
             .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 12px; }
-            .contact-block .btn-primary, .contact-block .btn-secondary { padding: 12px 24px; font-size: 12px; }
+            .form-card { padding: 24px 16px; }
+            .messenger-btn { font-size: 12px; padding: 10px; }
             .sim-phone { max-width: 100%; }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -1191,9 +1334,9 @@
                     <a href="#taxi">Такси-бот</a>
                     <a href="#cases">Кейсы</a>
                     <a href="#process">Процесс</a>
-                    <a href="#contact">Контакты</a>
+                    <a href="#lead">Контакты</a>
                 </div>
-                <a href="#contact" class="nav-cta">Обсудить проект</a>
+                <a href="#lead" class="nav-cta">Обсудить проект</a>
                 <button class="nav-toggle" id="navToggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
             </div>
         </div>
@@ -1205,8 +1348,8 @@
         <a href="#taxi">Такси-бот</a>
         <a href="#cases">Кейсы</a>
         <a href="#process">Процесс</a>
-        <a href="#contact">Контакты</a>
-        <a href="#contact" class="mm-cta">Обсудить проект</a>
+        <a href="#lead">Контакты</a>
+        <a href="#lead" class="mm-cta">Обсудить проект</a>
     </div>
 
     <div class="site-wrapper">
@@ -1264,7 +1407,7 @@
                     Боты, CRM, нейросети, сайты, платёжные системы — настраиваем готовые инструменты, которые экономят время и приносят деньги.
                 </p>
                 <div class="hero-cta btn-row">
-                    <a href="#contact" class="btn-primary">Обсудить</a>
+                    <a href="#lead" class="btn-primary">Обсудить</a>
                     <a href="#cases" class="btn-secondary">Смотреть кейсы</a>
                 </div>
                 <div style="margin-top:28px; font-family:var(--mono); font-size:11px; letter-spacing:1px; color:var(--faint);">
@@ -1490,20 +1633,78 @@
             </div>
         </section>
 
-        <section id="contact">
-            <div class="contact-block reveal">
-                <div class="section-marker"><span class="section-index">07</span><span class="section-rule"></span><span class="section-eyebrow">Обсудить проект</span></div>
-                <h2 class="section-title">Напишите — расскажем, что можно сделать, и сколько это займёт.</h2>
-                <p class="section-sub" style="margin-bottom:32px;">
-                    Хостинг не предоставляем. Условия обсуждаются индивидуально.
-                    <span style="display:block; font-size:14px; color:var(--accent); margin-top:10px;">Бесплатный расчёт за 15 минут — просто опишите задачу.</span>
-                </p>
-                <div class="btn-row">
-                    <a href="https://t.me/Bot_Craft_StudioBot" class="btn-primary" target="_blank" onclick="setTimeout(function(){ window.location.href='/thank-you.html'; }, 300);">Написать в Telegram</a>
-                    <a href="https://max.ru/id773475339010_bot" class="btn-secondary" target="_blank" onclick="setTimeout(function(){ window.location.href='/thank-you.html'; }, 300);">Написать в MAX</a>
+        <!-- ===== НОВЫЙ БЛОК ЗАЯВКИ ===== -->
+        <section id="lead">
+            <div class="section-marker reveal">
+                <span class="section-index">07</span>
+                <span class="section-rule"></span>
+                <span class="section-eyebrow">Оставьте заявку</span>
+            </div>
+            <div class="lead-grid">
+                <!-- Левая часть -->
+                <div class="lead-info reveal">
+                    <h2 style="font-family: var(--serif); font-size: clamp(28px, 4vw, 40px); font-weight: 400; color: var(--text); margin-bottom: 16px; line-height: 1.2;">
+                        Получите <span style="color:var(--accent); font-style:italic;">бесплатный расчёт</span>
+                        для вашего бизнеса
+                    </h2>
+                    <p style="color: var(--muted); font-size: 16px; line-height: 1.8; max-width: 420px; margin-bottom: 28px;">
+                        Оставьте номер – мы свяжемся с вами в ближайшее время, разберём вашу задачу и предложим готовое решение.
+                    </p>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <span style="font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--dim); background: rgba(255,255,255,0.03); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(201,168,124,0.08);">Безопасно</span>
+                        <span style="font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--dim); background: rgba(255,255,255,0.03); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(201,168,124,0.08);">Индивидуально</span>
+                        <span style="font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--dim); background: rgba(255,255,255,0.03); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(201,168,124,0.08);">Без хостинга</span>
+                    </div>
+                </div>
+
+                <!-- Правая часть: форма + мессенджеры -->
+                <div class="lead-actions reveal">
+                    <div class="form-card">
+                        <form id="leadForm" style="display: flex; flex-direction: column; gap: 16px;">
+                            <!-- Имя -->
+                            <div class="input-group">
+                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <input type="text" id="nameInput" placeholder="Ваше имя">
+                            </div>
+                            <!-- Телефон -->
+                            <div class="input-group">
+                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                                <input type="tel" id="phoneInput" placeholder="+7 (___) ___-__-__" required>
+                            </div>
+                            <!-- Кнопка -->
+                            <button type="submit" id="submitBtn" class="btn-submit">
+                                <span>Оставить заявку</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </button>
+                            <div id="formStatus"></div>
+                        </form>
+
+                        <div class="form-divider">
+                            <span class="line"></span>
+                            <span class="label">Напишите нам</span>
+                            <span class="line"></span>
+                        </div>
+
+                        <div style="display: flex; gap: 12px;">
+                            <a href="https://t.me/Bot_Craft_StudioBot" target="_blank" onclick="setTimeout(function(){ window.location.href='/thank-you.html'; }, 300);" class="messenger-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.5L2 13l5 3.5L17.5 7"/><path d="M7 16.5L9 22l4.5-5.5"/></svg>
+                                Telegram
+                            </a>
+                            <a href="https://max.ru/id773475339010_bot" target="_blank" onclick="setTimeout(function(){ window.location.href='/thank-you.html'; }, 300);" class="messenger-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2c2.5 2.5 4 6 4 10s-1.5 7.5-4 10c-2.5-2.5-4-6-4-10s1.5-7.5 4-10z"/></svg>
+                                MAX
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+        <!-- ===== КОНЕЦ БЛОКА ЗАЯВКИ ===== -->
 
         <footer>
             <div class="footer-left">
@@ -1514,7 +1715,7 @@
                 <a href="#work">Услуги</a>
                 <a href="#cases">Кейсы</a>
                 <a href="#process">Процесс</a>
-                <a href="#contact">Контакты</a>
+                <a href="#lead">Контакты</a>
                 <a href="https://t.me/Bot_Craft_Studio" target="_blank" rel="noopener" onclick="setTimeout(function(){ window.location.href='/thank-you.html'; }, 300);">Telegram</a>
                 <a href="/privacy.html">Политика конфиденциальности</a>
             </div>
@@ -1525,7 +1726,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // ===== ВСЕ СКРИПТЫ (БЕЗ ИЗМЕНЕНИЙ) =====
+        // ===== СКРИПТЫ (без изменений, кроме добавленного для формы) =====
         (function() {
             var intro = document.getElementById('intro');
             var hideIntro = function() {
@@ -1918,6 +2119,76 @@
                 if (a.textContent.trim() === current) a.classList.add('current');
             });
         })();
+
+        // ===== СКРИПТ ДЛЯ ФОРМЫ =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('leadForm');
+            const nameInput = document.getElementById('nameInput');
+            const phoneInput = document.getElementById('phoneInput');
+            const statusEl = document.getElementById('formStatus');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Маска для телефона: только цифры и +
+            phoneInput.addEventListener('input', function(e) {
+                let value = this.value.replace(/[^\d+]/g, '');
+                if (value.length > 0 && !value.startsWith('+')) {
+                    value = '+' + value.replace(/\D/g, '');
+                }
+                this.value = value;
+            });
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const name = nameInput.value.trim() || 'Аноним';
+                const phone = phoneInput.value.trim();
+
+                if (!phone || phone.length < 10) {
+                    statusEl.textContent = 'Укажите корректный номер телефона';
+                    statusEl.className = 'error';
+                    return;
+                }
+
+                // Блокируем кнопку
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Отправка...';
+                statusEl.textContent = '';
+                statusEl.className = '';
+
+                try {
+                    const response = await fetch('/submit_lead', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ phone, name })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.ok) {
+                        statusEl.textContent = 'Заявка принята! Мы свяжемся с вами.';
+                        statusEl.className = 'success';
+                        phoneInput.value = '';
+                        nameInput.value = '';
+                        // Редирект на страницу спасибо через 2 секунды
+                        setTimeout(() => {
+                            window.location.href = '/thank-you.html';
+                        }, 2000);
+                    } else {
+                        throw new Error(result.error || 'Ошибка отправки');
+                    }
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                    statusEl.textContent = 'Что-то пошло не так. Попробуйте позже.';
+                    statusEl.className = 'error';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `
+                        <span>Оставить заявку</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    `;
+                }
+            });
+        });
     </script>
 </body>
 </html>
