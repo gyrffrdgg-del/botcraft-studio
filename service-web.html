@@ -5,280 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Сайты и веб-приложения — BotCraft Studio</title>
     <meta name="description" content="Разрабатываем нешаблонные сайты, лендинги и веб-приложения с интеграцией AI и CRM." />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0A0B10" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <style>
-        /* ===== Тот же набор стилей, что и в service-bots.html ===== */
-        :root {
-            --bg: #0A0B10;
-            --text: #E8E5DC;
-            --muted: #9A9DA6;
-            --dim: #6B6E78;
-            --faint: #4A4D56;
-            --accent: #C9A87C;
-            --accent-hover: #D6B892;
-            --accent-soft: rgba(201, 168, 124, 0.08);
-            --line: rgba(201, 168, 124, 0.08);
-            --line-strong: rgba(201, 168, 124, 0.2);
-            --serif: 'Playfair Display', Georgia, serif;
-            --sans: 'Inter', sans-serif;
-            --mono: 'IBM Plex Mono', monospace;
-            --font-weight-light: 300;
-            --font-weight-regular: 400;
-            --font-weight-medium: 500;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--sans);
-            font-weight: var(--font-weight-light);
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--text);
-            background: var(--bg);
-        }
-        ::selection { background: var(--accent); color: var(--bg); }
-        a { color: inherit; text-decoration: none; }
-
-        .site-wrapper { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
-        @media (max-width: 768px) { .site-wrapper { padding: 0 20px; } }
-
-        .wordmark {
-            font-family: var(--serif);
-            font-weight: var(--font-weight-regular);
-            display: inline-flex;
-            align-items: baseline;
-            gap: 6px;
-            line-height: 1;
-        }
-        .wordmark .wm-accent { color: var(--accent); font-style: italic; }
-        .wordmark .wm-sub {
-            font-family: var(--mono);
-            font-size: 0.6em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-        .wordmark-nav { font-size: 19px; }
-        .wordmark-nav .wm-sub { font-size: 0.5em; letter-spacing: 2px; }
-
-        .navbar {
-            position: sticky; top: 0; z-index: 100; padding: 16px 0;
-            border-bottom: 1px solid var(--line);
-            backdrop-filter: blur(16px);
-            background: rgba(10, 11, 16, 0.6);
-        }
-        .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-        .nav-right { display: flex; align-items: center; gap: 26px; }
-        .nav-links {
-            display: flex; gap: 22px; flex-wrap: wrap;
-            font-family: var(--mono);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .nav-links a { color: var(--muted); transition: color 0.3s; position: relative; padding: 4px 0; }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -2px; left: 0;
-            width: 0; height: 1px; background: var(--accent); transition: width 0.4s;
-        }
-        .nav-links a:hover { color: var(--text); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-cta {
-            font-family: var(--mono);
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--bg);
-            background: var(--accent);
-            padding: 9px 20px;
-            transition: background 0.3s;
-            white-space: nowrap;
-        }
-        .nav-cta:hover { background: var(--accent-hover); }
-        .nav-toggle {
-            display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px;
-        }
-        .nav-toggle span { width: 22px; height: 1px; background: var(--text); transition: 0.3s; display: block; }
-        .nav-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .nav-toggle.active span:nth-child(2) { opacity: 0; }
-        .nav-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-        .mobile-menu {
-            position: fixed; inset: 0; z-index: 150;
-            background: rgba(10, 11, 16, 0.98);
-            backdrop-filter: blur(10px);
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-        }
-        .mobile-menu.open { opacity: 1; pointer-events: auto; }
-        .mobile-menu a { font-family: var(--serif); font-size: 26px; font-style: italic; color: var(--text); text-decoration: none; opacity: 0.75; transition: 0.3s; }
-        .mobile-menu a:hover { opacity: 1; color: var(--accent); }
-        .mobile-menu .mm-cta {
-            margin-top: 12px;
-            font-family: var(--mono);
-            font-size: 12px;
-            font-style: normal;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--bg);
-            background: var(--accent);
-            padding: 12px 32px;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 14px 40px;
-            font-family: var(--sans);
-            font-size: 13px;
-            font-weight: var(--font-weight-medium);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            display: inline-block;
-        }
-        .btn-primary { background: var(--accent); color: var(--bg); }
-        .btn-primary:hover { background: var(--accent-hover); }
-        .btn-secondary { border: 1px solid var(--line-strong); color: var(--text); }
-        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-        .btn-row { display: flex; gap: 20px; flex-wrap: wrap; }
-
-        .service-hero {
-            padding: 60px 0 40px;
-            border-bottom: 1px solid var(--line);
-        }
-        .service-hero h1 {
-            font-family: var(--serif);
-            font-size: clamp(36px, 5vw, 54px);
-            font-weight: var(--font-weight-regular);
-            color: var(--text);
-            margin-bottom: 16px;
-        }
-        .service-hero p {
-            color: var(--muted);
-            font-size: 18px;
-            max-width: 700px;
-            line-height: 1.8;
-        }
-        .service-content {
-            padding: 40px 0;
-        }
-        .service-content h2 {
-            font-family: var(--serif);
-            font-size: 28px;
-            font-weight: var(--font-weight-regular);
-            color: var(--text);
-            margin-top: 40px;
-            margin-bottom: 12px;
-        }
-        .service-content h2:first-of-type { margin-top: 0; }
-        .service-content p {
-            color: var(--muted);
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 16px;
-            max-width: 700px;
-        }
-        .service-content ul {
-            color: var(--muted);
-            font-size: 16px;
-            line-height: 1.8;
-            padding-left: 24px;
-            margin-bottom: 16px;
-        }
-        .service-content ul li { margin-bottom: 6px; }
-        .price-tag {
-            display: inline-block;
-            font-family: var(--mono);
-            font-size: 14px;
-            letter-spacing: 1px;
-            border: 1px solid var(--accent);
-            padding: 8px 24px;
-            color: var(--accent);
-            background: var(--accent-soft);
-            margin: 16px 0 24px;
-        }
-
-        footer {
-            border-top: 1px solid var(--line);
-            padding: 32px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            color: var(--faint);
-            font-size: 12px;
-            font-weight: var(--font-weight-light);
-        }
-        .footer-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-        .footer-links {
-            display: flex; gap: 18px; flex-wrap: wrap;
-            font-family: var(--mono);
-            font-size: 10.5px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .footer-links a { color: var(--dim); transition: color 0.3s; }
-        .footer-links a:hover { color: var(--accent); }
-
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .nav-cta { display: none; }
-            .nav-toggle { display: flex; }
-        }
-        @media (max-width: 768px) {
-            .service-hero h1 { font-size: 30px; }
-            .service-content h2 { font-size: 24px; }
-            .service-content p, .service-content ul { font-size: 15px; }
-            footer { flex-direction: column; align-items: flex-start; }
-        }
-        @media (max-width: 480px) {
-            .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 12px; }
-        }
+        /* Тот же сжатый CSS */
+        :root{--bg:#0A0B10;--text:#E8E5DC;--muted:#9A9DA6;--dim:#6B6E78;--faint:#4A4D56;--accent:#C9A87C;--accent-hover:#D6B892;--accent-soft:rgba(201,168,124,0.08);--line:rgba(201,168,124,0.08);--line-strong:rgba(201,168,124,0.2);--serif:'Playfair Display',Georgia,serif;--sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;--font-weight-light:300;--font-weight-regular:400;--font-weight-medium:500}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--sans);font-weight:var(--font-weight-light);font-size:18px;line-height:1.8;color:var(--text);background:var(--bg)}::selection{background:var(--accent);color:var(--bg)}a{color:inherit;text-decoration:none}.site-wrapper{max-width:1300px;margin:0 auto;padding:0 40px}@media(max-width:768px){.site-wrapper{padding:0 20px}}.wordmark{font-family:var(--serif);font-weight:var(--font-weight-regular);display:inline-flex;align-items:baseline;gap:6px;line-height:1}.wordmark .wm-accent{color:var(--accent);font-style:italic}.wordmark .wm-sub{font-family:var(--mono);font-size:0.6em;text-transform:uppercase;color:var(--muted)}.wordmark-nav{font-size:19px}.wordmark-nav .wm-sub{font-size:0.5em;letter-spacing:2px}.navbar{position:sticky;top:0;z-index:100;padding:16px 0;border-bottom:1px solid var(--line);backdrop-filter:blur(16px);background:rgba(10,11,16,0.6)}.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}.nav-right{display:flex;align-items:center;gap:26px}.nav-links{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:2px}.nav-links a{color:var(--muted);transition:color .3s;position:relative;padding:4px 0}.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent);transition:width .4s}.nav-links a:hover{color:var(--text)}.nav-links a:hover::after{width:100%}.nav-cta{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:9px 20px;transition:background .3s;white-space:nowrap}.nav-cta:hover{background:var(--accent-hover)}.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}.nav-toggle span{width:22px;height:1px;background:var(--text);transition:.3s;display:block}.nav-toggle.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}.nav-toggle.active span:nth-child(2){opacity:0}.nav-toggle.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}.mobile-menu{position:fixed;inset:0;z-index:150;background:rgba(10,11,16,0.98);backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .4s ease}.mobile-menu.open{opacity:1;pointer-events:auto}.mobile-menu a{font-family:var(--serif);font-size:26px;font-style:italic;color:var(--text);text-decoration:none;opacity:.75;transition:.3s}.mobile-menu a:hover{opacity:1;color:var(--accent)}.mobile-menu .mm-cta{margin-top:12px;font-family:var(--mono);font-size:12px;font-style:normal;letter-spacing:2px;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:12px 32px}.btn-primary,.btn-secondary{padding:14px 40px;font-family:var(--sans);font-size:13px;font-weight:var(--font-weight-medium);letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:.3s;display:inline-block}.btn-primary{background:var(--accent);color:var(--bg)}.btn-primary:hover{background:var(--accent-hover)}.btn-secondary{border:1px solid var(--line-strong);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}.btn-row{display:flex;gap:20px;flex-wrap:wrap}.service-hero{padding:60px 0 40px;border-bottom:1px solid var(--line)}.service-hero h1{font-family:var(--serif);font-size:clamp(36px,5vw,54px);font-weight:var(--font-weight-regular);color:var(--text);margin-bottom:16px}.service-hero p{color:var(--muted);font-size:18px;max-width:700px;line-height:1.8}.service-content{padding:40px 0}.service-content h2{font-family:var(--serif);font-size:28px;font-weight:var(--font-weight-regular);color:var(--text);margin-top:40px;margin-bottom:12px}.service-content h2:first-of-type{margin-top:0}.service-content p{color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:16px;max-width:700px}.service-content ul{color:var(--muted);font-size:16px;line-height:1.8;padding-left:24px;margin-bottom:16px}.service-content ul li{margin-bottom:6px}.price-tag{display:inline-block;font-family:var(--mono);font-size:14px;letter-spacing:1px;border:1px solid var(--accent);padding:8px 24px;color:var(--accent);background:var(--accent-soft);margin:16px 0 24px}footer{border-top:1px solid var(--line);padding:32px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;color:var(--faint);font-size:12px;font-weight:var(--font-weight-light)}.footer-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.footer-links{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase}.footer-links a{color:var(--dim);transition:color .3s}.footer-links a:hover{color:var(--accent)}@media(max-width:900px){.nav-links{display:none}.nav-cta{display:none}.nav-toggle{display:flex}}@media(max-width:768px){.service-hero h1{font-size:30px}.service-content h2{font-size:24px}.service-content p,.service-content ul{font-size:15px}footer{flex-direction:column;align-items:flex-start}}@media(max-width:480px){.btn-primary,.btn-secondary{padding:12px 24px;font-size:12px}}
     </style>
 </head>
 <body>
-
     <nav class="navbar">
         <div class="nav-inner site-wrapper">
             <a href="index.html" class="nav-brand">
                 <span class="wordmark wordmark-nav">
                     Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span>
-                    <span style="display:block; font-family:var(--mono); font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--dim); margin-top:-2px;">интеграция AI и автоматизация</span>
+                    <span style="display:block;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-top:-2px;">интеграция AI и автоматизация</span>
                 </span>
             </a>
             <div class="nav-right">
                 <div class="nav-links">
                     <a href="index.html">Главная</a>
                     <a href="cases.html">Кейсы</a>
-                    <a href="index.html#contact">Контакты</a>
+                    <a href="index.html#lead">Контакты</a>
                 </div>
-                <a href="index.html#contact" class="nav-cta">Обсудить проект</a>
+                <a href="index.html#lead" class="nav-cta">Обсудить проект</a>
                 <button class="nav-toggle" id="navToggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
             </div>
         </div>
     </nav>
-
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html">Главная</a>
         <a href="cases.html">Кейсы</a>
-        <a href="index.html#contact">Контакты</a>
-        <a href="index.html#contact" class="mm-cta">Обсудить проект</a>
+        <a href="index.html#lead">Контакты</a>
+        <a href="index.html#lead" class="mm-cta">Обсудить проект</a>
     </div>
-
     <div class="site-wrapper">
-
         <div class="service-hero">
             <h1>Сайты и веб-приложения</h1>
             <p>Разрабатываем нешаблонные сайты, лендинги и веб-приложения с интеграцией AI и CRM. Не «сайт-визитка», а рабочий инструмент.</p>
         </div>
-
         <div class="service-content">
             <h2>Что мы предлагаем</h2>
             <ul>
@@ -288,18 +59,14 @@
                 <li>Адаптивный дизайн под все устройства</li>
                 <li>Техническая поддержка и доработки после запуска</li>
             </ul>
-
             <h2>Для кого</h2>
             <p>Для бизнеса, которому нужен сайт как канал продаж, а не просто «визитка». Мы делаем сайты, которые приносят заявки и экономят время.</p>
-
             <div class="price-tag">От 50 000 ₽ — цена зависит от сложности и функционала</div>
-
             <div class="btn-row">
-                <a href="https://t.me/Bot_Craft_Studio" class="btn-primary" target="_blank">Обсудить в Telegram</a>
-                <a href="https://max.ru/u/f9LHodD0cOIYKt2-0waplaXIiKugJ0glDXnc0NUIMk-BTSs6_2tSSb1mdzk" class="btn-secondary" target="_blank">Написать в MAX</a>
+                <a href="https://t.me/Bot_Craft_StudioBot" class="btn-primary" target="_blank">Обсудить в Telegram</a>
+                <a href="https://max.ru/id773475339010_bot" class="btn-secondary" target="_blank">Написать в MAX</a>
             </div>
         </div>
-
         <footer>
             <div class="footer-left">
                 <span class="wordmark wordmark-sm" style="font-size:14px;">Bot<span class="wm-accent">Craft</span> <span class="wm-sub" style="font-size:9px;">Studio</span></span>
@@ -312,22 +79,8 @@
             </div>
         </footer>
     </div>
-
     <script>
-        (function() {
-            var toggle = document.getElementById('navToggle');
-            var menu = document.getElementById('mobileMenu');
-            toggle.addEventListener('click', function() {
-                toggle.classList.toggle('active');
-                menu.classList.toggle('open');
-            });
-            menu.querySelectorAll('a').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    toggle.classList.remove('active');
-                    menu.classList.remove('open');
-                });
-            });
-        })();
+        (function(){var t=document.getElementById('navToggle'),m=document.getElementById('mobileMenu');t.addEventListener('click',function(){t.classList.toggle('active');m.classList.toggle('open')});m.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){t.classList.remove('active');m.classList.remove('open')})})})();
     </script>
 </body>
 </html>
