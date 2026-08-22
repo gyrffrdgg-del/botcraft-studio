@@ -5,369 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Кейсы BotCraft Studio</title>
     <meta name="description" content="Реальные проекты по автоматизации: такси, доставка, модерация, CRM, сайты и не только." />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0A0B10" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
     <style>
-        /* ===== Все стили (без изменений, как на главной) ===== */
-        :root {
-            --bg: #0A0B10;
-            --text: #E8E5DC;
-            --muted: #9A9DA6;
-            --dim: #6B6E78;
-            --faint: #4A4D56;
-            --accent: #C9A87C;
-            --accent-hover: #D6B892;
-            --accent-soft: rgba(201, 168, 124, 0.08);
-            --status: #6FA98A;
-            --line: rgba(201, 168, 124, 0.08);
-            --line-strong: rgba(201, 168, 124, 0.2);
-            --serif: 'Playfair Display', Georgia, serif;
-            --sans: 'Inter', sans-serif;
-            --mono: 'IBM Plex Mono', monospace;
-            --font-weight-light: 300;
-            --font-weight-regular: 400;
-            --font-weight-medium: 500;
-            --font-weight-semibold: 600;
-            --font-weight-bold: 700;
-            --line-height-tight: 1.1;
-            --line-height-normal: 1.5;
-            --line-height-loose: 1.8;
-            --letter-spacing-tight: -0.03em;
-            --letter-spacing-normal: 0;
-            --letter-spacing-wide: 0.08em;
-            --ease: cubic-bezier(.22, .61, .36, 1);
-            --ease-soft: cubic-bezier(.16, 1, .3, 1);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--sans);
-            font-weight: var(--font-weight-light);
-            font-size: 18px;
-            line-height: var(--line-height-loose);
-            color: var(--text);
-            background: var(--bg);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-        ::selection { background: var(--accent); color: var(--bg); }
-        a { color: inherit; text-decoration: none; }
-
-        .site-wrapper { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 0 40px; }
-        @media (max-width: 768px) { .site-wrapper { padding: 0 20px; } }
-
-        .wordmark {
-            font-family: var(--serif);
-            font-weight: var(--font-weight-regular);
-            letter-spacing: var(--letter-spacing-tight);
-            display: inline-flex;
-            align-items: baseline;
-            gap: 6px;
-            line-height: 1;
-        }
-        .wordmark .wm-accent { color: var(--accent); font-style: italic; }
-        .wordmark .wm-sub {
-            font-family: var(--mono);
-            font-size: 0.6em;
-            letter-spacing: var(--letter-spacing-wide);
-            text-transform: uppercase;
-            color: var(--muted);
-            font-weight: 400;
-        }
-        .wordmark-nav { font-size: 19px; }
-        .wordmark-nav .wm-sub { font-size: 0.5em; letter-spacing: 2px; }
-        .wordmark-sm { font-size: 14px; }
-        .wordmark-sm .wm-sub { font-size: 0.45em; letter-spacing: 1.5px; }
-
-        .navbar {
-            position: sticky; top: 0; z-index: 100; padding: 16px 0;
-            border-bottom: 1px solid var(--line); backdrop-filter: blur(16px);
-            background: rgba(10, 11, 16, 0.6);
-        }
-        .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-        .nav-right { display: flex; align-items: center; gap: 26px; }
-        .nav-links { display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; }
-        .nav-links a { color: var(--muted); text-decoration: none; transition: color 0.3s; position: relative; padding: 4px 0; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.4s; }
-        .nav-links a:hover { color: var(--text); } .nav-links a:hover::after { width: 100%; } .nav-links a.current { color: var(--accent); } .nav-links a.current::after { width: 100%; }
-        .nav-cta {
-            font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-            color: var(--bg); background: var(--accent); padding: 9px 20px; transition: background 0.3s;
-            flex-shrink: 0; white-space: nowrap; text-decoration: none;
-        }
-        .nav-cta:hover { background: var(--accent-hover); }
-        .nav-toggle {
-            display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200;
-        }
-        .nav-toggle span { width: 22px; height: 1px; background: var(--text); transition: transform 0.3s, opacity 0.3s; display: block; }
-        .nav-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-        .nav-toggle.active span:nth-child(2) { opacity: 0; }
-        .nav-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-        .mobile-menu {
-            position: fixed; inset: 0; z-index: 150; background: rgba(10, 11, 16, 0.98); backdrop-filter: blur(10px);
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-        }
-        .mobile-menu.open { opacity: 1; pointer-events: auto; }
-        .mobile-menu a { font-family: var(--serif); font-size: 26px; font-style: italic; color: var(--text); text-decoration: none; opacity: 0.75; transition: opacity 0.3s, color 0.3s; }
-        .mobile-menu a:hover, .mobile-menu a.current { opacity: 1; color: var(--accent); }
-        .mobile-menu .mm-cta { margin-top: 12px; font-family: var(--mono); font-size: 12px; font-style: normal; letter-spacing: 2px; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 12px 32px; }
-
-        .btn-primary, .btn-secondary {
-            padding: 14px 40px; font-family: var(--sans); font-size: 13px; font-weight: var(--font-weight-medium);
-            letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer;
-            transition: background 0.3s, box-shadow 0.3s, transform 0.3s; background: transparent;
-            display: inline-block; text-decoration: none; will-change: transform;
-        }
-        .btn-primary { background: var(--accent); color: var(--bg); }
-        .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 8px 30px rgba(201,168,124,0.15); transform: translateY(-2px); }
-        .btn-secondary { border: 1px solid var(--line-strong); color: var(--text); }
-        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-        .btn-row { display: flex; gap: 20px; flex-wrap: wrap; }
-
-        .section-title {
-            font-family: var(--serif);
-            font-size: 32px;
-            font-weight: var(--font-weight-regular);
-            color: var(--text);
-            margin-bottom: 12px;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 2px;
-            background: var(--accent);
-            margin-top: 10px;
-        }
-        .section-sub {
-            color: var(--muted);
-            font-size: 16px;
-            font-weight: var(--font-weight-light);
-            max-width: 600px;
-            margin-bottom: 48px;
-        }
-        .case-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
-        .case-card {
-            border: 1px solid var(--line);
-            padding: 24px;
-            transition: border-color 0.3s, transform 0.3s;
-            background: var(--accent-soft);
-        }
-        .case-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-        }
-        .case-tag {
-            font-family: var(--mono);
-            font-size: 10.5px;
-            text-transform: uppercase;
-            letter-spacing: 1.3px;
-            color: var(--accent);
-            margin-bottom: 14px;
-            display: block;
-        }
-        .case-card p {
-            font-size: 14px;
-            color: var(--muted);
-            line-height: 1.7;
-            font-weight: var(--font-weight-light);
-        }
-        .case-result {
-            margin-top: 18px;
-            padding-top: 16px;
-            border-top: 1px solid var(--line);
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: 17px;
-            color: var(--text);
-            line-height: 1.5;
-        }
-
-        .contact-block { text-align: left; padding: 10px 0; }
-        .contact-block .btn-primary { font-size: 14px; padding: 16px 48px; }
-        .contact-block .btn-secondary { font-size: 14px; padding: 16px 48px; margin-top: 0; display: inline-block; }
-
-        footer {
-            border-top: 1px solid var(--line); padding: 32px 0;
-            display: flex; align-items: center; justify-content: space-between;
-            flex-wrap: wrap; gap: 16px;
-            color: var(--faint);
-            font-size: 12px;
-            font-weight: var(--font-weight-light);
-            letter-spacing: 0.5px;
-        }
-        .footer-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-        .footer-links {
-            display: flex; gap: 18px; flex-wrap: wrap;
-            font-family: var(--mono);
-            font-size: 10.5px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .footer-links a { color: var(--dim); text-decoration: none; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--accent); }
-
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-
-        @media (max-width: 900px) {
-            .case-grid { grid-template-columns: 1fr 1fr; }
-            .nav-links { display: none; } .nav-cta { display: none; } .nav-toggle { display: flex; }
-        }
-        @media (max-width: 768px) {
-            .site-wrapper { padding: 0 20px; }
-            .case-grid { grid-template-columns: 1fr; gap: 20px; }
-            #cursor { display: none; } body { cursor: auto; }
-            footer { flex-direction: column; align-items: flex-start; }
-        }
-        @media (max-width: 480px) {
-            .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 12px; }
-            .contact-block .btn-primary, .contact-block .btn-secondary { padding: 12px 24px; font-size: 12px; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .reveal { transition: opacity 0.3s ease; transform: none; }
-        }
+        /* Сжатый CSS для cases, аналогичный index, но без 3D */
+        :root{--bg:#0A0B10;--text:#E8E5DC;--muted:#9A9DA6;--dim:#6B6E78;--faint:#4A4D56;--accent:#C9A87C;--accent-hover:#D6B892;--accent-soft:rgba(201,168,124,0.08);--line:rgba(201,168,124,0.08);--line-strong:rgba(201,168,124,0.2);--serif:'Playfair Display',Georgia,serif;--sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;--font-weight-light:300;--font-weight-regular:400;--font-weight-medium:500}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--sans);font-weight:var(--font-weight-light);font-size:18px;line-height:1.8;color:var(--text);background:var(--bg)}::selection{background:var(--accent);color:var(--bg)}a{color:inherit;text-decoration:none}.site-wrapper{max-width:1300px;margin:0 auto;padding:0 40px}@media(max-width:768px){.site-wrapper{padding:0 20px}}.wordmark{font-family:var(--serif);font-weight:var(--font-weight-regular);display:inline-flex;align-items:baseline;gap:6px;line-height:1}.wordmark .wm-accent{color:var(--accent);font-style:italic}.wordmark .wm-sub{font-family:var(--mono);font-size:0.6em;text-transform:uppercase;color:var(--muted)}.wordmark-nav{font-size:19px}.wordmark-nav .wm-sub{font-size:0.5em;letter-spacing:2px}.navbar{position:sticky;top:0;z-index:100;padding:16px 0;border-bottom:1px solid var(--line);backdrop-filter:blur(16px);background:rgba(10,11,16,0.6)}.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}.nav-right{display:flex;align-items:center;gap:26px}.nav-links{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:2px}.nav-links a{color:var(--muted);transition:color .3s;position:relative;padding:4px 0}.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent);transition:width .4s}.nav-links a:hover{color:var(--text)}.nav-links a:hover::after{width:100%}.nav-links a.current{color:var(--accent)}.nav-links a.current::after{width:100%}.nav-cta{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:9px 20px;transition:background .3s;white-space:nowrap}.nav-cta:hover{background:var(--accent-hover)}.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}.nav-toggle span{width:22px;height:1px;background:var(--text);transition:.3s;display:block}.nav-toggle.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}.nav-toggle.active span:nth-child(2){opacity:0}.nav-toggle.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}.mobile-menu{position:fixed;inset:0;z-index:150;background:rgba(10,11,16,0.98);backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .4s ease}.mobile-menu.open{opacity:1;pointer-events:auto}.mobile-menu a{font-family:var(--serif);font-size:26px;font-style:italic;color:var(--text);text-decoration:none;opacity:.75;transition:.3s}.mobile-menu a:hover,.mobile-menu a.current{opacity:1;color:var(--accent)}.mobile-menu .mm-cta{margin-top:12px;font-family:var(--mono);font-size:12px;font-style:normal;letter-spacing:2px;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:12px 32px}.btn-primary,.btn-secondary{padding:14px 40px;font-family:var(--sans);font-size:13px;font-weight:var(--font-weight-medium);letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:.3s;display:inline-block}.btn-primary{background:var(--accent);color:var(--bg)}.btn-primary:hover{background:var(--accent-hover)}.btn-secondary{border:1px solid var(--line-strong);color:var(--text)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}.btn-row{display:flex;gap:20px;flex-wrap:wrap}.section-title{font-family:var(--serif);font-size:32px;font-weight:var(--font-weight-regular);color:var(--text);margin-bottom:12px}.section-title::after{content:'';display:block;width:40px;height:2px;background:var(--accent);margin-top:10px}.section-sub{color:var(--muted);font-size:16px;font-weight:var(--font-weight-light);max-width:600px;margin-bottom:48px}.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.case-card{border:1px solid var(--line);padding:24px;transition:border-color .3s,transform .3s;background:var(--accent-soft)}.case-card:hover{border-color:var(--accent);transform:translateY(-3px)}.case-tag{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1.3px;color:var(--accent);margin-bottom:14px;display:block}.case-card p{font-size:14px;color:var(--muted);line-height:1.7;font-weight:var(--font-weight-light)}.case-result{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--serif);font-style:italic;font-size:17px;color:var(--text);line-height:1.5}.contact-block{text-align:left;padding:10px 0}.contact-block .btn-primary{font-size:14px;padding:16px 48px}.contact-block .btn-secondary{font-size:14px;padding:16px 48px;margin-top:0;display:inline-block}footer{border-top:1px solid var(--line);padding:32px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;color:var(--faint);font-size:12px;font-weight:var(--font-weight-light)}.footer-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.footer-links{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase}.footer-links a{color:var(--dim);transition:color .3s}.footer-links a:hover{color:var(--accent)}.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:translateY(0)}.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}@media(max-width:900px){.case-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.nav-cta{display:none}.nav-toggle{display:flex}}@media(max-width:768px){.site-wrapper{padding:0 20px}.case-grid{grid-template-columns:1fr;gap:20px}footer{flex-direction:column;align-items:flex-start}}@media(max-width:480px){.btn-primary,.btn-secondary{padding:12px 24px;font-size:12px}.contact-block .btn-primary,.contact-block .btn-secondary{padding:12px 24px;font-size:12px}}@media(prefers-reduced-motion:reduce){.reveal{transition:opacity .3s ease;transform:none}}
     </style>
 </head>
 <body data-page-name="Кейсы">
-
-    <div id="scroll-progress"></div>
-    <div id="cursor"></div>
-
     <nav class="navbar">
         <div class="nav-inner site-wrapper">
-            <a href="index.html" class="nav-brand" data-page="Главная">
+            <a href="index.html" class="nav-brand">
                 <span class="wordmark wordmark-nav">
                     Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span>
-                    <span style="display:block; font-family:var(--mono); font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--dim); margin-top:-2px;">интеграция AI и автоматизация</span>
+                    <span style="display:block;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-top:-2px;">интеграция AI и автоматизация</span>
                 </span>
             </a>
             <div class="nav-right">
                 <div class="nav-links">
-                    <a href="index.html" data-page="Главная">Главная</a>
+                    <a href="index.html">Главная</a>
                     <a href="index.html#work">Услуги</a>
-                    <a href="index.html#taxi">Такси-бот</a>
-                    <a href="cases.html" data-page="Кейсы" class="current">Кейсы</a>
-                    <a href="index.html#process">Процесс</a>
-                    <a href="index.html#contact">Контакты</a>
+                    <a href="cases.html" class="current">Кейсы</a>
+                    <a href="index.html#lead">Контакты</a>
                 </div>
-                <a href="index.html#contact" class="nav-cta">Обсудить проект</a>
+                <a href="index.html#lead" class="nav-cta">Обсудить проект</a>
                 <button class="nav-toggle" id="navToggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
             </div>
         </div>
     </nav>
-
     <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html" data-page="Главная">Главная</a>
+        <a href="index.html">Главная</a>
         <a href="index.html#work">Услуги</a>
-        <a href="index.html#taxi">Такси-бот</a>
-        <a href="cases.html" data-page="Кейсы" class="current">Кейсы</a>
-        <a href="index.html#process">Процесс</a>
-        <a href="index.html#contact">Контакты</a>
-        <a href="index.html#contact" class="mm-cta">Обсудить проект</a>
+        <a href="cases.html" class="current">Кейсы</a>
+        <a href="index.html#lead">Контакты</a>
+        <a href="index.html#lead" class="mm-cta">Обсудить проект</a>
     </div>
-
     <div class="site-wrapper" style="padding-top:40px;">
-
-        <h1 style="font-family:var(--serif); font-size:clamp(36px,5vw,54px); font-weight:400; color:var(--text); margin-bottom:16px;">
-            Проекты
-        </h1>
-        <p class="section-sub" style="margin-bottom:40px;">
-            Реальные внедрения — от таксопарков до корпоративных платформ.
-        </p>
-
+        <h1 style="font-family:var(--serif);font-size:clamp(36px,5vw,54px);font-weight:400;color:var(--text);margin-bottom:16px;">Проекты</h1>
+        <p class="section-sub" style="margin-bottom:40px;">Реальные внедрения — от таксопарков до корпоративных платформ.</p>
         <div class="case-grid">
-
             <div class="case-card reveal reveal-delay-1">
                 <span class="case-tag">Таксопарки и логистика</span>
                 <p>Боты для водителей такси с интеграцией Яндекс.Такси. Заменяют диспетчерскую, автоматизируют приём заказов, статусы и баланс.</p>
                 <div class="case-result">Снижение нагрузки на диспетчера на 60%</div>
             </div>
-
             <div class="case-card reveal reveal-delay-2">
                 <span class="case-tag">Модерация в MAX</span>
                 <p>Умные модераторы проверяют подписку на каналы, чистят спам и выдают навигацию по группам. Единая точка входа в экосистему.</p>
                 <div class="case-result">Чистота в чатах + рост подписчиков</div>
             </div>
-
             <div class="case-card reveal reveal-delay-3">
                 <span class="case-tag">Локальная доставка (хлеб)</span>
                 <p>Два бота: клиентский (подписка на доставку) и курьерский (приём заказов, маршруты, отметки о доставке).</p>
                 <div class="case-result">Курьеры сами выбирают выгодные заказы — рыночная модель</div>
             </div>
-
             <div class="case-card reveal reveal-delay-1">
                 <span class="case-tag">Контент и парсинг</span>
                 <p>Автоматический постинг трендовых материалов, мониторинг Avito по заданным фильтрам для поиска товаров или перекупа.</p>
                 <div class="case-result">Экономия часов ручного скроллинга и постоянный контент</div>
             </div>
-
             <div class="case-card reveal reveal-delay-2">
                 <span class="case-tag">MAX‑доска объявлений</span>
                 <p>Платформа для публикации объявлений в каналах MAX. Модерация, привязка автора, платная подписка за доступ.</p>
                 <div class="case-result">Монетизация аудитории через подписки</div>
             </div>
-
             <div class="case-card reveal reveal-delay-3">
                 <span class="case-tag">Корпоративный сайт с CRM</span>
                 <p>Разработали сайт для b2b-компании с интеграцией CRM и AI-чат-бота. Автоматизация сбора заявок и обработки запросов.</p>
                 <div class="case-result">Заявки обрабатываются в 2 раза быстрее</div>
             </div>
-
             <div class="case-card reveal reveal-delay-1">
                 <span class="case-tag">Интернет-магазин с AI-ассистентом</span>
                 <p>Сайт интернет-магазина с интегрированным AI-консультантом, который помогает клиентам подбирать товары и оформлять заказы.</p>
                 <div class="case-result">Конверсия выросла на 25% за счёт подсказок ассистента</div>
             </div>
-
             <div class="case-card reveal reveal-delay-2">
                 <span class="case-tag">Лендинг для стартапа</span>
                 <p>Создали продающий лендинг для IT-стартапа с формой заявки, интеграцией с Telegram-ботом и автоматическим уведомлением менеджеров.</p>
                 <div class="case-result">Сбор заявок увеличился в 3 раза за первую неделю</div>
             </div>
-
             <div class="case-card reveal reveal-delay-3">
                 <span class="case-tag">Маркетплейс строительных услуг</span>
                 <p>Сайт-каталог строительных компаний с личным кабинетом, фильтрацией по региону и рейтингу. Интеграция с CRM для автоматической передачи заявок подрядчикам.</p>
                 <div class="case-result">Среднее время ответа на заявку сократилось с 4 часов до 20 минут</div>
             </div>
-
         </div>
-
-        <div style="text-align:center; margin: 40px 0 20px; color:var(--faint); font-family:var(--mono); font-size:12px; letter-spacing:1px;">
-            это не все проекты — подробности у менеджера
-        </div>
-
-        <div style="margin-top:20px; padding:40px 0; border-top:1px solid var(--line);">
+        <div style="text-align:center;margin:40px 0 20px;color:var(--faint);font-family:var(--mono);font-size:12px;letter-spacing:1px;">это не все проекты — подробности у менеджера</div>
+        <div style="margin-top:20px;padding:40px 0;border-top:1px solid var(--line);">
             <div class="contact-block">
-                <h2 style="font-family:var(--serif); font-size:28px; font-weight:400; color:var(--text);">Обсудить ваш проект</h2>
-                <p style="color:var(--muted); font-size:16px; max-width:500px; margin:12px 0 24px;">
-                    Расскажите задачу — мы подберём решение из наработанных модулей или соберём новый инструмент под вас.
-                </p>
+                <h2 style="font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text);">Обсудить ваш проект</h2>
+                <p style="color:var(--muted);font-size:16px;max-width:500px;margin:12px 0 24px;">Расскажите задачу — мы подберём решение из наработанных модулей или соберём новый инструмент под вас.</p>
                 <div class="btn-row">
-                    <a href="https://t.me/Bot_Craft_Studio" class="btn-primary" target="_blank">Написать в Telegram</a>
+                    <a href="https://t.me/Bot_Craft_StudioBot" class="btn-primary" target="_blank">Написать в Telegram</a>
                     <a href="https://max.ru/id773475339010_bot" class="btn-secondary" target="_blank">Написать в MAX</a>
                 </div>
             </div>
         </div>
-
         <footer>
             <div class="footer-left">
                 <span class="wordmark wordmark-sm">Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span></span>
@@ -376,51 +116,16 @@
             <div class="footer-links">
                 <a href="index.html">Главная</a>
                 <a href="index.html#work">Услуги</a>
-                <a href="index.html#cases">Кейсы</a>
-                <a href="index.html#contact">Контакты</a>
-                <a href="https://t.me/Bot_Craft_Studio" target="_blank" rel="noopener">Telegram</a>
+                <a href="cases.html">Кейсы</a>
+                <a href="index.html#lead">Контакты</a>
+                <a href="https://t.me/Bot_Craft_StudioBot" target="_blank" rel="noopener">Telegram</a>
             </div>
         </footer>
     </div>
-
     <script>
-        // ===== Навигация =====
-        (function() {
-            var toggle = document.getElementById('navToggle');
-            var menu = document.getElementById('mobileMenu');
-            toggle.addEventListener('click', function() {
-                toggle.classList.toggle('active');
-                menu.classList.toggle('open');
-            });
-            menu.querySelectorAll('a').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    toggle.classList.remove('active');
-                    menu.classList.remove('open');
-                });
-            });
-        })();
-
-        (function() {
-            var current = document.body.dataset.pageName || 'Кейсы';
-            document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function(a) {
-                if (a.textContent.trim() === current) a.classList.add('current');
-            });
-        })();
-
-        // ===== Reveal =====
-        (function() {
-            var reveals = document.querySelectorAll('.reveal');
-            if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) entry.target.classList.add('visible');
-                    });
-                }, { threshold: 0.1 });
-                reveals.forEach(function(el) { observer.observe(el); });
-            } else {
-                reveals.forEach(function(el) { el.classList.add('visible'); });
-            }
-        })();
+        (function(){var t=document.getElementById('navToggle'),m=document.getElementById('mobileMenu');t.addEventListener('click',function(){t.classList.toggle('active');m.classList.toggle('open')});m.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){t.classList.remove('active');m.classList.remove('open')})})})();
+        (function(){var c=document.body.dataset.pageName||'Кейсы';document.querySelectorAll('.nav-links a,.mobile-menu a').forEach(function(a){if(a.textContent.trim()===c)a.classList.add('current')})})();
+        (function(){var r=document.querySelectorAll('.reveal');if('IntersectionObserver' in window){var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});r.forEach(function(e){o.observe(e)})}else{r.forEach(function(e){e.classList.add('visible')})}})();
     </script>
 </body>
 </html>
