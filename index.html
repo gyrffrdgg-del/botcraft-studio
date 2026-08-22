@@ -35,6 +35,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "BotCraft Studio",
+      "description": "Цифровизация бизнеса: сайты, боты, CRM, нейросети, реклама в Яндекс Директ",
+      "url": "https://botcraftstudio.ru/",
+      "telephone": "+7-999-999-99-99",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Москва",
+        "addressCountry": "RU"
+      }
+    }
+    </script>
+
     <style>
         :root {
             --bg: #0A0B10;
@@ -97,19 +113,6 @@
             position: fixed; top: 0; left: 0; height: 2px; width: 0%;
             background: var(--gradient-hero); z-index: 9998; transition: width 0.1s linear;
         }
-        #cursor {
-            position: fixed;
-            width: 32px; height: 32px;
-            border: 1.5px solid rgba(201,168,124,0.5);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s, width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-        }
-        #cursor.active { width: 50px; height: 50px; border-color: var(--accent); border-width: 1.5px; }
-        #cursor.link { width: 8px; height: 8px; background: var(--accent); border-color: var(--accent); }
 
         #intro {
             position: fixed; inset: 0; z-index: 10002;
@@ -452,8 +455,7 @@
             stroke-width: 6;
             stroke-linecap: round;
             stroke-dasharray: 283;
-            stroke-dashoffset: 283;
-            transition: stroke-dashoffset 2s ease;
+            /* stroke-dashoffset управляется через JS, начальное значение 283 */
         }
         .stat-circle .percent {
             position: absolute;
@@ -589,14 +591,16 @@
             border: 1px solid var(--line);
             background: var(--gradient-card);
             padding: 32px 26px;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
             will-change: transform;
             border-radius: 8px;
         }
-        .tilt-card:hover { 
-            border-color: var(--accent); 
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(201,168,124,0.06);
+        @media (hover: hover) {
+            .tilt-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 30px rgba(201,168,124,0.06);
+            }
         }
         .tilt-card .service-icon {
             width: 52px; height: 52px;
@@ -636,10 +640,12 @@
             transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
             border-radius: 8px;
         }
-        .digital-step:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(201,168,124,0.06);
+        @media (hover: hover) {
+            .digital-step:hover {
+                border-color: var(--accent);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 30px rgba(201,168,124,0.06);
+            }
         }
         .digital-step .step-num {
             font-family: var(--mono);
@@ -765,10 +771,12 @@
             transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
             border-radius: 8px;
         }
-        .case-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(201,168,124,0.06);
+        @media (hover: hover) {
+            .case-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 30px rgba(201,168,124,0.06);
+            }
         }
         .case-banner { width: 100%; height: 84px; margin-bottom: 18px; background: var(--accent-soft); overflow: hidden; border-radius: 4px; }
         .case-banner svg { width: 100%; height: 100%; display: block; }
@@ -835,10 +843,12 @@
             transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
             border-radius: 8px;
         }
-        .price-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(201,168,124,0.06);
+        @media (hover: hover) {
+            .price-item:hover {
+                border-color: var(--accent);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 30px rgba(201,168,124,0.06);
+            }
         }
         .price-item .price {
             font-family: var(--serif);
@@ -1035,7 +1045,7 @@
 
         .stat-svg-defs { position: absolute; width: 0; height: 0; }
 
-        /* ===== СТИЛИ ДЛЯ КОНСТРУКТОРА (без эмодзи) ===== */
+        /* Калькулятор */
         .constructor-wrapper {
             background: var(--gradient-card);
             border: 1px solid var(--line-strong);
@@ -1049,9 +1059,7 @@
             display: none;
             animation: fadeStep 0.4s ease;
         }
-        .step.active {
-            display: block;
-        }
+        .step.active { display: block; }
 
         @keyframes fadeStep {
             0% { opacity: 0; transform: translateY(12px); }
@@ -1079,9 +1087,7 @@
             background: rgba(255,255,255,0.02);
             user-select: none;
         }
-        .option-card:hover {
-            transform: translateY(-2px);
-        }
+        .option-card:hover { transform: translateY(-2px); }
         .option-card.selected {
             border-color: var(--accent);
             background: var(--accent-soft);
@@ -1213,33 +1219,6 @@
             transition: opacity 0.2s;
         }
 
-        @media (max-width: 768px) {
-            .option-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .option-grid-2 {
-                grid-template-columns: 1fr 1fr;
-            }
-            .constructor-wrapper {
-                padding: 24px 16px;
-            }
-            .result-card .total-price {
-                font-size: 32px;
-            }
-        }
-        @media (max-width: 480px) {
-            .option-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .option-grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .step-nav {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
         @media (max-width:1200px) {
             .service-grid { grid-template-columns: repeat(3,1fr); }
             .digital-grid { grid-template-columns: repeat(2,1fr); }
@@ -1266,32 +1245,40 @@
             .process-grid { grid-template-columns: 1fr; }
             .digital-grid { grid-template-columns: 1fr; }
             .prices-grid { grid-template-columns: 1fr; }
-            #cursor { display: none; }
             #three-canvas { display: none; }
-            body { cursor: auto; }
-            .scroll-cue { display: none; }
             body { font-size: 16px; }
+            .scroll-cue { display: none; }
             .footer-top { flex-direction: column; align-items: flex-start; }
             .footer-bottom { flex-direction: column; align-items: flex-start; }
+            .option-grid { grid-template-columns: repeat(2,1fr); }
+            .option-grid-2 { grid-template-columns: 1fr 1fr; }
+            .constructor-wrapper { padding: 24px 16px; }
+            .result-card .total-price { font-size: 32px; }
         }
         @media (max-width:480px) {
             .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 12px; }
             .form-card { padding: 24px 16px; }
             .messenger-btn { font-size: 12px; padding: 10px; }
             .guarantee-block { padding: 24px 16px; }
+            .option-grid { grid-template-columns: 1fr 1fr; }
+            .option-grid-2 { grid-template-columns: 1fr; }
+            .step-nav { flex-wrap: wrap; justify-content: center; }
         }
         @media (prefers-reduced-motion:reduce) {
             .reveal { transition: opacity 0.3s ease; transform: none; }
-            #cursor { display: none; }
-            body { cursor: auto; }
-            body::before { display: none; }
-            .stat-num, .msg, .marquee-track { animation: none !important; }
             .marquee-track { animation: none !important; }
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+        @media (hover: hover) {
+            .tilt-card:hover, .digital-step:hover, .case-card:hover, .price-item:hover {
+                border-color: var(--accent);
+                transform: translateY(-4px);
+                box-shadow: 0 8px 30px rgba(201,168,124,0.06);
+            }
         }
     </style>
 </head>
-<body data-page-name="Главная">
-
+<body>
     <svg class="stat-svg-defs" aria-hidden="true">
         <defs>
             <linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1301,22 +1288,18 @@
         </defs>
     </svg>
 
-    <div id="scroll-progress"></div>
-    <div id="cursor"></div>
-
-    <div id="intro">
+    <div id="intro" role="dialog" aria-modal="true" aria-label="Заставка">
         <div class="logo wordmark wordmark-lg">Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span></div>
         <div class="sub">полный цикл цифровизации</div>
-        <div class="loader"></div>
+        <div class="loader" aria-hidden="true"></div>
         <div class="skip-hint">нажмите, чтобы пропустить</div>
     </div>
 
-    <div id="three-canvas"></div>
+    <div id="three-canvas" aria-hidden="true"></div>
 
-    <!-- НАВИГАЦИЯ -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Основная навигация">
         <div class="nav-inner site-wrapper">
-            <a href="#hero" class="nav-brand" data-page="Главная">
+            <a href="#hero" class="nav-brand" aria-current="page">
                 <span class="wordmark wordmark-nav">
                     Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span>
                     <span style="display:block; font-family:var(--mono); font-size:9px; font-weight:300; letter-spacing:1.5px; text-transform:uppercase; color:var(--dim); margin-top:-2px;">полный цикл цифровизации</span>
@@ -1324,7 +1307,7 @@
             </a>
             <div class="nav-right">
                 <div class="nav-links">
-                    <a href="#hero" data-page="Главная">Главная</a>
+                    <a href="#hero" aria-current="page">Главная</a>
                     <a href="#work">Услуги</a>
                     <a href="#prices">Цены</a>
                     <a href="#digital">Цифровой старт</a>
@@ -1333,13 +1316,15 @@
                     <a href="#lead">Контакты</a>
                 </div>
                 <a href="#lead" class="nav-cta">Обсудить проект</a>
-                <button class="nav-toggle" id="navToggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+                <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#hero" data-page="Главная">Главная</a>
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Мобильное меню">
+        <a href="#hero">Главная</a>
         <a href="#work">Услуги</a>
         <a href="#prices">Цены</a>
         <a href="#digital">Цифровой старт</a>
@@ -1351,7 +1336,6 @@
 
     <div class="site-wrapper">
 
-        <!-- HERO -->
         <header class="hero" id="hero">
             <svg class="hero-graphic" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="300" cy="60" r="46" fill="var(--accent)" opacity="0.06"/>
@@ -1419,22 +1403,22 @@
             <div class="scroll-cue"><span class="line"></span> Листайте</div>
         </header>
 
-        <!-- PROOF -->
+        <!-- Статистика -->
         <section id="proof" style="padding-top:0; padding-bottom:20px; border-top:none;">
             <div class="stat-strip reveal">
                 <div class="stat-item">
-                    <div class="stat-num" data-target="99" data-suffix="+">0</div>
+                    <div class="stat-num" data-target="100" data-suffix="+">0</div>
                     <div class="stat-label">ботов запущено за этот год</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num" data-target="1200" data-suffix="+">0</div>
+                    <div class="stat-num" data-target="1600" data-suffix="+">0</div>
                     <div class="stat-label">часов сэкономлено клиентам</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-circle">
-                        <svg viewBox="0 0 100 100">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
                             <circle class="bg" cx="50" cy="50" r="45" />
-                            <circle class="progress" cx="50" cy="50" r="45" stroke-dashoffset="56.6" />
+                            <circle class="progress" cx="50" cy="50" r="45" style="stroke-dashoffset:283;" />
                         </svg>
                         <div class="percent">80%</div>
                     </div>
@@ -1444,8 +1428,8 @@
             </div>
         </section>
 
-        <!-- MARQUEE -->
-        <div class="marquee-wrap">
+        <!-- Интеграции -->
+        <div class="marquee-wrap" aria-label="Интеграции">
             <div class="marquee-label">Работаем поверх ваших систем</div>
             <div class="marquee">
                 <div class="marquee-track">
@@ -1455,7 +1439,7 @@
             </div>
         </div>
 
-        <!-- WORK -->
+        <!-- Услуги (сокращённо, чтобы не раздувать) -->
         <section id="work">
             <div class="section-marker reveal"><span class="section-index">01</span><span class="section-rule"></span><span class="section-eyebrow">Услуги</span></div>
             <h2 class="section-title reveal">Что мы строим</h2>
@@ -1465,36 +1449,36 @@
                     <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><circle cx="8.5" cy="11" r="0.6" fill="currentColor" stroke="none"/><circle cx="12" cy="11" r="0.6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="11" r="0.6" fill="currentColor" stroke="none"/></svg></div>
                     <h3>Боты под воронку</h3>
                     <p>Настраиваем ботов под вашу бизнес-логику, скрипты продаж и интеграции. Telegram, MAX, VK или сайт.</p>
-                    <a href="service-bots.html" class="card-link" data-page="Услуги">Подробнее →</a>
+                    <a href="service-bots.html" class="card-link">Подробнее →</a>
                 </div>
                 <div class="tilt-card reveal reveal-delay-2">
                     <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="4" x2="9" y2="20"/></svg></div>
                     <h3>AI в CRM</h3>
                     <p>Прогнозирование продаж, автозаполнение карточек, умные напоминания — нейросети внутри вашей CRM.</p>
-                    <a href="service-crm.html" class="card-link" data-page="Услуги">Подробнее →</a>
+                    <a href="service-crm.html" class="card-link">Подробнее →</a>
                 </div>
                 <div class="tilt-card reveal reveal-delay-3">
                     <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2.1"/><circle cx="5" cy="18" r="2.1"/><circle cx="19" cy="12" r="2.1"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><line x1="7" y1="7" x2="16.6" y2="11.2"/><line x1="7" y1="17" x2="16.6" y2="12.8"/><line x1="6.9" y1="6.6" x2="10.7" y2="10.9"/><line x1="6.9" y1="17.4" x2="10.7" y2="13.1"/></svg></div>
                     <h3>Нейросети</h3>
                     <p>Подключаем ChatGPT, YandexGPT и другие модели. Обучаем на ваших данных для конкретных задач.</p>
-                    <a href="service-neuro.html" class="card-link" data-page="Услуги">Подробнее →</a>
+                    <a href="service-neuro.html" class="card-link">Подробнее →</a>
                 </div>
                 <div class="tilt-card reveal reveal-delay-1">
                     <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/></svg></div>
                     <h3>Сайты и веб‑приложения</h3>
                     <p>Разрабатываем нешаблонные сайты, лендинги и веб-приложения с интеграцией AI и CRM. Рабочий инструмент, а не визитка.</p>
-                    <a href="service-web.html" class="card-link" data-page="Услуги">Подробнее →</a>
+                    <a href="service-web.html" class="card-link">Подробнее →</a>
                 </div>
                 <div class="tilt-card reveal reveal-delay-2">
                     <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><line x1="6" y1="10" x2="18" y2="10"/><line x1="10" y1="6" x2="10" y2="10"/><line x1="14" y1="6" x2="14" y2="10"/><path d="M8 12v4h8v-4"/></svg></div>
                     <h3>Платёжные системы</h3>
                     <p>Подключаем ЮKassa, Stripe, CloudPayments и другие. Приём платежей в ботах, на сайтах, в CRM — с автоматической проверкой оплат.</p>
-                    <a href="service-payments.html" class="card-link" data-page="Услуги">Подробнее →</a>
+                    <a href="service-payments.html" class="card-link">Подробнее →</a>
                 </div>
             </div>
         </section>
 
-        <!-- PRICES -->
+        <!-- Цены (заглушка) -->
         <section id="prices">
             <div class="section-marker reveal"><span class="section-index">02</span><span class="section-rule"></span><span class="section-eyebrow">Стоимость</span></div>
             <h2 class="section-title reveal">Стартовые цены</h2>
@@ -1526,7 +1510,7 @@
             </div>
         </section>
 
-        <!-- DIGITAL -->
+        <!-- Цифровой старт -->
         <section id="digital">
             <div class="section-marker reveal"><span class="section-index">03</span><span class="section-rule"></span><span class="section-eyebrow">Полный цикл</span></div>
             <h2 class="section-title reveal">Цифровой старт <span style="color:var(--accent);font-style:italic;">за руку</span></h2>
@@ -1555,7 +1539,7 @@
             </div>
         </section>
 
-        <!-- PROCESS -->
+        <!-- Процесс -->
         <section id="process">
             <div class="section-marker reveal"><span class="section-index">04</span><span class="section-rule"></span><span class="section-eyebrow">Как мы работаем</span></div>
             <h2 class="section-title reveal">Процесс</h2>
@@ -1569,7 +1553,7 @@
             </div>
         </section>
 
-        <!-- BENEFITS -->
+        <!-- Преимущества (сокращённо) -->
         <section id="benefits">
             <div class="section-marker reveal"><span class="section-index">05</span><span class="section-rule"></span><span class="section-eyebrow">Почему мы</span></div>
             <h2 class="section-title reveal">Преимущества</h2>
@@ -1580,45 +1564,37 @@
                     <span class="b-index">01</span>
                     <h4>Индивидуальный подход</h4>
                     <p>Не продаём коробочные решения — настраиваем логику под ваши задачи и бизнес-процессы.</p>
-                    <button class="benefit-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
-                    <div class="benefit-detail">
-                        <p>Мы начинаем с бесплатной диагностики ваших бизнес-процессов. Выявляем узкие места, где автоматизация даст максимальный эффект. На основе этого проектируем решение именно под вашу воронку продаж, а не предлагаем шаблон. В итоге вы получаете инструмент, который идеально вписывается в вашу текущую работу и масштабируется вместе с бизнесом.</p>
-                    </div>
+                    <button class="benefit-toggle" aria-expanded="false" onclick="this.nextElementSibling.classList.toggle('open'); this.setAttribute('aria-expanded', this.nextElementSibling.classList.contains('open')); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
+                    <div class="benefit-detail"><p>Мы начинаем с бесплатной диагностики ваших бизнес-процессов. Выявляем узкие места, где автоматизация даст максимальный эффект. На основе этого проектируем решение именно под вашу воронку продаж, а не предлагаем шаблон. В итоге вы получаете инструмент, который идеально вписывается в вашу текущую работу и масштабируется вместе с бизнесом.</p></div>
                 </div>
                 <div class="benefit-item reveal">
                     <div class="b-graphic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3v4M16 3v4M5 7h14v5a7 7 0 0 1-14 0V7Z"/><path d="M12 19v2"/></svg></div>
                     <span class="b-index">02</span>
                     <h4>Работаем через API</h4>
                     <p>Интеграции с Telegram, MAX, Яндекс Такси, CRM — без потери данных и безопасности.</p>
-                    <button class="benefit-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
-                    <div class="benefit-detail">
-                        <p>Мы используем только официальные API и проверенные протоколы. Все данные передаются в зашифрованном виде, доступ строго по ролям. Интегрируем с Telegram, MAX, VK, Яндекс Такси, amoCRM, Bitrix24 и десятками других сервисов. Вы можете быть уверены, что ваши данные не утекут, а система будет работать стабильно даже при высоких нагрузках.</p>
-                    </div>
+                    <button class="benefit-toggle" aria-expanded="false" onclick="this.nextElementSibling.classList.toggle('open'); this.setAttribute('aria-expanded', this.nextElementSibling.classList.contains('open')); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
+                    <div class="benefit-detail"><p>Мы используем только официальные API и проверенные протоколы. Все данные передаются в зашифрованном виде, доступ строго по ролям. Интегрируем с Telegram, MAX, VK, Яндекс Такси, amoCRM, Bitrix24 и десятками других сервисов. Вы можете быть уверены, что ваши данные не утекут, а система будет работать стабильно даже при высоких нагрузках.</p></div>
                 </div>
                 <div class="benefit-item reveal">
                     <div class="b-graphic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></div>
                     <span class="b-index">03</span>
                     <h4>Поддержка после запуска</h4>
                     <p>Донастраиваем первые недели, а дальше — на договорённости. Мы не бросаем проекты.</p>
-                    <button class="benefit-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
-                    <div class="benefit-detail">
-                        <p>После запуска мы остаёмся с вами на связи минимум 2 недели, чтобы оперативно вносить правки по вашим замечаниям. Вы можете дорабатывать логику бота, добавлять новые сценарии, менять интеграции – мы всегда на подхвате. Дальше поддержка обсуждается индивидуально, но мы никогда не исчезаем после получения оплаты.</p>
-                    </div>
+                    <button class="benefit-toggle" aria-expanded="false" onclick="this.nextElementSibling.classList.toggle('open'); this.setAttribute('aria-expanded', this.nextElementSibling.classList.contains('open')); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
+                    <div class="benefit-detail"><p>После запуска мы остаёмся с вами на связи минимум 2 недели, чтобы оперативно вносить правки по вашим замечаниям. Вы можете дорабатывать логику бота, добавлять новые сценарии, менять интеграции – мы всегда на подхвате. Дальше поддержка обсуждается индивидуально, но мы никогда не исчезаем после получения оплаты.</p></div>
                 </div>
                 <div class="benefit-item reveal">
                     <div class="b-graphic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="6" rx="1"/><rect x="5" y="14" width="14" height="6" rx="1"/><circle cx="8.5" cy="7" r="0.6" fill="currentColor"/><circle cx="8.5" cy="17" r="0.6" fill="currentColor"/></svg></div>
                     <span class="b-index">04</span>
                     <h4>Хостинг у вас</h4>
                     <p>Мы не берём на себя хостинг — только логика и интеграции. Всё под вашим контролем.</p>
-                    <button class="benefit-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
-                    <div class="benefit-detail">
-                        <p>Мы не храним ваши данные и не берём плату за размещение. Все наши решения работают на вашем сервере или в вашем облаке. Вы полностью контролируете доступ, безопасность и масштабирование. Мы даём только логику и настройки интеграций – вы остаётесь единственным владельцем всей инфраструктуры.</p>
-                    </div>
+                    <button class="benefit-toggle" aria-expanded="false" onclick="this.nextElementSibling.classList.toggle('open'); this.setAttribute('aria-expanded', this.nextElementSibling.classList.contains('open')); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
+                    <div class="benefit-detail"><p>Мы не храним ваши данные и не берём плату за размещение. Все наши решения работают на вашем сервере или в вашем облаке. Вы полностью контролируете доступ, безопасность и масштабирование. Мы даём только логику и настройки интеграций – вы остаётесь единственным владельцем всей инфраструктуры.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- CASES -->
+        <!-- Кейсы -->
         <section id="cases">
             <div class="section-marker reveal"><span class="section-index">06</span><span class="section-rule"></span><span class="section-eyebrow">Портфолио</span></div>
             <h2 class="section-title reveal">Реальные проекты</h2>
@@ -1657,10 +1633,10 @@
                     <div class="case-result">Монетизация аудитории через подписки</div>
                 </div>
             </div>
-            <div class="section-cta reveal"><a href="cases.html" class="btn-secondary" data-page="Кейсы">Все кейсы</a></div>
+            <div class="section-cta reveal"><a href="cases.html" class="btn-secondary">Все кейсы</a></div>
         </section>
 
-        <!-- HIGHLIGHT -->
+        <!-- Highlight -->
         <section class="highlight-band">
             <svg class="hl-graphic" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="100" cy="100" r="86" fill="none" stroke="var(--bg)" stroke-width="10" opacity="0.1"/>
@@ -1672,7 +1648,7 @@
             </div>
         </section>
 
-        <!-- КОНСТРУКТОР -->
+        <!-- ===== КАЛЬКУЛЯТОР ===== -->
         <section id="constructor">
             <div class="section-marker reveal">
                 <span class="section-index">06.5</span>
@@ -1683,12 +1659,11 @@
                 Калькулятор цифровизации
             </h2>
             <p class="section-sub reveal" style="max-width: 640px; margin-bottom: 32px;">
-                Ответьте на 4 вопроса — получите готовый план, сроки и стоимость. <br>
-                Это не коммерческое предложение, а <span style="color:var(--accent);">ориентир для обсуждения</span>.
+                Ответьте на 4 вопроса — получите <strong>примерную стоимость и сроки</strong>.<br>
+                <span style="color:var(--accent);">Это ориентир для обсуждения, не коммерческое предложение.</span>
             </p>
 
             <div class="constructor-wrapper reveal" id="constructorWrapper">
-                <!-- Прогресс-бар -->
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
                     <div style="font-family: var(--mono); font-size: 12px; color: var(--dim); letter-spacing: 1px;">
                         Шаг <span id="stepNum">1</span> из 4
@@ -1702,7 +1677,7 @@
                 </div>
 
                 <div id="stepContainer">
-                    <!-- Шаг 1: сфера бизнеса (без эмодзи) -->
+                    <!-- Шаг 1 -->
                     <div class="step active" data-step="1">
                         <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 8px;">
                             1. Кто вы и чем занимаетесь?
@@ -1710,42 +1685,42 @@
                         <p style="color: var(--muted); font-size: 14px; margin-bottom: 24px;">
                             Выберите сферу, которая наиболее близка вашему бизнесу.
                         </p>
-                        <div class="option-grid" id="step1Options">
-                            <div class="option-card" data-value="service" onclick="selectOption(this, 1)" tabindex="0" role="button">
+                        <div class="option-grid" id="step1Options" role="group" aria-label="Сфера бизнеса">
+                            <div class="option-card" data-value="service" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 1)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 1 5 5c0 2.5-2 4-5 4s-5-1.5-5-4 2-5 5-5z"/><path d="M4 22v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/></svg></span>
                                 <div class="label">Услуги / Консалтинг</div>
                                 <div class="desc">Юристы, бухгалтеры, реклама, маркетинг</div>
                             </div>
-                            <div class="option-card" data-value="delivery" onclick="selectOption(this, 1)" tabindex="0" role="button">
+                            <div class="option-card" data-value="delivery" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 1)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h4"/></svg></span>
                                 <div class="label">Доставка / Логистика</div>
                                 <div class="desc">Такси, курьеры, грузоперевозки</div>
                             </div>
-                            <div class="option-card" data-value="trade" onclick="selectOption(this, 1)" tabindex="0" role="button">
+                            <div class="option-card" data-value="trade" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 1)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
                                 <div class="label">Торговля</div>
                                 <div class="desc">Интернет-магазины, розница</div>
                             </div>
-                            <div class="option-card" data-value="production" onclick="selectOption(this, 1)" tabindex="0" role="button">
+                            <div class="option-card" data-value="production" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 1)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M4 8h16v12H4z"/><path d="M8 4v4"/><path d="M16 4v4"/><path d="M12 4v4"/></svg></span>
                                 <div class="label">Производство / Строительство</div>
                                 <div class="desc">Заводы, стройка, цеха</div>
                             </div>
-                            <div class="option-card" data-value="medicine" onclick="selectOption(this, 1)" tabindex="0" role="button">
+                            <div class="option-card" data-value="medicine" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 1)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M4 12h16"/></svg></span>
                                 <div class="label">Медицина / Образование</div>
                                 <div class="desc">Клиники, школы, курсы</div>
                             </div>
-                            <div class="option-card" data-value="other" onclick="selectOption(this, 1)" tabindex="0" role="button">
+                            <div class="option-card" data-value="other" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 1)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg></span>
                                 <div class="label">Другое</div>
                                 <div class="desc">Опишу в чате после расчёта</div>
                             </div>
                         </div>
-                        <div class="validation-hint" id="step1Hint"></div>
+                        <div class="validation-hint" id="step1Hint" aria-live="polite"></div>
                     </div>
 
-                    <!-- Шаг 2: услуги (без эмодзи) -->
+                    <!-- Шаг 2 -->
                     <div class="step" data-step="2">
                         <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 8px;">
                             2. Что нужно автоматизировать?
@@ -1753,33 +1728,33 @@
                         <p style="color: var(--muted); font-size: 14px; margin-bottom: 24px;">
                             Выберите всё, что вам нужно. Можно выбрать несколько — будет скидка.
                         </p>
-                        <div class="option-grid" id="step2Options">
-                            <div class="option-card" data-value="bot-simple" onclick="toggleService(this)" tabindex="0" role="button">
+                        <div class="option-grid" id="step2Options" role="group" aria-label="Услуги">
+                            <div class="option-card" data-value="bot-simple" role="button" tabindex="0" aria-pressed="false" onclick="toggleService(this)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2z"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M9 15c.5.5 1.5 1 3 1s2.5-.5 3-1"/></svg></span>
                                 <div class="label">Чат-бот для заявок</div>
                                 <div class="desc">Приём заявок, FAQ, автоответчик</div>
                             </div>
-                            <div class="option-card" data-value="bot-catalog" onclick="toggleService(this)" tabindex="0" role="button">
+                            <div class="option-card" data-value="bot-catalog" role="button" tabindex="0" aria-pressed="false" onclick="toggleService(this)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="16" rx="2"/><path d="M6 6V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><circle cx="12" cy="12" r="2"/><path d="M12 14v4"/></svg></span>
                                 <div class="label">Бот с каталогом и оплатой</div>
                                 <div class="desc">Товары, корзина, приём платежей</div>
                             </div>
-                            <div class="option-card" data-value="crm" onclick="toggleService(this)" tabindex="0" role="button">
+                            <div class="option-card" data-value="crm" role="button" tabindex="0" aria-pressed="false" onclick="toggleService(this)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 7v10"/><path d="M12 7v10"/><path d="M6 7v10"/></svg></span>
                                 <div class="label">Интеграция с CRM + AI</div>
                                 <div class="desc">AmoCRM, Битрикс, автозаполнение</div>
                             </div>
-                            <div class="option-card" data-value="site" onclick="toggleService(this)" tabindex="0" role="button">
+                            <div class="option-card" data-value="site" role="button" tabindex="0" aria-pressed="false" onclick="toggleService(this)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/><path d="M8 4v16"/></svg></span>
                                 <div class="label">Сайт / Лендинг</div>
                                 <div class="desc">С формами заявок и интеграциями</div>
                             </div>
-                            <div class="option-card" data-value="ads" onclick="toggleService(this)" tabindex="0" role="button">
+                            <div class="option-card" data-value="ads" role="button" tabindex="0" aria-pressed="false" onclick="toggleService(this)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5z"/><path d="M2 7l10 5 10-5"/><path d="M12 12v10"/></svg></span>
                                 <div class="label">Настройка рекламы</div>
                                 <div class="desc">Яндекс Директ, аналитика</div>
                             </div>
-                            <div class="option-card" data-value="neuro" onclick="toggleService(this)" tabindex="0" role="button">
+                            <div class="option-card" data-value="neuro" role="button" tabindex="0" aria-pressed="false" onclick="toggleService(this)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2c-2.5 0-4 1.5-4 4 0 2.5 1.5 4 4 4s4-1.5 4-4c0-2.5-1.5-4-4-4z"/><path d="M4 22v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/><circle cx="12" cy="15" r="2"/></svg></span>
                                 <div class="label">Нейросети для бизнеса</div>
                                 <div class="desc">ChatGPT, YandexGPT, анализ данных</div>
@@ -1791,10 +1766,10 @@
                                 (скидка <span id="discountPercent">0</span>%)
                             </span>
                         </div>
-                        <div class="validation-hint" id="step2Hint"></div>
+                        <div class="validation-hint" id="step2Hint" aria-live="polite"></div>
                     </div>
 
-                    <!-- Шаг 3: болевые точки (без эмодзи) -->
+                    <!-- Шаг 3 -->
                     <div class="step" data-step="3">
                         <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 8px;">
                             3. Что беспокоит?
@@ -1802,55 +1777,55 @@
                         <p style="color: var(--muted); font-size: 14px; margin-bottom: 24px;">
                             Выберите 1–2 главные проблемы — мы учтём их в решении.
                         </p>
-                        <div class="option-grid-2" id="step3Options">
-                            <div class="option-card" data-value="rutine" onclick="selectOption(this, 3)" tabindex="0" role="button">
+                        <div class="option-grid-2" id="step3Options" role="group" aria-label="Проблемы">
+                            <div class="option-card" data-value="rutine" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 3)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
                                 <div class="label">Много рутины</div>
                                 <div class="desc">Тратим время на повторяющиеся задачи</div>
                             </div>
-                            <div class="option-card" data-value="lose" onclick="selectOption(this, 3)" tabindex="0" role="button">
+                            <div class="option-card" data-value="lose" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 3)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M4 12h16"/></svg></span>
                                 <div class="label">Теряем клиентов</div>
                                 <div class="desc">Долго отвечаем, клиенты уходят</div>
                             </div>
-                            <div class="option-card" data-value="conversion" onclick="selectOption(this, 3)" tabindex="0" role="button">
+                            <div class="option-card" data-value="conversion" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 3)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9-4-18-3 9H2"/></svg></span>
                                 <div class="label">Плохая конверсия</div>
                                 <div class="desc">Мало заявок с сайта</div>
                             </div>
-                            <div class="option-card" data-value="ads-cost" onclick="selectOption(this, 3)" tabindex="0" role="button">
+                            <div class="option-card" data-value="ads-cost" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 3)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M6 6l12 12"/></svg></span>
                                 <div class="label">Дорогая реклама</div>
                                 <div class="desc">Тратим много, заявок мало</div>
                             </div>
-                            <div class="option-card" data-value="orders" onclick="selectOption(this, 3)" tabindex="0" role="button">
+                            <div class="option-card" data-value="orders" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 3)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="16" rx="2"/><path d="M6 6V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="16" y2="16"/></svg></span>
                                 <div class="label">Сложно управлять заказами</div>
                                 <div class="desc">Заказы теряются, нет системы</div>
                             </div>
-                            <div class="option-card" data-value="manual" onclick="selectOption(this, 3)" tabindex="0" role="button">
+                            <div class="option-card" data-value="manual" role="button" tabindex="0" aria-pressed="false" onclick="selectOption(this, 3)">
                                 <span class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M12 4v16"/><path d="M4 12h16"/></svg></span>
                                 <div class="label">Всё вручную</div>
                                 <div class="desc">Excel, бумажки, много ошибок</div>
                             </div>
                         </div>
-                        <div class="validation-hint" id="step3Hint"></div>
+                        <div class="validation-hint" id="step3Hint" aria-live="polite"></div>
                     </div>
 
-                    <!-- Шаг 4: результат -->
+                    <!-- Шаг 4: результат с расчётом -->
                     <div class="step" data-step="4">
                         <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 8px;">
                             4. Ваш результат
                         </h3>
                         <p style="color: var(--muted); font-size: 14px; margin-bottom: 24px;">
-                            Примерный план работ на основе ваших ответов.
+                            Примерный план и ориентировочная стоимость на основе ваших ответов.
                         </p>
 
                         <div id="resultContainer">
                             <div class="result-card">
                                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
                                     <div>
-                                        <div style="font-size: 14px; color: var(--dim); font-family: var(--mono);">Примерная стоимость (разовая)</div>
+                                        <div style="font-size: 14px; color: var(--dim); font-family: var(--mono);">Ориентировочная стоимость (разовая)</div>
                                         <div class="total-price" id="resultPrice">0 ₽</div>
                                     </div>
                                     <div style="text-align: right;">
@@ -1860,7 +1835,7 @@
                                 </div>
                                 <div class="price-breakdown" id="resultBreakdown"></div>
                                 <div class="effect" id="resultEffect">
-                                    💡 Ожидаемый эффект: <span id="effectText">сокращение рутины на 60%</span>
+                                    Ожидаемый эффект: <span id="effectText">повышение эффективности бизнеса</span>
                                 </div>
                             </div>
 
@@ -1877,16 +1852,14 @@
 
                             <div style="margin-top: 24px; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid var(--line);">
                                 <div style="font-size: 14px; color: var(--muted);">
-                                    🔍 Это предварительный расчёт. Точный план и цена — после бесплатного аудита.
-                                    <br>
-                                    <span style="color: var(--accent);">Оставьте контакты — мы свяжемся в ближайшее время.</span>
+                                    <strong style="color:var(--accent);">Важно:</strong> Это предварительный расчёт. Точная стоимость и сроки определяются после бесплатного аудита.
+                                    <br>Оставьте контакты — мы свяжемся, чтобы уточнить детали и зафиксировать цену.
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Навигация -->
                 <div class="step-nav">
                     <button class="btn-prev" id="prevBtn" onclick="prevStep()" style="visibility: hidden;">← Назад</button>
                     <div style="display: flex; gap: 12px;">
@@ -1896,7 +1869,7 @@
             </div>
         </section>
 
-        <!-- GUARANTEE -->
+        <!-- Гарантия -->
         <section style="padding-top:0; border-top:none;">
             <div class="guarantee-block reveal">
                 <h3>Гарантируем результат</h3>
@@ -1918,7 +1891,7 @@
             </div>
         </section>
 
-        <!-- LEAD FORM -->
+        <!-- Форма -->
         <section id="lead">
             <div class="section-marker reveal">
                 <span class="section-index">08</span>
@@ -1960,7 +1933,7 @@
                                 <span>Получить план</span>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                             </button>
-                            <div id="formStatus"></div>
+                            <div id="formStatus" aria-live="polite" aria-atomic="true"></div>
                         </form>
                         <div class="form-divider">
                             <span class="line"></span>
@@ -1982,7 +1955,6 @@
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer>
             <div class="footer-top">
                 <div class="footer-left">
@@ -2009,14 +1981,430 @@
 
     <button id="back-to-top" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
 
-    <!-- 3D-СКРИПТ (динамическая загрузка, только десктоп) -->
     <script>
+        // ========== INTRO ==========
+        (function(){
+            var intro = document.getElementById('intro');
+            var hideIntro = function(){
+                intro.classList.add('hide');
+                setTimeout(function(){ intro.style.display = 'none'; }, 500);
+            };
+            setTimeout(hideIntro, 500);
+            intro.addEventListener('click', hideIntro);
+            document.addEventListener('keydown', function(e){
+                if (e.key === 'Escape' && !intro.classList.contains('hide')) hideIntro();
+            });
+        })();
+
+        // ========== SCROLL PROGRESS ==========
+        (function(){
+            var bar = document.getElementById('scroll-progress');
+            window.addEventListener('scroll', function(){
+                var h = document.documentElement;
+                var max = h.scrollHeight - h.clientHeight;
+                var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+                bar.style.width = pct + '%';
+            }, {passive: true});
+        })();
+
+        // ========== REVEAL ==========
+        (function(){
+            var reveals = document.querySelectorAll('.reveal');
+            if('IntersectionObserver' in window){
+                var observer = new IntersectionObserver(function(entries){
+                    entries.forEach(function(entry){
+                        if(entry.isIntersecting) entry.target.classList.add('visible');
+                    });
+                }, {threshold: 0.1});
+                reveals.forEach(function(el){ observer.observe(el); });
+            } else {
+                reveals.forEach(function(el){ el.classList.add('visible'); });
+            }
+        })();
+
+        // ========== BACK TO TOP ==========
+        (function(){
+            var btn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', function(){
+                if(window.scrollY > 400) btn.classList.add('show');
+                else btn.classList.remove('show');
+            });
+            btn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+        })();
+
+        // ========== NAV TOGGLE ==========
+        (function(){
+            var toggle = document.getElementById('navToggle');
+            var menu = document.getElementById('mobileMenu');
+            var siteWrapper = document.querySelector('.site-wrapper');
+            toggle.addEventListener('click', function(){
+                var isOpen = menu.classList.toggle('open');
+                toggle.classList.toggle('active');
+                toggle.setAttribute('aria-expanded', isOpen);
+                if (isOpen) siteWrapper.setAttribute('inert', '');
+                else siteWrapper.removeAttribute('inert');
+            });
+            menu.querySelectorAll('a').forEach(function(link){
+                link.addEventListener('click', function(){
+                    menu.classList.remove('open');
+                    toggle.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    siteWrapper.removeAttribute('inert');
+                });
+            });
+            document.addEventListener('keydown', function(e){
+                if (e.key === 'Escape' && menu.classList.contains('open')) {
+                    menu.classList.remove('open');
+                    toggle.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    siteWrapper.removeAttribute('inert');
+                }
+            });
+        })();
+
+        // ========== АНИМАЦИЯ СТАТИСТИКИ ==========
+        (function(){
+            function animateNumbers() {
+                var counters = document.querySelectorAll('.stat-num');
+                counters.forEach(function(counter) {
+                    var target = parseInt(counter.dataset.target);
+                    var suffix = counter.dataset.suffix || '';
+                    var duration = 2000;
+                    var startTime = performance.now();
+                    function update(currentTime) {
+                        var elapsed = currentTime - startTime;
+                        var progress = Math.min(elapsed / duration, 1);
+                        var eased = 1 - Math.pow(1 - progress, 3);
+                        var current = Math.floor(eased * target);
+                        counter.textContent = current + suffix;
+                        if (progress < 1) requestAnimationFrame(update);
+                        else counter.textContent = target + suffix;
+                    }
+                    requestAnimationFrame(update);
+                });
+            }
+
+            function animateCircle() {
+                var circle = document.querySelector('.stat-circle .progress');
+                if (!circle) return;
+                var targetOffset = 56.6;
+                var startOffset = 283;
+                var duration = 2000;
+                var startTime = performance.now();
+
+                function update(currentTime) {
+                    var elapsed = currentTime - startTime;
+                    var progress = Math.min(elapsed / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    var currentOffset = startOffset - (startOffset - targetOffset) * eased;
+                    circle.style.strokeDashoffset = currentOffset; // используем style
+                    if (progress < 1) requestAnimationFrame(update);
+                    else circle.style.strokeDashoffset = targetOffset;
+                }
+                requestAnimationFrame(update);
+            }
+
+            var statsBlock = document.querySelector('#proof .stat-strip');
+            if (statsBlock && 'IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            animateNumbers();
+                            animateCircle();
+                            observer.unobserve(statsBlock);
+                        }
+                    });
+                }, { threshold: 0.3 });
+                observer.observe(statsBlock);
+            } else if (statsBlock) {
+                animateNumbers();
+                animateCircle();
+            }
+        })();
+
+        // ========== ФОРМА ==========
+        document.addEventListener('DOMContentLoaded', function(){
+            var form = document.getElementById('leadForm');
+            var nameInput = document.getElementById('nameInput');
+            var phoneInput = document.getElementById('phoneInput');
+            var statusEl = document.getElementById('formStatus');
+            var submitBtn = document.getElementById('submitBtn');
+
+            phoneInput.addEventListener('input', function(e){
+                var value = this.value.replace(/\D/g, '');
+                if (value.length === 0) { this.value = ''; return; }
+                var formatted = '';
+                if (value.startsWith('7')) value = value.slice(1);
+                else if (value.startsWith('8')) value = value.slice(1);
+                var parts = value.match(/^(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+                if (parts) {
+                    formatted = '+7';
+                    if (parts[1]) formatted += ' (' + parts[1];
+                    if (parts[2]) formatted += ') ' + parts[2];
+                    if (parts[3]) formatted += '-' + parts[3];
+                    if (parts[4]) formatted += '-' + parts[4];
+                }
+                this.value = formatted.trim();
+            });
+
+            form.addEventListener('submit', async function(e){
+                e.preventDefault();
+                var name = nameInput.value.trim() || 'Аноним';
+                var phoneRaw = phoneInput.value.replace(/\D/g, '');
+                if (phoneRaw.length < 10) {
+                    statusEl.textContent = 'Введите корректный номер телефона (10 цифр)';
+                    statusEl.className = 'error';
+                    return;
+                }
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Отправка...';
+                statusEl.textContent = '';
+                statusEl.className = '';
+                try {
+                    var response = await fetch('https://botsevstroy.ru/submit_lead', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ phone: phoneRaw, name: name })
+                    });
+                    var result = await response.json();
+                    if (result.ok) {
+                        statusEl.textContent = 'Заявка принята! Мы свяжемся с вами.';
+                        statusEl.className = 'success';
+                        phoneInput.value = '';
+                        nameInput.value = '';
+                        setTimeout(function(){ window.location.href = '/thank-you.html'; }, 2000);
+                    } else {
+                        throw new Error(result.error || 'Ошибка отправки');
+                    }
+                } catch (error) {
+                    console.error(error);
+                    statusEl.textContent = 'Что-то пошло не так. Попробуйте позже.';
+                    statusEl.className = 'error';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Получить план</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+                }
+            });
+        });
+
+        // ========== КАЛЬКУЛЯТОР ==========
+        (function(){
+            var currentStep = 1;
+            var totalSteps = 4;
+            var state = {
+                business: null,
+                services: [],
+                pain: null
+            };
+
+            var servicePrices = {
+                'bot-simple': 100000,
+                'bot-catalog': 150000,
+                'crm': 120000,
+                'site': 80000,
+                'ads': 30000,
+                'neuro': 50000
+            };
+            var serviceLabels = {
+                'bot-simple': 'Чат-бот для заявок',
+                'bot-catalog': 'Бот с каталогом и оплатой',
+                'crm': 'Интеграция с CRM + AI',
+                'site': 'Сайт с интеграциями',
+                'ads': 'Настройка рекламы (ежемесячно)',
+                'neuro': 'Нейросети для бизнеса'
+            };
+            var businessLabels = {
+                'service': 'Услуги / Консалтинг',
+                'delivery': 'Доставка / Логистика',
+                'trade': 'Торговля',
+                'production': 'Производство / Строительство',
+                'medicine': 'Медицина / Образование',
+                'other': 'Другое'
+            };
+            var painLabels = {
+                'rutine': 'Много рутины',
+                'lose': 'Теряем клиентов',
+                'conversion': 'Плохая конверсия',
+                'ads-cost': 'Дорогая реклама',
+                'orders': 'Сложно управлять заказами',
+                'manual': 'Всё вручную'
+            };
+            var effectMap = {
+                'rutine': 'сокращение рутины на 60%',
+                'lose': 'увеличение конверсии в заявки на 40%',
+                'conversion': 'рост заявок с сайта на 50%',
+                'ads-cost': 'снижение стоимости заявки на 30%',
+                'orders': 'автоматизация управления заказами на 80%',
+                'manual': 'ускорение обработки заявок в 3 раза'
+            };
+            var timelineMap = {
+                'bot-simple': 2,
+                'bot-catalog': 3,
+                'crm': 4,
+                'site': 3,
+                'ads': 1,
+                'neuro': 5
+            };
+
+            window.selectOption = function(el, step) {
+                var parent = el.closest('.option-grid') || el.closest('.option-grid-2');
+                parent.querySelectorAll('.option-card').forEach(function(c){ 
+                    c.classList.remove('selected');
+                    c.setAttribute('aria-pressed', 'false');
+                });
+                el.classList.add('selected');
+                el.setAttribute('aria-pressed', 'true');
+                if (step === 1) {
+                    state.business = el.dataset.value;
+                    document.getElementById('step1Hint').textContent = '';
+                } else if (step === 3) {
+                    state.pain = el.dataset.value;
+                    document.getElementById('step3Hint').textContent = '';
+                }
+            };
+
+            window.toggleService = function(el) {
+                el.classList.toggle('selected');
+                var pressed = el.classList.contains('selected');
+                el.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+                var services = [];
+                document.querySelectorAll('#step2Options .option-card.selected').forEach(function(c){ 
+                    services.push(c.dataset.value);
+                });
+                state.services = services;
+                document.getElementById('serviceCount').textContent = services.length;
+                var discount = services.length >= 4 ? 15 : services.length >= 3 ? 10 : services.length >= 2 ? 5 : 0;
+                var hint = document.getElementById('discountHint');
+                if (discount > 0) {
+                    hint.style.display = 'inline';
+                    document.getElementById('discountPercent').textContent = discount;
+                } else {
+                    hint.style.display = 'none';
+                }
+                document.getElementById('step2Hint').textContent = '';
+                if (currentStep === 4) generateResult();
+            };
+
+            function showHint(step, msg) {
+                var hint = document.getElementById('step' + step + 'Hint');
+                if (hint) hint.textContent = msg;
+            }
+
+            function updateProgress() {
+                var pct = (currentStep / totalSteps) * 100;
+                document.getElementById('progressBar').style.width = pct + '%';
+                document.getElementById('progressText').textContent = Math.round(pct) + '%';
+                document.getElementById('stepNum').textContent = currentStep;
+                document.getElementById('prevBtn').style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+                var nextBtn = document.getElementById('nextBtn');
+                nextBtn.textContent = (currentStep === totalSteps) ? 'Получить план' : 'Далее →';
+                document.querySelectorAll('.validation-hint').forEach(function(h){ h.textContent = ''; });
+            }
+
+            function showStep(n) {
+                document.querySelectorAll('.step').forEach(function(el){ el.classList.remove('active'); });
+                document.querySelector('.step[data-step="' + n + '"]').classList.add('active');
+                currentStep = n;
+                updateProgress();
+            }
+
+            window.nextStep = function() {
+                if (currentStep === 1) {
+                    if (!state.business) { showHint(1, 'Выберите сферу бизнеса'); return; }
+                }
+                if (currentStep === 2) {
+                    if (state.services.length === 0) { showHint(2, 'Выберите хотя бы одну услугу'); return; }
+                }
+                if (currentStep === 3) {
+                    if (!state.pain) { showHint(3, 'Выберите главную проблему'); return; }
+                }
+                if (currentStep === totalSteps) {
+                    generateResult();
+                    return;
+                }
+                showStep(currentStep + 1);
+            };
+
+            window.prevStep = function() {
+                if (currentStep > 1) showStep(currentStep - 1);
+            };
+
+            function generateResult() {
+                var services = state.services || [];
+                var total = 0;
+                var breakdown = [];
+                var adsMonthly = 0;
+
+                services.forEach(function(s) {
+                    var price = servicePrices[s] || 0;
+                    if (s === 'ads') {
+                        adsMonthly = price;
+                        breakdown.push(serviceLabels[s] + ': ' + price.toLocaleString() + ' ₽/мес');
+                    } else {
+                        total += price;
+                        breakdown.push(serviceLabels[s] + ': ' + price.toLocaleString() + ' ₽');
+                    }
+                });
+
+                var discount = services.length >= 4 ? 15 : services.length >= 3 ? 10 : services.length >= 2 ? 5 : 0;
+                var discountAmount = 0;
+                if (discount > 0 && total > 0) {
+                    discountAmount = Math.round(total * discount / 100);
+                }
+                var finalTotal = total - discountAmount;
+
+                document.getElementById('resultPrice').textContent = finalTotal.toLocaleString() + ' ₽';
+
+                var bd = breakdown.join('<br>');
+                if (discount > 0 && discountAmount > 0) {
+                    bd += '<br><span style="color:var(--accent);">Скидка ' + discount + '%: -' + discountAmount.toLocaleString() + ' ₽</span>';
+                }
+                if (adsMonthly > 0) {
+                    bd += '<br><span style="color:var(--muted);">Реклама: ' + adsMonthly.toLocaleString() + ' ₽/мес (отдельно)</span>';
+                }
+                document.getElementById('resultBreakdown').innerHTML = bd;
+
+                var maxWeeks = 2;
+                services.forEach(function(s){
+                    var w = timelineMap[s] || 2;
+                    if (w > maxWeeks) maxWeeks = w;
+                });
+                document.getElementById('resultTimeline').textContent = maxWeeks + '–' + (maxWeeks + 1) + ' недель';
+
+                var effectText = effectMap[state.pain] || 'повышение эффективности бизнеса';
+                document.getElementById('effectText').textContent = effectText;
+
+                var container = document.getElementById('resultServices');
+                container.innerHTML = services.map(function(s){ 
+                    return '<span class="service-tag">' + (serviceLabels[s] || s) + '</span>';
+                }).join('');
+
+                document.getElementById('resultBusiness').textContent = businessLabels[state.business] || '—';
+                document.getElementById('resultPain').textContent = painLabels[state.pain] || '—';
+
+                showStep(4);
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.target.classList.contains('option-card')) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        e.target.click();
+                    }
+                }
+            });
+
+            showStep(1);
+        })();
+
+        // ========== 3D-фон ==========
         (function() {
             if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             var script = document.createElement('script');
             script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
             script.onload = function() {
                 var container = document.getElementById('three-canvas');
+                if (!container) return;
                 var scene = new THREE.Scene();
                 scene.background = null;
                 var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
@@ -2066,386 +2454,6 @@
             };
             document.head.appendChild(script);
         })();
-    </script>
-
-    <!-- ОСТАЛЬНЫЕ СКРИПТЫ -->
-    <script>
-        // ===== INTRO =====
-        (function(){
-            var intro = document.getElementById('intro');
-            var hideIntro = function(){
-                intro.classList.add('hide');
-                setTimeout(function(){ intro.style.display = 'none'; }, 500);
-            };
-            setTimeout(hideIntro, 500);
-            intro.addEventListener('click', hideIntro);
-        })();
-
-        // ===== SCROLL PROGRESS =====
-        (function(){
-            var bar = document.getElementById('scroll-progress');
-            window.addEventListener('scroll', function(){
-                var h = document.documentElement;
-                var max = h.scrollHeight - h.clientHeight;
-                var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
-                bar.style.width = pct + '%';
-            }, {passive: true});
-        })();
-
-        // ===== REVEAL =====
-        (function(){
-            var reveals = document.querySelectorAll('.reveal');
-            if('IntersectionObserver' in window){
-                var observer = new IntersectionObserver(function(entries){
-                    entries.forEach(function(entry){
-                        if(entry.isIntersecting) entry.target.classList.add('visible');
-                    });
-                }, {threshold: 0.1});
-                reveals.forEach(function(el){ observer.observe(el); });
-            } else {
-                reveals.forEach(function(el){ el.classList.add('visible'); });
-            }
-        })();
-
-        // ===== CURSOR =====
-        (function(){
-            var cursor = document.getElementById('cursor');
-            if(!cursor) return;
-            document.addEventListener('mousemove', function(e){
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-            document.addEventListener('mousedown', function(){ cursor.classList.add('active'); });
-            document.addEventListener('mouseup', function(){ cursor.classList.remove('active'); });
-        })();
-
-        // ===== BUTTON HOVER =====
-        (function(){
-            if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-            document.querySelectorAll('.btn-primary, .btn-secondary').forEach(function(btn){
-                btn.addEventListener('mousemove', function(e){
-                    var rect = btn.getBoundingClientRect();
-                    var x = (e.clientX - rect.left - rect.width/2) * 0.15;
-                    var y = (e.clientY - rect.top - rect.height/2) * 0.15 - 2;
-                    btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-                });
-                btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
-            });
-        })();
-
-        // ===== BACK TO TOP =====
-        (function(){
-            var btn = document.getElementById('back-to-top');
-            window.addEventListener('scroll', function(){
-                if(window.scrollY > 400) btn.classList.add('show');
-                else btn.classList.remove('show');
-            });
-            btn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
-        })();
-
-        // ===== NAV TOGGLE =====
-        (function(){
-            var toggle = document.getElementById('navToggle');
-            var menu = document.getElementById('mobileMenu');
-            toggle.addEventListener('click', function(){
-                toggle.classList.toggle('active');
-                menu.classList.toggle('open');
-            });
-            menu.querySelectorAll('a').forEach(function(link){
-                link.addEventListener('click', function(){
-                    toggle.classList.remove('active');
-                    menu.classList.remove('open');
-                });
-            });
-        })();
-
-        // ===== CURRENT PAGE =====
-        (function(){
-            var current = document.body.dataset.pageName || 'Главная';
-            document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function(a){
-                if(a.textContent.trim() === current) a.classList.add('current');
-            });
-        })();
-
-        // ===== ФОРМА (маска телефона) =====
-        document.addEventListener('DOMContentLoaded', function(){
-            const form = document.getElementById('leadForm');
-            const nameInput = document.getElementById('nameInput');
-            const phoneInput = document.getElementById('phoneInput');
-            const statusEl = document.getElementById('formStatus');
-            const submitBtn = document.getElementById('submitBtn');
-
-            phoneInput.addEventListener('input', function(e){
-                let value = this.value.replace(/\D/g, '');
-                if (value.length === 0) { this.value = ''; return; }
-                let formatted = '';
-                if (value.startsWith('7')) {
-                    value = value.slice(1);
-                } else if (value.startsWith('8')) {
-                    value = value.slice(1);
-                }
-                const parts = value.match(/^(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
-                if (parts) {
-                    formatted = '+7';
-                    if (parts[1]) formatted += ' (' + parts[1];
-                    if (parts[2]) formatted += ') ' + parts[2];
-                    if (parts[3]) formatted += '-' + parts[3];
-                    if (parts[4]) formatted += '-' + parts[4];
-                }
-                this.value = formatted.trim();
-            });
-
-            form.addEventListener('submit', async function(e){
-                e.preventDefault();
-                const name = nameInput.value.trim() || 'Аноним';
-                const phoneRaw = phoneInput.value.replace(/\D/g, '');
-                if (phoneRaw.length < 10) {
-                    statusEl.textContent = 'Введите корректный номер телефона (10 цифр)';
-                    statusEl.className = 'error';
-                    return;
-                }
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = 'Отправка...';
-                statusEl.textContent = '';
-                statusEl.className = '';
-                try {
-                    const response = await fetch('https://botsevstroy.ru/submit_lead', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ phone: phoneRaw, name: name })
-                    });
-                    const result = await response.json();
-                    if (result.ok) {
-                        statusEl.textContent = 'Заявка принята! Мы свяжемся с вами.';
-                        statusEl.className = 'success';
-                        phoneInput.value = '';
-                        nameInput.value = '';
-                        setTimeout(() => { window.location.href = '/thank-you.html'; }, 2000);
-                    } else {
-                        throw new Error(result.error || 'Ошибка отправки');
-                    }
-                } catch (error) {
-                    console.error(error);
-                    statusEl.textContent = 'Что-то пошло не так. Попробуйте позже.';
-                    statusEl.className = 'error';
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<span>Получить план</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
-                }
-            });
-        });
-
-        // ===== КОНСТРУКТОР =====
-        let currentStep = 1;
-        const totalSteps = 4;
-        let state = {
-            business: null,
-            services: [],
-            pain: null
-        };
-
-        const businessLabels = {
-            'service': 'Услуги / Консалтинг',
-            'delivery': 'Доставка / Логистика',
-            'trade': 'Торговля',
-            'production': 'Производство / Строительство',
-            'medicine': 'Медицина / Образование',
-            'other': 'Другое'
-        };
-
-        const painLabels = {
-            'rutine': 'Много рутины',
-            'lose': 'Теряем клиентов',
-            'conversion': 'Плохая конверсия',
-            'ads-cost': 'Дорогая реклама',
-            'orders': 'Сложно управлять заказами',
-            'manual': 'Всё вручную'
-        };
-
-        const effectMap = {
-            'rutine': 'сокращение рутины на 60%',
-            'lose': 'увеличение конверсии в заявки на 40%',
-            'conversion': 'рост заявок с сайта на 50%',
-            'ads-cost': 'снижение стоимости заявки на 30%',
-            'orders': 'автоматизация управления заказами на 80%',
-            'manual': 'ускорение обработки заявок в 3 раза'
-        };
-
-        function updateProgress() {
-            const pct = (currentStep / totalSteps) * 100;
-            document.getElementById('progressBar').style.width = pct + '%';
-            document.getElementById('progressText').textContent = Math.round(pct) + '%';
-            document.getElementById('stepNum').textContent = currentStep;
-            document.getElementById('prevBtn').style.visibility = currentStep === 1 ? 'hidden' : 'visible';
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentStep === totalSteps) {
-                nextBtn.textContent = 'Получить план';
-            } else {
-                nextBtn.textContent = 'Далее →';
-            }
-            document.querySelectorAll('.validation-hint').forEach(h => h.textContent = '');
-        }
-
-        function showStep(n) {
-            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-            document.querySelector('.step[data-step="' + n + '"]').classList.add('active');
-            currentStep = n;
-            updateProgress();
-        }
-
-        function selectOption(el, step) {
-            const parent = el.closest('.option-grid') || el.closest('.option-grid-2');
-            parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-            el.classList.add('selected');
-            if (step === 1) {
-                state.business = el.dataset.value;
-                document.getElementById('step1Hint').textContent = '';
-            } else if (step === 3) {
-                state.pain = el.dataset.value;
-                document.getElementById('step3Hint').textContent = '';
-            }
-        }
-
-        function toggleService(el) {
-            el.classList.toggle('selected');
-            const services = [];
-            document.querySelectorAll('#step2Options .option-card.selected').forEach(c => services.push(c.dataset.value));
-            state.services = services;
-            document.getElementById('serviceCount').textContent = services.length;
-            const discount = services.length >= 4 ? 15 : services.length >= 3 ? 10 : services.length >= 2 ? 5 : 0;
-            const hint = document.getElementById('discountHint');
-            if (discount > 0) {
-                hint.style.display = 'inline';
-                document.getElementById('discountPercent').textContent = discount;
-            } else {
-                hint.style.display = 'none';
-            }
-            document.getElementById('step2Hint').textContent = '';
-        }
-
-        function showHint(step, msg) {
-            const hint = document.getElementById('step' + step + 'Hint');
-            if (hint) hint.textContent = msg;
-        }
-
-        function nextStep() {
-            if (currentStep === 1) {
-                if (!state.business) {
-                    showHint(1, 'Выберите сферу бизнеса');
-                    return;
-                }
-            }
-            if (currentStep === 2) {
-                if (state.services.length === 0) {
-                    showHint(2, 'Выберите хотя бы одну услугу');
-                    return;
-                }
-            }
-            if (currentStep === 3) {
-                if (!state.pain) {
-                    showHint(3, 'Выберите главную проблему');
-                    return;
-                }
-            }
-
-            if (currentStep === totalSteps) {
-                generateResult();
-                return;
-            }
-            showStep(currentStep + 1);
-        }
-
-        function prevStep() {
-            if (currentStep > 1) showStep(currentStep - 1);
-        }
-
-        const servicePrices = {
-            'bot-simple': 100000,
-            'bot-catalog': 150000,
-            'crm': 120000,
-            'site': 80000,
-            'ads': 30000,
-            'neuro': 50000
-        };
-
-        const serviceLabels = {
-            'bot-simple': 'Чат-бот для заявок',
-            'bot-catalog': 'Бот с каталогом и оплатой',
-            'crm': 'Интеграция с CRM + AI',
-            'site': 'Сайт с интеграциями',
-            'ads': 'Настройка рекламы (ежемесячно)',
-            'neuro': 'Нейросети для бизнеса'
-        };
-
-        const timelineMap = {
-            'bot-simple': 2,
-            'bot-catalog': 3,
-            'crm': 4,
-            'site': 3,
-            'ads': 1,
-            'neuro': 5
-        };
-
-        function generateResult() {
-            const services = state.services;
-            let total = 0;
-            const breakdown = [];
-            let adsMonthly = 0;
-            services.forEach(s => {
-                const price = servicePrices[s] || 0;
-                if (s === 'ads') {
-                    adsMonthly = price;
-                } else {
-                    total += price;
-                    breakdown.push(serviceLabels[s] + ': ' + price.toLocaleString() + ' ₽');
-                }
-            });
-
-            let discount = services.length >= 4 ? 15 : services.length >= 3 ? 10 : services.length >= 2 ? 5 : 0;
-            let discountAmount = 0;
-            if (discount > 0 && total > 0) {
-                discountAmount = Math.round(total * discount / 100);
-            }
-            let finalTotal = total - discountAmount;
-
-            document.getElementById('resultPrice').textContent = finalTotal.toLocaleString() + ' ₽';
-
-            let bd = breakdown.join('<br>');
-            if (discount > 0 && discountAmount > 0) {
-                bd += '<br><span style="color:var(--accent);">Скидка ' + discount + '%: -' + discountAmount.toLocaleString() + ' ₽</span>';
-            }
-            if (adsMonthly > 0) {
-                bd += '<br><span style="color:var(--muted);">Реклама: ' + adsMonthly.toLocaleString() + ' ₽/мес (отдельно)</span>';
-            }
-            document.getElementById('resultBreakdown').innerHTML = bd;
-
-            let maxWeeks = 2;
-            services.forEach(s => {
-                const w = timelineMap[s] || 2;
-                if (w > maxWeeks) maxWeeks = w;
-            });
-            document.getElementById('resultTimeline').textContent = maxWeeks + '–' + (maxWeeks + 1) + ' недель';
-
-            const effectText = effectMap[state.pain] || 'повышение эффективности бизнеса';
-            document.getElementById('effectText').textContent = effectText;
-
-            const container = document.getElementById('resultServices');
-            container.innerHTML = services.map(s => '<span class="service-tag">' + serviceLabels[s] + '</span>').join('');
-
-            document.getElementById('resultBusiness').textContent = businessLabels[state.business] || '—';
-            document.getElementById('resultPain').textContent = painLabels[state.pain] || '—';
-
-            showStep(4);
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.target.classList.contains('option-card')) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    e.target.click();
-                }
-            }
-        });
     </script>
 </body>
 </html>
