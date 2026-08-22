@@ -8,10 +8,12 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#0A0B10" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <style>
+        /* ===== Тот же набор стилей, что и в service-bots.html ===== */
         :root {
             --bg: #0A0B10;
             --text: #E8E5DC;
@@ -256,9 +258,9 @@
                 <div class="nav-links">
                     <a href="index.html">Главная</a>
                     <a href="cases.html">Кейсы</a>
-                    <a href="index.html#contact">Контакты</a>
+                    <a href="index.html#lead">Контакты</a>
                 </div>
-                <a href="index.html#contact" class="nav-cta">Обсудить проект</a>
+                <a href="index.html#lead" class="nav-cta">Обсудить проект</a>
                 <button class="nav-toggle" id="navToggle" aria-label="Открыть меню"><span></span><span></span><span></span></button>
             </div>
         </div>
@@ -267,8 +269,8 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html">Главная</a>
         <a href="cases.html">Кейсы</a>
-        <a href="index.html#contact">Контакты</a>
-        <a href="index.html#contact" class="mm-cta">Обсудить проект</a>
+        <a href="index.html#lead">Контакты</a>
+        <a href="index.html#lead" class="mm-cta">Обсудить проект</a>
     </div>
 
     <div class="site-wrapper">
@@ -294,8 +296,8 @@
             <div class="price-tag">От 10 000 ₽ — цена зависит от сложности</div>
 
             <div class="btn-row">
-                <a href="https://t.me/Bot_Craft_Studio" class="btn-primary" target="_blank">Обсудить в Telegram</a>
-                <a href="https://max.ru/u/f9LHodD0cOIYKt2-0waplaXIiKugJ0glDXnc0NUIMk-BTSs6_2tSSb1mdzk" class="btn-secondary" target="_blank">Написать в MAX</a>
+                <a href="https://t.me/Bot_Craft_StudioBot" class="btn-primary" target="_blank">Обсудить в Telegram</a>
+                <a href="https://max.ru/id773475339010_bot" class="btn-secondary" target="_blank">Написать в MAX</a>
             </div>
         </div>
 
@@ -313,7 +315,6 @@
     </div>
 
     <script>
-        // ===== Навигация =====
         (function() {
             var toggle = document.getElementById('navToggle');
             var menu = document.getElementById('mobileMenu');
