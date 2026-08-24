@@ -114,33 +114,85 @@
             background: var(--gradient-hero); z-index: 9998; transition: width 0.1s linear;
         }
 
-        #intro {
-            position: fixed; inset: 0; z-index: 10002;
+        /* ========== ПРЕЛОАДЕР (ЧАТ-ЗАСТАВКА) ========== */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 100000;
             background: var(--bg);
-            display: flex; align-items: center; justify-content: center; flex-direction: column;
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            transition: opacity 1s ease, visibility 1s ease;
+            opacity: 1;
+            visibility: visible;
         }
-        #intro.hide { opacity: 0; transform: scale(1.02); pointer-events: none; }
-        #intro .logo { opacity: 0; animation: introFade 0.8s ease forwards; text-align: center; }
-        @keyframes introFade { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
-        #intro .sub { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: var(--letter-spacing-wide); text-transform: uppercase; color: var(--dim); margin-top: 16px; opacity: 0; animation: introFade 0.8s 0.3s ease forwards; }
-        #intro .loader { margin-top: 30px; width: 80px; height: 1px; background: rgba(201,168,124,0.15); position: relative; overflow: hidden; }
-        #intro .loader::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: var(--gradient-hero); animation: loadBar 1.2s ease-in-out forwards; }
-        @keyframes loadBar { 0% { left: -100%; } 100% { left: 100%; } }
-        #intro .skip-hint { margin-top: 20px; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: var(--faint); opacity: 0; animation: introFade 0.8s 0.6s ease forwards; }
-
-        #three-canvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0; pointer-events: none; opacity: 0.2;
-        }
-        body::before {
-            content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            opacity: 0.02;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
+        .loader-chat {
+            max-width: 700px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .loader-chat .msg {
+            font-size: clamp(22px, 4vw, 36px);
+            line-height: 1.4;
+            font-weight: 300;
+            color: var(--text);
+            animation: fadeUp 0.6s ease;
+            max-width: 85%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .loader-chat .msg.user {
+            align-self: flex-end;
+            text-align: right;
+            color: var(--accent);
+        }
+
+        .loader-chat .msg.bot {
+            align-self: flex-start;
+            text-align: left;
+            color: var(--text);
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .typing-dots span {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            animation: typing 1.4s infinite both;
+        }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.5); opacity: 0.3; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== ОСТАЛЬНЫЕ СТИЛИ ===== */
         .wordmark {
             font-family: var(--serif);
             font-weight: 400;
@@ -314,63 +366,62 @@
         }
         .hero-content { max-width: 760px; }
         .hero-badge {
-            font-family: var(--mono);
-            font-size: 11px;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--accent);
-            border: 1px solid var(--line-strong);
-            padding: 4px 16px;
-            display: inline-block;
-            margin-bottom: 32px;
-            background: var(--accent-soft);
-            border-radius: 20px;
+            background: none !important;
+            border: none !important;
+            color: #c9a87c !important;
+            font-size: 10px !important;
+            letter-spacing: 6px !important;
+            text-transform: uppercase !important;
+            padding: 0 !important;
+            margin-bottom: 24px !important;
+            font-weight: 300 !important;
+            font-family: 'Inter', sans-serif !important;
+            opacity: 0.7 !important;
+            border-radius: 0 !important;
         }
         .hero h1 {
-            font-family: var(--serif);
-            font-weight: 400;
-            line-height: 1.05;
-            margin-bottom: 28px;
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 6px;
-            letter-spacing: -0.02em;
-        }
-        .hero h1 .strike {
-            font-size: clamp(18px, 2.2vw, 24px);
-            text-decoration: line-through;
-            opacity: 0.32;
-            font-weight: var(--font-weight-light);
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 200 !important;
+            line-height: 1.1 !important;
+            margin-bottom: 16px !important;
+            color: #E8E5DC !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0px !important;
+            letter-spacing: -0.02em !important;
         }
         .hero h1 .big {
-            font-size: clamp(64px,11vw,132px);
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-style: italic;
-            line-height: 1.2;
-            padding: 0.15em 0;
-            display: inline-block;
+            font-size: clamp(64px,11vw,132px) !important;
+            background: var(--gradient-hero) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+            font-style: italic !important;
+            line-height: 1.2 !important;
+            padding: 0.15em 0 !important;
+            display: inline-block !important;
+        }
+        .hero h1 .strike {
+            font-size: clamp(18px, 2.2vw, 24px) !important;
+            text-decoration: line-through !important;
+            opacity: 0.32 !important;
+            font-weight: var(--font-weight-light) !important;
         }
         .hero h1 .tail {
-            font-size: clamp(26px,3.6vw,38px);
-            color: var(--text);
-            font-weight: var(--font-weight-light);
-            line-height: 1.2;
-            padding-top: 4px;
+            font-size: clamp(26px,3.6vw,38px) !important;
+            color: var(--text) !important;
+            font-weight: var(--font-weight-light) !important;
+            line-height: 1.2 !important;
+            padding-top: 4px !important;
         }
         .hero h1 .tail .accent {
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-style: italic;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 2px;
+            background: var(--gradient-hero) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+            font-style: italic !important;
+            border-bottom: 2px solid var(--accent) !important;
+            padding-bottom: 2px !important;
         }
         .hero-graphic {
             position: absolute;
@@ -384,14 +435,19 @@
         }
         @media (max-width:1100px) { .hero-graphic { display: none; } }
         .hero-sub {
-            font-size: 17px;
-            font-weight: var(--font-weight-light);
-            color: var(--muted);
-            max-width: 560px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            padding-left: 24px;
-            border-left: 2px solid var(--line-strong);
+            font-size: 15px !important;
+            font-weight: 200 !important;
+            color: #b0b3b8 !important;
+            max-width: 500px !important;
+            line-height: 1.8 !important;
+            margin-bottom: 28px !important;
+            padding-left: 0 !important;
+            border-left: none !important;
+            font-family: 'Inter', sans-serif !important;
+            background: rgba(201,168,124,0.04) !important;
+            padding: 12px 16px !important;
+            border-radius: 4px !important;
+            border-left: 2px solid rgba(201,168,124,0.2) !important;
         }
         .scroll-cue {
             position: absolute;
@@ -455,7 +511,8 @@
             stroke-width: 6;
             stroke-linecap: round;
             stroke-dasharray: 283;
-            /* stroke-dashoffset управляется через JS, начальное значение 283 */
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 2s ease;
         }
         .stat-circle .percent {
             position: absolute;
@@ -1045,7 +1102,6 @@
 
         .stat-svg-defs { position: absolute; width: 0; height: 0; }
 
-        /* Калькулятор */
         .constructor-wrapper {
             background: var(--gradient-card);
             border: 1px solid var(--line-strong);
@@ -1279,6 +1335,13 @@
     </style>
 </head>
 <body>
+
+    <!-- ========== ПРЕЛОАДЕР (ЧАТ-ЗАСТАВКА) ========== -->
+    <div id="loader">
+        <div class="loader-chat" id="loaderChat"></div>
+    </div>
+
+    <!-- ========== ОСНОВНОЙ КОНТЕНТ ========== -->
     <svg class="stat-svg-defs" aria-hidden="true">
         <defs>
             <linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1287,13 +1350,6 @@
             </linearGradient>
         </defs>
     </svg>
-
-    <div id="intro" role="dialog" aria-modal="true" aria-label="Заставка">
-        <div class="logo wordmark wordmark-lg">Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span></div>
-        <div class="sub">полный цикл цифровизации</div>
-        <div class="loader" aria-hidden="true"></div>
-        <div class="skip-hint">нажмите, чтобы пропустить</div>
-    </div>
 
     <div id="three-canvas" aria-hidden="true"></div>
 
@@ -1336,6 +1392,7 @@
 
     <div class="site-wrapper">
 
+        <!-- ===== HERO ===== -->
         <header class="hero" id="hero">
             <svg class="hero-graphic" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="300" cy="60" r="46" fill="var(--accent)" opacity="0.06"/>
@@ -1378,32 +1435,43 @@
                 </g>
                 <line x1="0" y1="380" x2="380" y2="380" stroke="var(--line-strong)" stroke-width="1"/>
             </svg>
-            <div class="hero-content">
-                <div class="hero-badge">полный цикл цифровизации</div>
-                <h1>
-                    <span class="strike">Ручная работа —</span>
-                    <span class="big">Выводим бизнес<br>в цифру</span>
-                    <span class="tail">от сайта до рекламы — <span class="accent">под ключ</span></span>
-                </h1>
-                <p class="hero-sub">
-                    Сайты, боты, CRM, нейросети, реклама в Яндекс Директ — мы проводим бизнес за руку на всех этапах. Не просто делаем, а сопровождаем до запуска и результата.
-                </p>
-                <div class="hero-cta btn-row">
-                    <a href="#lead" class="btn-primary">Начать цифровой старт</a>
-                    <a href="#cases" class="btn-secondary">Смотреть кейсы</a>
+
+            <div class="hero-content" style="position:relative; z-index:2;">
+                <div class="hero-badge" style="background: none; border: none; color: #c9a87c; font-size: 10px; letter-spacing: 6px; text-transform: uppercase; padding: 0; margin-bottom: 24px; font-weight: 300; font-family: 'Inter', sans-serif; opacity: 0.7;">
+                    ⟡ ЦИФРОВОЙ АПГРЕЙД
                 </div>
-                <div style="margin-top:28px; font-family:var(--mono); font-size:11px; font-weight:300; letter-spacing:1px; color:var(--faint);">
-                    <span>Бесплатный аудит</span>
-                    <span style="margin:0 12px;">·</span>
-                    <span>Фиксированная цена</span>
-                    <span style="margin:0 12px;">·</span>
-                    <span>Ведём до результата</span>
+                <h1 style="font-family: 'Inter', sans-serif; font-weight: 200; line-height: 1.1; margin-bottom: 16px; color: #E8E5DC; display: flex; flex-direction: column; gap: 0px; letter-spacing: -0.02em;">
+                    <span style="font-size: clamp(32px, 4.5vw, 56px); font-weight: 200; color: #b0b3b8; display: block;">
+                        Ваш бизнес достоин
+                    </span>
+                    <span style="font-size: clamp(44px, 7vw, 88px); font-weight: 200; background: linear-gradient(135deg, #c9a87c 20%, #dfcba3 60%, #c9a87c 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; margin-top: -6px;">
+                        нормальной
+                    </span>
+                    <span style="font-size: clamp(56px, 9vw, 120px); font-weight: 300; color: #E8E5DC; display: block; margin-top: -10px; letter-spacing: -0.04em;">
+                        цифровизации
+                    </span>
+                </h1>
+                <p class="hero-sub" style="font-size: 15px; font-weight: 200; color: #b0b3b8; max-width: 500px; line-height: 1.8; margin-bottom: 28px; padding-left: 0; border-left: none; font-family: 'Inter', sans-serif; background: rgba(201,168,124,0.04); padding: 12px 16px; border-radius: 4px; border-left: 2px solid rgba(201,168,124,0.2);">
+                    Сайты, боты, CRM, нейросети и реклама —<br>мы сделаем так, чтобы клиенты сами к вам шли.
+                </p>
+                <div class="hero-cta btn-row" style="gap: 16px; flex-wrap: wrap;">
+                    <a href="#lead" class="btn-primary" style="background: linear-gradient(135deg, #c9a87c, #dabf92); color: #0A0B10; padding: 14px 40px; border-radius: 8px; font-weight: 400; letter-spacing: 1.5px; font-size: 15px; box-shadow: 0 4px 16px rgba(201,168,124,0.2); transition: all 0.3s; border: none;">
+                        Начать цифровой старт
+                    </a>
+                    <a href="#cases" class="btn-secondary" style="border: 1px solid rgba(201,168,124,0.2); color: #E8E5DC; padding: 14px 36px; border-radius: 8px; font-weight: 300; letter-spacing: 1px; font-size: 14px; background: rgba(255,255,255,0.02); transition: all 0.3s;">
+                        Смотреть кейсы
+                    </a>
+                </div>
+                <div style="margin-top:28px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 200; letter-spacing: 2px; color: #7a7d86; display: flex; gap: 20px; flex-wrap: wrap; opacity: 0.5; border-top: 1px solid rgba(201,168,124,0.08); padding-top: 18px;">
+                    <span>✦ Бесплатный аудит</span>
+                    <span>✦ Фиксированная цена</span>
+                    <span>✦ Ведём до результата</span>
                 </div>
             </div>
             <div class="scroll-cue"><span class="line"></span> Листайте</div>
         </header>
 
-        <!-- Статистика -->
+        <!-- ===== СТАТИСТИКА ===== -->
         <section id="proof" style="padding-top:0; padding-bottom:20px; border-top:none;">
             <div class="stat-strip reveal">
                 <div class="stat-item">
@@ -1418,7 +1486,7 @@
                     <div class="stat-circle">
                         <svg viewBox="0 0 100 100" aria-hidden="true">
                             <circle class="bg" cx="50" cy="50" r="45" />
-                            <circle class="progress" cx="50" cy="50" r="45" style="stroke-dashoffset:283;" />
+                            <circle class="progress" cx="50" cy="50" r="45" stroke-dashoffset="283" />
                         </svg>
                         <div class="percent">80%</div>
                     </div>
@@ -1428,7 +1496,7 @@
             </div>
         </section>
 
-        <!-- Интеграции -->
+        <!-- ===== ИНТЕГРАЦИИ ===== -->
         <div class="marquee-wrap" aria-label="Интеграции">
             <div class="marquee-label">Работаем поверх ваших систем</div>
             <div class="marquee">
@@ -1439,7 +1507,7 @@
             </div>
         </div>
 
-        <!-- Услуги (сокращённо, чтобы не раздувать) -->
+        <!-- ===== УСЛУГИ ===== -->
         <section id="work">
             <div class="section-marker reveal"><span class="section-index">01</span><span class="section-rule"></span><span class="section-eyebrow">Услуги</span></div>
             <h2 class="section-title reveal">Что мы строим</h2>
@@ -1478,7 +1546,7 @@
             </div>
         </section>
 
-        <!-- Цены (заглушка) -->
+        <!-- ===== ЦЕНЫ ===== -->
         <section id="prices">
             <div class="section-marker reveal"><span class="section-index">02</span><span class="section-rule"></span><span class="section-eyebrow">Стоимость</span></div>
             <h2 class="section-title reveal">Стартовые цены</h2>
@@ -1510,7 +1578,7 @@
             </div>
         </section>
 
-        <!-- Цифровой старт -->
+        <!-- ===== ЦИФРОВОЙ СТАРТ ===== -->
         <section id="digital">
             <div class="section-marker reveal"><span class="section-index">03</span><span class="section-rule"></span><span class="section-eyebrow">Полный цикл</span></div>
             <h2 class="section-title reveal">Цифровой старт <span style="color:var(--accent);font-style:italic;">за руку</span></h2>
@@ -1539,7 +1607,7 @@
             </div>
         </section>
 
-        <!-- Процесс -->
+        <!-- ===== ПРОЦЕСС ===== -->
         <section id="process">
             <div class="section-marker reveal"><span class="section-index">04</span><span class="section-rule"></span><span class="section-eyebrow">Как мы работаем</span></div>
             <h2 class="section-title reveal">Процесс</h2>
@@ -1553,7 +1621,7 @@
             </div>
         </section>
 
-        <!-- Преимущества (сокращённо) -->
+        <!-- ===== ПРЕИМУЩЕСТВА ===== -->
         <section id="benefits">
             <div class="section-marker reveal"><span class="section-index">05</span><span class="section-rule"></span><span class="section-eyebrow">Почему мы</span></div>
             <h2 class="section-title reveal">Преимущества</h2>
@@ -1565,7 +1633,9 @@
                     <h4>Индивидуальный подход</h4>
                     <p>Не продаём коробочные решения — настраиваем логику под ваши задачи и бизнес-процессы.</p>
                     <button class="benefit-toggle" aria-expanded="false" onclick="this.nextElementSibling.classList.toggle('open'); this.setAttribute('aria-expanded', this.nextElementSibling.classList.contains('open')); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
-                    <div class="benefit-detail"><p>Мы начинаем с бесплатной диагностики ваших бизнес-процессов. Выявляем узкие места, где автоматизация даст максимальный эффект. На основе этого проектируем решение именно под вашу воронку продаж, а не предлагаем шаблон. В итоге вы получаете инструмент, который идеально вписывается в вашу текущую работу и масштабируется вместе с бизнесом.</p></div>
+                    <div class="benefit-detail">
+                        <p>Мы начинаем с бесплатной диагностики ваших бизнес-процессов. Выявляем узкие места, где автоматизация даст максимальный эффект. На основе этого проектируем решение именно под вашу воронку продаж, а не предлагаем шаблон. В итоге вы получаете инструмент, который идеально вписывается в вашу текущую работу и масштабируется вместе с бизнесом.</p>
+                    </div>
                 </div>
                 <div class="benefit-item reveal">
                     <div class="b-graphic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3v4M16 3v4M5 7h14v5a7 7 0 0 1-14 0V7Z"/><path d="M12 19v2"/></svg></div>
@@ -1573,7 +1643,9 @@
                     <h4>Работаем через API</h4>
                     <p>Интеграции с Telegram, MAX, Яндекс Такси, CRM — без потери данных и безопасности.</p>
                     <button class="benefit-toggle" aria-expanded="false" onclick="this.nextElementSibling.classList.toggle('open'); this.setAttribute('aria-expanded', this.nextElementSibling.classList.contains('open')); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
-                    <div class="benefit-detail"><p>Мы используем только официальные API и проверенные протоколы. Все данные передаются в зашифрованном виде, доступ строго по ролям. Интегрируем с Telegram, MAX, VK, Яндекс Такси, amoCRM, Bitrix24 и десятками других сервисов. Вы можете быть уверены, что ваши данные не утекут, а система будет работать стабильно даже при высоких нагрузках.</p></div>
+                    <div class="benefit-detail">
+                        <p>Мы используем только официальные API и проверенные протоколы. Все данные передаются в зашифрованном виде, доступ строго по ролям. Интегрируем с Telegram, MAX, VK, Яндекс Такси, amoCRM, Bitrix24 и десятками других сервисов. Вы можете быть уверены, что ваши данные не утекут, а система будет работать стабильно даже при высоких нагрузках.</p>
+                    </div>
                 </div>
                 <div class="benefit-item reveal">
                     <div class="b-graphic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></div>
@@ -1581,7 +1653,9 @@
                     <h4>Поддержка после запуска</h4>
                     <p>Донастраиваем первые недели, а дальше — на договорённости. Мы не бросаем проекты.</p>
                     <button class="benefit-toggle" aria-expanded="false" onclick="this.nextElementSibling.classList.toggle('open'); this.setAttribute('aria-expanded', this.nextElementSibling.classList.contains('open')); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
-                    <div class="benefit-detail"><p>После запуска мы остаёмся с вами на связи минимум 2 недели, чтобы оперативно вносить правки по вашим замечаниям. Вы можете дорабатывать логику бота, добавлять новые сценарии, менять интеграции – мы всегда на подхвате. Дальше поддержка обсуждается индивидуально, но мы никогда не исчезаем после получения оплаты.</p></div>
+                    <div class="benefit-detail">
+                        <p>После запуска мы остаёмся с вами на связи минимум 2 недели, чтобы оперативно вносить правки по вашим замечаниям. Вы можете дорабатывать логику бота, добавлять новые сценарии, менять интеграции – мы всегда на подхвате. Дальше поддержка обсуждается индивидуально, но мы никогда не исчезаем после получения оплаты.</p>
+                    </div>
                 </div>
                 <div class="benefit-item reveal">
                     <div class="b-graphic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="6" rx="1"/><rect x="5" y="14" width="14" height="6" rx="1"/><circle cx="8.5" cy="7" r="0.6" fill="currentColor"/><circle cx="8.5" cy="17" r="0.6" fill="currentColor"/></svg></div>
@@ -1589,12 +1663,14 @@
                     <h4>Хостинг у вас</h4>
                     <p>Мы не берём на себя хостинг — только логика и интеграции. Всё под вашим контролем.</p>
                     <button class="benefit-toggle" aria-expanded="false" onclick="this.nextElementSibling.classList.toggle('open'); this.setAttribute('aria-expanded', this.nextElementSibling.classList.contains('open')); this.textContent = this.nextElementSibling.classList.contains('open') ? 'Скрыть' : 'Подробнее';">Подробнее</button>
-                    <div class="benefit-detail"><p>Мы не храним ваши данные и не берём плату за размещение. Все наши решения работают на вашем сервере или в вашем облаке. Вы полностью контролируете доступ, безопасность и масштабирование. Мы даём только логику и настройки интеграций – вы остаётесь единственным владельцем всей инфраструктуры.</p></div>
+                    <div class="benefit-detail">
+                        <p>Мы не храним ваши данные и не берём плату за размещение. Все наши решения работают на вашем сервере или в вашем облаке. Вы полностью контролируете доступ, безопасность и масштабирование. Мы даём только логику и настройки интеграций – вы остаётесь единственным владельцем всей инфраструктуры.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Кейсы -->
+        <!-- ===== КЕЙСЫ ===== -->
         <section id="cases">
             <div class="section-marker reveal"><span class="section-index">06</span><span class="section-rule"></span><span class="section-eyebrow">Портфолио</span></div>
             <h2 class="section-title reveal">Реальные проекты</h2>
@@ -1636,7 +1712,7 @@
             <div class="section-cta reveal"><a href="cases.html" class="btn-secondary">Все кейсы</a></div>
         </section>
 
-        <!-- Highlight -->
+        <!-- ===== HIGHLIGHT ===== -->
         <section class="highlight-band">
             <svg class="hl-graphic" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <circle cx="100" cy="100" r="86" fill="none" stroke="var(--bg)" stroke-width="10" opacity="0.1"/>
@@ -1662,7 +1738,6 @@
                 Ответьте на 4 вопроса — получите <strong>примерную стоимость и сроки</strong>.<br>
                 <span style="color:var(--accent);">Это ориентир для обсуждения, не коммерческое предложение.</span>
             </p>
-
             <div class="constructor-wrapper reveal" id="constructorWrapper">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
                     <div style="font-family: var(--mono); font-size: 12px; color: var(--dim); letter-spacing: 1px;">
@@ -1812,7 +1887,7 @@
                         <div class="validation-hint" id="step3Hint" aria-live="polite"></div>
                     </div>
 
-                    <!-- Шаг 4: результат с расчётом -->
+                    <!-- Шаг 4 -->
                     <div class="step" data-step="4">
                         <h3 style="font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 8px;">
                             4. Ваш результат
@@ -1820,7 +1895,6 @@
                         <p style="color: var(--muted); font-size: 14px; margin-bottom: 24px;">
                             Примерный план и ориентировочная стоимость на основе ваших ответов.
                         </p>
-
                         <div id="resultContainer">
                             <div class="result-card">
                                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
@@ -1838,7 +1912,6 @@
                                     Ожидаемый эффект: <span id="effectText">повышение эффективности бизнеса</span>
                                 </div>
                             </div>
-
                             <div style="margin-top: 16px;">
                                 <div style="font-size: 14px; color: var(--dim); margin-bottom: 8px;">Вы выбрали:</div>
                                 <div id="resultServices"></div>
@@ -1849,7 +1922,6 @@
                                     Боль: <span id="resultPain" style="color: var(--text);">—</span>
                                 </div>
                             </div>
-
                             <div style="margin-top: 24px; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid var(--line);">
                                 <div style="font-size: 14px; color: var(--muted);">
                                     <strong style="color:var(--accent);">Важно:</strong> Это предварительный расчёт. Точная стоимость и сроки определяются после бесплатного аудита.
@@ -1869,7 +1941,7 @@
             </div>
         </section>
 
-        <!-- Гарантия -->
+        <!-- ===== ГАРАНТИЯ ===== -->
         <section style="padding-top:0; border-top:none;">
             <div class="guarantee-block reveal">
                 <h3>Гарантируем результат</h3>
@@ -1879,7 +1951,7 @@
             </div>
         </section>
 
-        <!-- FAQ -->
+        <!-- ===== FAQ ===== -->
         <section id="faq">
             <div class="section-marker reveal"><span class="section-index">07</span><span class="section-rule"></span><span class="section-eyebrow">Часто спрашивают</span></div>
             <h2 class="section-title reveal">Ответы на вопросы</h2>
@@ -1891,7 +1963,7 @@
             </div>
         </section>
 
-        <!-- Форма -->
+        <!-- ===== ФОРМА ===== -->
         <section id="lead">
             <div class="section-marker reveal">
                 <span class="section-index">08</span>
@@ -1955,6 +2027,7 @@
             </div>
         </section>
 
+        <!-- ===== ФУТЕР ===== -->
         <footer>
             <div class="footer-top">
                 <div class="footer-left">
@@ -1977,26 +2050,71 @@
                 <span>Юридический адрес: 125464, г. Москва, ш. Пятницкое, д. 6, кв. 68</span>
             </div>
         </footer>
+
     </div>
 
+    <!-- ===== КНОПКА НАВЕРХ ===== -->
     <button id="back-to-top" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
 
+    <!-- ===== СКРИПТЫ ===== -->
     <script>
-        // ========== INTRO ==========
-        (function(){
-            var intro = document.getElementById('intro');
-            var hideIntro = function(){
-                intro.classList.add('hide');
-                setTimeout(function(){ intro.style.display = 'none'; }, 500);
-            };
-            setTimeout(hideIntro, 500);
-            intro.addEventListener('click', hideIntro);
-            document.addEventListener('keydown', function(e){
-                if (e.key === 'Escape' && !intro.classList.contains('hide')) hideIntro();
-            });
+        // ===== ПРЕЛОАДЕР (ЧАТ) =====
+        (function() {
+            const loader = document.getElementById('loader');
+            const chatContainer = document.getElementById('loaderChat');
+
+            function addMessage(text, sender, delay) {
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        const msg = document.createElement('div');
+                        msg.className = `msg ${sender}`;
+                        msg.innerHTML = text;
+                        chatContainer.appendChild(msg);
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                        resolve();
+                    }, delay);
+                });
+            }
+
+            function showTyping() {
+                const typing = document.createElement('div');
+                typing.className = 'msg bot';
+                typing.id = 'typingIndicator';
+                typing.innerHTML = `<span class="typing-dots"><span></span><span></span><span></span></span>`;
+                chatContainer.appendChild(typing);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            function hideTyping() {
+                const el = document.getElementById('typingIndicator');
+                if (el) el.remove();
+            }
+
+            async function startLoaderChat() {
+                try {
+                    await addMessage('Где всё? Куда пропал сайт? Я ничего не вижу…', 'user', 2000);
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    showTyping();
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    hideTyping();
+                    await addMessage(
+                        'Всё ясно и без слов, <b>BotCraft Studio</b>.<br>Мы уже загружаем для вас полный цифровой инструментарий.<br>Подождите пару секунд – сайт появится.',
+                        'bot',
+                        0
+                    );
+                    await new Promise(resolve => setTimeout(resolve, 1200));
+                } catch (e) {
+                    console.warn('Ошибка в заставке:', e);
+                } finally {
+                    loader.classList.add('hide');
+                }
+            }
+
+            setTimeout(startLoaderChat, 300);
         })();
 
-        // ========== SCROLL PROGRESS ==========
+        // ===== ОСТАЛЬНЫЕ СКРИПТЫ (уже были в исходном файле) =====
+        // ===== SCROLL PROGRESS =====
         (function(){
             var bar = document.getElementById('scroll-progress');
             window.addEventListener('scroll', function(){
@@ -2007,7 +2125,7 @@
             }, {passive: true});
         })();
 
-        // ========== REVEAL ==========
+        // ===== REVEAL =====
         (function(){
             var reveals = document.querySelectorAll('.reveal');
             if('IntersectionObserver' in window){
@@ -2022,7 +2140,7 @@
             }
         })();
 
-        // ========== BACK TO TOP ==========
+        // ===== BACK TO TOP =====
         (function(){
             var btn = document.getElementById('back-to-top');
             window.addEventListener('scroll', function(){
@@ -2032,7 +2150,7 @@
             btn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
         })();
 
-        // ========== NAV TOGGLE ==========
+        // ===== NAV TOGGLE =====
         (function(){
             var toggle = document.getElementById('navToggle');
             var menu = document.getElementById('mobileMenu');
@@ -2062,7 +2180,7 @@
             });
         })();
 
-        // ========== АНИМАЦИЯ СТАТИСТИКИ ==========
+        // ===== АНИМАЦИЯ СТАТИСТИКИ =====
         (function(){
             function animateNumbers() {
                 var counters = document.querySelectorAll('.stat-num');
@@ -2097,7 +2215,7 @@
                     var progress = Math.min(elapsed / duration, 1);
                     var eased = 1 - Math.pow(1 - progress, 3);
                     var currentOffset = startOffset - (startOffset - targetOffset) * eased;
-                    circle.style.strokeDashoffset = currentOffset; // используем style
+                    circle.style.strokeDashoffset = currentOffset;
                     if (progress < 1) requestAnimationFrame(update);
                     else circle.style.strokeDashoffset = targetOffset;
                 }
@@ -2122,7 +2240,7 @@
             }
         })();
 
-        // ========== ФОРМА ==========
+        // ===== ФОРМА =====
         document.addEventListener('DOMContentLoaded', function(){
             var form = document.getElementById('leadForm');
             var nameInput = document.getElementById('nameInput');
@@ -2187,7 +2305,7 @@
             });
         });
 
-        // ========== КАЛЬКУЛЯТОР ==========
+        // ===== КАЛЬКУЛЯТОР =====
         (function(){
             var currentStep = 1;
             var totalSteps = 4;
@@ -2397,7 +2515,7 @@
             showStep(1);
         })();
 
-        // ========== 3D-фон ==========
+        // ===== 3D-ФОН =====
         (function() {
             if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             var script = document.createElement('script');
