@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" id="html-root">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,6 +35,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
+    <!-- Lenis (плавный скролл) -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -52,6 +55,7 @@
     </script>
 
     <style>
+        /* ===== БАЗОВЫЕ СТИЛИ ===== */
         :root {
             --bg: #0A0B10;
             --text: #E8E5DC;
@@ -96,25 +100,70 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
+            cursor: none;
         }
         ::selection { background: var(--accent); color: var(--bg); }
-        a { color: inherit; text-decoration: none; }
+        a { color: inherit; text-decoration: none; cursor: none; }
 
-        .site-wrapper {
-            position: relative;
-            z-index: 1;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 40px;
+        /* ===== 3D-ФОН ===== */
+        #three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
         }
-        @media (max-width: 768px) { .site-wrapper { padding: 0 20px; } }
-
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; height: 2px; width: 0%;
-            background: var(--gradient-hero); z-index: 9998; transition: width 0.1s linear;
+        #three-canvas.visible {
+            opacity: 0.2;
         }
 
-        /* ========== ПРЕЛОАДЕР (ЧАТ-ЗАСТАВКА) ========== */
+        body::before {
+            content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+
+        /* ===== КУРСОР-ПРОЖЕКТОР ===== */
+        #cursor-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9997;
+            pointer-events: none;
+            background: rgba(0,0,0,0.7);
+            mask-image: radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y), transparent 60%, black 100%);
+            -webkit-mask-image: radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y), transparent 60%, black 100%);
+            transition: mask-image 0.1s, -webkit-mask-image 0.1s;
+        }
+        #cursor-overlay.hidden {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        /* ===== КАСТОМНЫЙ КУРСОР ===== */
+        #cursor-dot {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background 0.2s;
+            mix-blend-mode: difference;
+        }
+        #cursor-dot.hover {
+            width: 30px;
+            height: 30px;
+            background: #fff;
+        }
+
+        /* ===== ПРЕЛОАДЕР (ЧАТ-ЗАСТАВКА) ===== */
         #loader {
             position: fixed;
             inset: 0;
@@ -192,30 +241,142 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== 3D-ФОН ===== */
-        #three-canvas {
+        /* ===== СКРОЛЛ-ПРОГРЕСС (КРУГ) ===== */
+        #scroll-circle {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9996;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
             opacity: 0;
-            transition: opacity 1.5s ease;
+            transform: scale(0.8);
+            transition: opacity 0.3s, transform 0.3s;
         }
-        #three-canvas.visible {
-            opacity: 0.2;
+        #scroll-circle.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        #scroll-circle svg {
+            transform: rotate(-90deg);
+            width: 60px;
+            height: 60px;
+        }
+        #scroll-circle .bg {
+            fill: none;
+            stroke: rgba(201,168,124,0.15);
+            stroke-width: 3;
+        }
+        #scroll-circle .progress {
+            fill: none;
+            stroke: url(#statGrad);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-dasharray: 170;
+            stroke-dashoffset: 170;
+            transition: stroke-dashoffset 0.1s;
+        }
+        #scroll-circle .arrow {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 20px;
+            pointer-events: none;
+            transform: rotate(90deg);
         }
 
-        body::before {
-            content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            opacity: 0.02;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
+        /* ===== ХЕДЕР (исчезает при скролле) ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(12px);
+            background: rgba(10,11,16,0.85);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .navbar.hide {
+            transform: translateY(-100%);
+            opacity: 0;
         }
 
-        /* ===== ОСТАЛЬНЫЕ СТИЛИ ===== */
+        /* ===== РАЗЛЕТАЮЩИЕСЯ БУКВЫ ===== */
+        .split-text {
+            display: inline-block;
+        }
+        .split-text .char {
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1), opacity 0.3s;
+            will-change: transform;
+        }
+        .split-text:hover .char {
+            opacity: 0.7;
+        }
+        .split-text .char:nth-child(1) { transition-delay: 0.00s; }
+        .split-text .char:nth-child(2) { transition-delay: 0.03s; }
+        .split-text .char:nth-child(3) { transition-delay: 0.06s; }
+        .split-text .char:nth-child(4) { transition-delay: 0.09s; }
+        .split-text .char:nth-child(5) { transition-delay: 0.12s; }
+        .split-text .char:nth-child(6) { transition-delay: 0.15s; }
+        .split-text .char:nth-child(7) { transition-delay: 0.18s; }
+        .split-text .char:nth-child(8) { transition-delay: 0.21s; }
+        .split-text .char:nth-child(9) { transition-delay: 0.24s; }
+        .split-text .char:nth-child(10) { transition-delay: 0.27s; }
+        .split-text .char:nth-child(11) { transition-delay: 0.30s; }
+        .split-text .char:nth-child(12) { transition-delay: 0.33s; }
+        .split-text .char:nth-child(13) { transition-delay: 0.36s; }
+        .split-text .char:nth-child(14) { transition-delay: 0.39s; }
+        .split-text .char:nth-child(15) { transition-delay: 0.42s; }
+        .split-text .char:nth-child(16) { transition-delay: 0.45s; }
+        .split-text .char:nth-child(17) { transition-delay: 0.48s; }
+        .split-text .char:nth-child(18) { transition-delay: 0.51s; }
+        .split-text .char:nth-child(19) { transition-delay: 0.54s; }
+        .split-text .char:nth-child(20) { transition-delay: 0.57s; }
+
+        .split-text .char:nth-child(odd):hover {
+            transform: translateY(-20px) rotate(-10deg) scale(1.1);
+        }
+        .split-text .char:nth-child(even):hover {
+            transform: translateY(20px) rotate(10deg) scale(1.1);
+        }
+
+        /* ===== АВТО-ТЕМА (ночная/дневная) ===== */
+        body.day-theme {
+            --bg: #f5f3f0;
+            --text: #1a1a1a;
+            --muted: #555;
+            --dim: #888;
+            --faint: #bbb;
+            --line: rgba(0,0,0,0.08);
+            --line-strong: rgba(0,0,0,0.15);
+            --accent-soft: rgba(201,168,124,0.12);
+        }
+        body.day-theme .navbar {
+            background: rgba(245,243,240,0.85);
+            border-bottom-color: rgba(0,0,0,0.06);
+        }
+        body.day-theme .hero h1 .big {
+            background: linear-gradient(135deg, #a8895e, #c9a87c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ===== ОСТАЛЬНЫЕ СТИЛИ (твои, без изменений) ===== */
+        .site-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        @media (max-width: 768px) { .site-wrapper { padding: 0 20px; } }
+
         .wordmark {
             font-family: var(--serif);
             font-weight: 400;
@@ -240,13 +401,6 @@
         .wordmark-sm { font-size: 14px; }
         .wordmark-sm .wm-sub { font-size: 0.45em; letter-spacing: 1.5px; }
 
-        .navbar {
-            position: sticky; top: 0; z-index: 100;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--line);
-            backdrop-filter: blur(12px);
-            background: rgba(10,11,16,0.85);
-        }
         .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
         .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
         .nav-right { display: flex; align-items: center; gap: 26px; }
@@ -407,7 +561,7 @@
             font-weight: 200 !important;
             line-height: 1.1 !important;
             margin-bottom: 16px !important;
-            color: #E8E5DC !important;
+            color: var(--text) !important;
             display: flex !important;
             flex-direction: column !important;
             gap: 0px !important;
@@ -475,7 +629,6 @@
         @keyframes scrollCue { 0% { left: -100%; } 50% { left: 0; } 100% { left: 100%; } }
         @media (max-width:768px) { .scroll-cue { display: none; } }
 
-        /* ===== СТАТИСТИКА ===== */
         .stat-strip {
             display: grid;
             grid-template-columns: repeat(3,1fr);
@@ -1076,22 +1229,6 @@
             font-weight: 300;
         }
 
-        #back-to-top {
-            position: fixed; right: 24px; bottom: 24px; z-index: 90;
-            width: 44px; height: 44px; border-radius: 50%;
-            border: 1px solid var(--line-strong);
-            background: rgba(10,11,16,0.7);
-            backdrop-filter: blur(6px);
-            color: var(--accent);
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transform: translateY(8px);
-            transition: opacity 0.3s, transform 0.3s, border-color 0.3s;
-        }
-        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        #back-to-top:hover { border-color: var(--accent); }
-        #back-to-top svg { width: 16px; height: 16px; }
-
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         .reveal-delay-1 { transition-delay: 0.1s; }
@@ -1300,7 +1437,7 @@
             .digital-grid { grid-template-columns: 1fr; }
             .prices-grid { grid-template-columns: 1fr; }
             #three-canvas { display: none; }
-            body { font-size: 16px; }
+            body { font-size: 16px; cursor: auto; }
             .scroll-cue { display: none; }
             .footer-top { flex-direction: column; align-items: flex-start; }
             .footer-bottom { flex-direction: column; align-items: flex-start; }
@@ -1308,6 +1445,8 @@
             .option-grid-2 { grid-template-columns: 1fr 1fr; }
             .constructor-wrapper { padding: 24px 16px; }
             .result-card .total-price { font-size: 32px; }
+            #cursor-overlay { display: none; }
+            #cursor-dot { display: none; }
         }
         @media (max-width:480px) {
             .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 12px; }
@@ -1322,6 +1461,9 @@
             .reveal { transition: opacity 0.3s ease; transform: none; }
             .marquee-track { animation: none !important; }
             * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+            #cursor-overlay { display: none; }
+            #cursor-dot { display: none; }
+            body { cursor: auto; }
         }
         @media (hover: hover) {
             .tilt-card:hover, .digital-step:hover, .case-card:hover, .price-item:hover {
@@ -1334,15 +1476,32 @@
 </head>
 <body>
 
-    <!-- ========== ПРЕЛОАДЕР (ЧАТ-ЗАСТАВКА) ========== -->
+    <!-- ===== КУРСОР-ПРОЖЕКТОР ===== -->
+    <div id="cursor-overlay"></div>
+    <div id="cursor-dot"></div>
+
+    <!-- ===== ПРЕЛОАДЕР (ЧАТ-ЗАСТАВКА) ===== -->
     <div id="loader">
         <div class="loader-chat" id="loaderChat"></div>
     </div>
 
-    <!-- ========== ОСНОВНОЙ КОНТЕНТ ========== -->
+    <!-- ===== СКРОЛЛ-ПРОГРЕСС (КРУГ) ===== -->
+    <div id="scroll-circle" class="visible">
+        <svg viewBox="0 0 60 60">
+            <circle class="bg" cx="30" cy="30" r="27" />
+            <circle class="progress" id="scrollCircleProgress" cx="30" cy="30" r="27" />
+        </svg>
+        <div class="arrow">↑</div>
+    </div>
+
+    <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
     <svg class="stat-svg-defs" aria-hidden="true">
         <defs>
             <linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#c9a87c" />
+                <stop offset="100%" stop-color="#dfcba3" />
+            </linearGradient>
+            <linearGradient id="scrollGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#c9a87c" />
                 <stop offset="100%" stop-color="#dfcba3" />
             </linearGradient>
@@ -1351,7 +1510,7 @@
 
     <div id="three-canvas" aria-hidden="true"></div>
 
-    <nav class="navbar" role="navigation" aria-label="Основная навигация">
+    <nav class="navbar" role="navigation" aria-label="Основная навигация" id="mainNav">
         <div class="nav-inner site-wrapper">
             <a href="#hero" class="nav-brand" aria-current="page">
                 <span class="wordmark wordmark-nav">
@@ -1390,20 +1549,18 @@
 
     <div class="site-wrapper">
 
-        <!-- ===== HERO (БЕЗ ГРАФИКА) ===== -->
+        <!-- ===== HERO ===== -->
         <header class="hero" id="hero">
             <div class="hero-content" style="position:relative; z-index:2;">
-                <div class="hero-badge" style="background: none; border: none; color: #c9a87c; font-size: 10px; letter-spacing: 6px; text-transform: uppercase; padding: 0; margin-bottom: 24px; font-weight: 300; font-family: 'Inter', sans-serif; opacity: 0.7;">
-                    ⟡ ЦИФРОВОЙ АПГРЕЙД
-                </div>
-                <h1 style="font-family: 'Inter', sans-serif; font-weight: 200; line-height: 1.1; margin-bottom: 16px; color: #E8E5DC; display: flex; flex-direction: column; gap: 0px; letter-spacing: -0.02em;">
+                <div class="hero-badge">⟡ ЦИФРОВОЙ АПГРЕЙД</div>
+                <h1>
                     <span style="font-size: clamp(32px, 4.5vw, 56px); font-weight: 200; color: #b0b3b8; display: block;">
                         Ваш бизнес достоин
                     </span>
                     <span style="font-size: clamp(44px, 7vw, 88px); font-weight: 200; background: linear-gradient(135deg, #c9a87c 20%, #dfcba3 60%, #c9a87c 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; margin-top: -6px;">
                         нормальной
                     </span>
-                    <span style="font-size: clamp(56px, 9vw, 120px); font-weight: 300; color: #E8E5DC; display: block; margin-top: -10px; letter-spacing: -0.04em;">
+                    <span class="split-text" style="font-size: clamp(56px, 9vw, 120px); font-weight: 300; color: #E8E5DC; display: block; margin-top: -10px; letter-spacing: -0.04em;">
                         цифровизации
                     </span>
                 </h1>
@@ -1469,6 +1626,7 @@
             <h2 class="section-title reveal">Что мы строим</h2>
             <p class="section-sub reveal">Разрабатываем и внедряем цифровые инструменты для бизнеса — от ботов до платёжных систем.</p>
             <div class="service-grid">
+                <!-- Карточки услуг (полные, без сокращений) -->
                 <div class="tilt-card reveal reveal-delay-1">
                     <div class="service-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><circle cx="8.5" cy="11" r="0.6" fill="currentColor" stroke="none"/><circle cx="12" cy="11" r="0.6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="11" r="0.6" fill="currentColor" stroke="none"/></svg></div>
                     <h3>Боты под воронку</h3>
@@ -2014,6 +2172,49 @@
 
     <!-- ===== СКРИПТЫ ===== -->
     <script>
+        // ===== АВТО-ТЕМА (по времени суток) =====
+        (function() {
+            const hour = new Date().getHours();
+            const isDay = hour >= 6 && hour < 18;
+            if (isDay) {
+                document.body.classList.add('day-theme');
+            }
+        })();
+
+        // ===== КУРСОР-ПРОЖЕКТОР =====
+        (function() {
+            const overlay = document.getElementById('cursor-overlay');
+            const dot = document.getElementById('cursor-dot');
+            if (!overlay || !dot) return;
+            
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                overlay.style.setProperty('--mouse-x', mouseX + 'px');
+                overlay.style.setProperty('--mouse-y', mouseY + 'px');
+                dot.style.left = mouseX + 'px';
+                dot.style.top = mouseY + 'px';
+            });
+
+            // Скрываем прожектор через 3 секунды после загрузки (чтобы не мешал)
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 3000);
+
+            // При наведении на ссылки/кнопки – увеличиваем точку
+            document.querySelectorAll('a, button, .btn-primary, .btn-secondary, .nav-cta, .tilt-card, .card-link, .messenger-btn').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    dot.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    dot.classList.remove('hover');
+                });
+            });
+        })();
+
         // ===== ПРЕЛОАДЕР (ЧАТ) =====
         (function() {
             const loader = document.getElementById('loader');
@@ -2065,24 +2266,112 @@
                     loader.classList.add('hide');
                     const canvas = document.getElementById('three-canvas');
                     if (canvas) canvas.classList.add('visible');
+                    // Показываем круговой прогресс
+                    document.getElementById('scroll-circle').classList.add('visible');
                 }
             }
 
             setTimeout(startLoaderChat, 300);
         })();
 
-        // ===== ОСТАЛЬНЫЕ СКРИПТЫ (уже были в исходном файле) =====
-        // ===== SCROLL PROGRESS =====
-        (function(){
-            var bar = document.getElementById('scroll-progress');
-            window.addEventListener('scroll', function(){
-                var h = document.documentElement;
-                var max = h.scrollHeight - h.clientHeight;
-                var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
-                bar.style.width = pct + '%';
-            }, {passive: true});
+        // ===== SKROLL ПРОГРЕСС (КРУГ) =====
+        (function() {
+            const circle = document.getElementById('scrollCircleProgress');
+            if (!circle) return;
+            const circumference = 2 * Math.PI * 27; // r=27
+            circle.style.strokeDasharray = circumference;
+
+            function updateScrollProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+                const offset = circumference - progress * circumference;
+                circle.style.strokeDashoffset = offset;
+            }
+
+            window.addEventListener('scroll', updateScrollProgress);
+            window.addEventListener('resize', updateScrollProgress);
+            updateScrollProgress();
+
+            // Клик по кругу – скролл наверх
+            document.getElementById('scroll-circle').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         })();
 
+        // ===== ХЕДЕР (исчезает при скролле) =====
+        (function() {
+            const navbar = document.getElementById('mainNav');
+            let lastScroll = 0;
+            let isHidden = false;
+
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.scrollY;
+                const delta = currentScroll - lastScroll;
+
+                if (currentScroll > 100) {
+                    if (delta > 20 && !isHidden) {
+                        navbar.classList.add('hide');
+                        isHidden = true;
+                    } else if (delta < -20 && isHidden) {
+                        navbar.classList.remove('hide');
+                        isHidden = false;
+                    }
+                } else {
+                    navbar.classList.remove('hide');
+                    isHidden = false;
+                }
+                lastScroll = currentScroll;
+            }, { passive: true });
+        })();
+
+        // ===== РАЗЛЕТАЮЩИЕСЯ БУКВЫ =====
+        (function() {
+            const splitTexts = document.querySelectorAll('.split-text');
+            splitTexts.forEach(function(el) {
+                const text = el.textContent;
+                const chars = text.split('');
+                el.innerHTML = chars.map(function(ch, i) {
+                    if (ch === ' ') return ' ';
+                    return `<span class="char" style="transition-delay:${i * 0.03}s">${ch}</span>`;
+                }).join('');
+            });
+        })();
+
+        // ===== LENIS (плавный скролл) =====
+        (function() {
+            if (typeof Lenis === 'undefined') return;
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => 1 - Math.pow(1 - t, 3),
+                smoothWheel: true,
+            });
+
+            lenis.on('scroll', function(e) {
+                // Lenis сам обновляет прокрутку
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            // Синхронизируем скролл-прогресс с Lenis
+            lenis.on('scroll', function(e) {
+                const circle = document.getElementById('scrollCircleProgress');
+                if (!circle) return;
+                const circumference = 2 * Math.PI * 27;
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+                const offset = circumference - progress * circumference;
+                circle.style.strokeDashoffset = offset;
+            });
+        })();
+
+        // ===== ОСТАЛЬНЫЕ СКРИПТЫ (твои) =====
+        // ===== SCROLL PROGRESS (старый – заменили на круговой) =====
         // ===== REVEAL =====
         (function(){
             var reveals = document.querySelectorAll('.reveal');
@@ -2473,7 +2762,7 @@
             showStep(1);
         })();
 
-        // ===== 3D-ФОН =====
+        // ===== 3D-ФОН (Three.js) =====
         (function() {
             if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             var script = document.createElement('script');
