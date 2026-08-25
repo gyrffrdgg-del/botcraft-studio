@@ -35,9 +35,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
-    <!-- Lenis (плавный скролл) -->
-    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -2274,7 +2271,7 @@
             setTimeout(startLoaderChat, 300);
         })();
 
-        // ===== SKROLL ПРОГРЕСС (КРУГ) =====
+        // ===== СКРОЛЛ-ПРОГРЕСС (КРУГ) =====
         (function() {
             const circle = document.getElementById('scrollCircleProgress');
             if (!circle) return;
@@ -2338,40 +2335,7 @@
             });
         })();
 
-        // ===== LENIS (плавный скролл) =====
-        (function() {
-            if (typeof Lenis === 'undefined') return;
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => 1 - Math.pow(1 - t, 3),
-                smoothWheel: true,
-            });
-
-            lenis.on('scroll', function(e) {
-                // Lenis сам обновляет прокрутку
-            });
-
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-
-            // Синхронизируем скролл-прогресс с Lenis
-            lenis.on('scroll', function(e) {
-                const circle = document.getElementById('scrollCircleProgress');
-                if (!circle) return;
-                const circumference = 2 * Math.PI * 27;
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-                const offset = circumference - progress * circumference;
-                circle.style.strokeDashoffset = offset;
-            });
-        })();
-
-        // ===== ОСТАЛЬНЫЕ СКРИПТЫ (твои) =====
-        // ===== SCROLL PROGRESS (старый – заменили на круговой) =====
+        // ===== ОСТАЛЬНЫЕ СКРИПТЫ =====
         // ===== REVEAL =====
         (function(){
             var reveals = document.querySelectorAll('.reveal');
