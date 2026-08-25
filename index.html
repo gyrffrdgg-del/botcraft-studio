@@ -342,7 +342,7 @@
             transform: translateY(20px) rotate(10deg) scale(1.1);
         }
 
-        /* ===== АВТО-ТЕМА (ночная/дневная) ===== */
+        /* ===== СВЕТЛАЯ ТЕМА (переключается вручную) ===== */
         body.day-theme {
             --bg: #f5f3f0;
             --text: #1a1a1a;
@@ -362,6 +362,20 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+        }
+        /* Кнопка переключения темы */
+        #themeToggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px 8px;
+            color: var(--text);
+            transition: transform 0.2s;
+            line-height: 1;
+        }
+        #themeToggle:hover {
+            transform: scale(1.1);
         }
 
         /* ===== ОСТАЛЬНЫЕ СТИЛИ (твои, без изменений) ===== */
@@ -1525,6 +1539,8 @@
                     <a href="#constructor">Калькулятор</a>
                     <a href="#lead">Контакты</a>
                 </div>
+                <!-- КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ -->
+                <button id="themeToggle" aria-label="Переключить тему">🌙</button>
                 <a href="#lead" class="nav-cta">Обсудить проект</a>
                 <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false">
                     <span></span><span></span><span></span>
@@ -1542,6 +1558,8 @@
         <a href="#constructor">Калькулятор</a>
         <a href="#lead">Контакты</a>
         <a href="#lead" class="mm-cta">Обсудить проект</a>
+        <!-- В мобильном меню тоже добавим переключатель -->
+        <button id="themeToggleMobile" aria-label="Переключить тему" style="background:none;border:none;color:var(--text);font-size:26px;font-family:var(--serif);cursor:pointer;">🌙</button>
     </div>
 
     <div class="site-wrapper">
@@ -2169,13 +2187,45 @@
 
     <!-- ===== СКРИПТЫ ===== -->
     <script>
-        // ===== АВТО-ТЕМА (по времени суток) =====
+        // ===== УПРАВЛЕНИЕ ТЕМОЙ (ручной переключатель) =====
         (function() {
-            const hour = new Date().getHours();
-            const isDay = hour >= 6 && hour < 18;
-            if (isDay) {
-                document.body.classList.add('day-theme');
+            const toggleBtn = document.getElementById('themeToggle');
+            const toggleBtnMobile = document.getElementById('themeToggleMobile');
+            const htmlRoot = document.documentElement;
+
+            // Функция установки темы
+            function setTheme(isDay) {
+                if (isDay) {
+                    document.body.classList.add('day-theme');
+                    toggleBtn.textContent = '🌙';
+                    if (toggleBtnMobile) toggleBtnMobile.textContent = '🌙';
+                } else {
+                    document.body.classList.remove('day-theme');
+                    toggleBtn.textContent = '☀️';
+                    if (toggleBtnMobile) toggleBtnMobile.textContent = '☀️';
+                }
+                localStorage.setItem('theme', isDay ? 'day' : 'night');
             }
+
+            // Загрузка сохранённой темы или по умолчанию (ночь)
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'day') {
+                setTheme(true);
+            } else if (savedTheme === 'night') {
+                setTheme(false);
+            } else {
+                // Если нет сохранения – тёмная по умолчанию
+                setTheme(false);
+            }
+
+            // Переключение по клику
+            function toggleTheme() {
+                const isDay = document.body.classList.contains('day-theme');
+                setTheme(!isDay);
+            }
+
+            toggleBtn.addEventListener('click', toggleTheme);
+            if (toggleBtnMobile) toggleBtnMobile.addEventListener('click', toggleTheme);
         })();
 
         // ===== КУРСОР-ПРОЖЕКТОР =====
@@ -2196,7 +2246,7 @@
                 dot.style.top = mouseY + 'px';
             });
 
-            // Скрываем прожектор через 3 секунды после загрузки (чтобы не мешал)
+            // Скрываем прожектор через 3 секунды
             setTimeout(() => {
                 overlay.classList.add('hidden');
             }, 3000);
@@ -2263,7 +2313,6 @@
                     loader.classList.add('hide');
                     const canvas = document.getElementById('three-canvas');
                     if (canvas) canvas.classList.add('visible');
-                    // Показываем круговой прогресс
                     document.getElementById('scroll-circle').classList.add('visible');
                 }
             }
@@ -2275,7 +2324,7 @@
         (function() {
             const circle = document.getElementById('scrollCircleProgress');
             if (!circle) return;
-            const circumference = 2 * Math.PI * 27; // r=27
+            const circumference = 2 * Math.PI * 27;
             circle.style.strokeDasharray = circumference;
 
             function updateScrollProgress() {
@@ -2290,7 +2339,6 @@
             window.addEventListener('resize', updateScrollProgress);
             updateScrollProgress();
 
-            // Клик по кругу – скролл наверх
             document.getElementById('scroll-circle').addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -2324,8 +2372,7 @@
 
         // ===== РАЗЛЕТАЮЩИЕСЯ БУКВЫ =====
         (function() {
-            const splitTexts = document.querySelectorAll('.split-text');
-            splitTexts.forEach(function(el) {
+            document.querySelectorAll('.split-text').forEach(function(el) {
                 const text = el.textContent;
                 const chars = text.split('');
                 el.innerHTML = chars.map(function(ch, i) {
@@ -2335,7 +2382,6 @@
             });
         })();
 
-        // ===== ОСТАЛЬНЫЕ СКРИПТЫ =====
         // ===== REVEAL =====
         (function(){
             var reveals = document.querySelectorAll('.reveal');
