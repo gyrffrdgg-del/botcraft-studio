@@ -1119,6 +1119,50 @@
             font-weight: var(--font-weight-light);
         }
 
+        /* ===== НОВЫЙ БЛОК "СТАНЬ ЧАСТЬЮ КОМАНДЫ" ===== */
+        .career-cta-band {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            margin-left: -50vw;
+            background: linear-gradient(135deg, rgba(201,168,124,0.08) 0%, rgba(201,168,124,0.02) 100%);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 60px 0;
+        }
+        .career-cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .career-cta-content h2 {
+            font-family: var(--serif);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+        .career-cta-content h2 .accent {
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-style: italic;
+        }
+        .career-cta-content p {
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .career-cta-content .btn-primary {
+            font-size: 15px;
+            padding: 16px 48px;
+        }
+
         .faq-list { display: flex; flex-direction: column; }
         .faq-item { border-bottom: 1px solid var(--line); padding: 20px 0; }
         .faq-item:first-child { padding-top: 0; }
@@ -1458,6 +1502,7 @@
             .result-card .total-price { font-size: 32px; }
             #cursor-overlay { display: none; }
             #cursor-dot { display: none; }
+            .career-cta-content p { font-size: 16px; }
         }
         @media (max-width:480px) {
             .btn-primary, .btn-secondary { padding: 12px 24px; font-size: 12px; }
@@ -1467,6 +1512,7 @@
             .option-grid { grid-template-columns: 1fr 1fr; }
             .option-grid-2 { grid-template-columns: 1fr; }
             .step-nav { flex-wrap: wrap; justify-content: center; }
+            .career-cta-content .btn-primary { font-size: 13px; padding: 12px 32px; }
         }
         @media (prefers-reduced-motion:reduce) {
             .reveal { transition: opacity 0.3s ease; transform: none; }
@@ -1536,6 +1582,7 @@
                     <a href="#prices">Цены</a>
                     <a href="#digital">Цифровой старт</a>
                     <a href="#cases">Кейсы</a>
+                    <a href="career.html">Карьера</a>
                     <a href="#constructor">Калькулятор</a>
                     <a href="#lead">Контакты</a>
                 </div>
@@ -1555,10 +1602,10 @@
         <a href="#prices">Цены</a>
         <a href="#digital">Цифровой старт</a>
         <a href="#cases">Кейсы</a>
+        <a href="career.html">Карьера</a>
         <a href="#constructor">Калькулятор</a>
         <a href="#lead">Контакты</a>
         <a href="#lead" class="mm-cta">Обсудить проект</a>
-        <!-- В мобильном меню тоже добавим переключатель -->
         <button id="themeToggleMobile" aria-label="Переключить тему" style="background:none;border:none;color:var(--text);font-size:26px;font-family:var(--serif);cursor:pointer;">🌙</button>
     </div>
 
@@ -2080,6 +2127,17 @@
             </div>
         </section>
 
+        <!-- ===== НОВЫЙ БЛОК "СТАНЬ ЧАСТЬЮ КОМАНДЫ" ===== -->
+        <section class="career-cta-band">
+            <div class="site-wrapper">
+                <div class="career-cta-content reveal">
+                    <h2>Стань частью <span class="accent">команды</span></h2>
+                    <p>Мы ищем веб-дизайнеров, разработчиков, копирайтеров и других талантов. Полная удалёнка, интересные проекты, свобода.</p>
+                    <a href="career.html" class="btn-primary">Смотреть вакансии</a>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== FAQ ===== -->
         <section id="faq">
             <div class="section-marker reveal"><span class="section-index">07</span><span class="section-rule"></span><span class="section-eyebrow">Часто спрашивают</span></div>
@@ -2169,6 +2227,7 @@
                     <a href="#prices">Цены</a>
                     <a href="#digital">Цифровой старт</a>
                     <a href="#cases">Кейсы</a>
+                    <a href="career.html">Карьера</a>
                     <a href="#constructor">Калькулятор</a>
                     <a href="#lead">Контакты</a>
                     <a href="https://t.me/Bot_Craft_StudioBot" target="_blank" rel="noopener">Telegram</a>
@@ -2193,7 +2252,6 @@
             const toggleBtnMobile = document.getElementById('themeToggleMobile');
             const htmlRoot = document.documentElement;
 
-            // Функция установки темы
             function setTheme(isDay) {
                 if (isDay) {
                     document.body.classList.add('day-theme');
@@ -2207,18 +2265,15 @@
                 localStorage.setItem('theme', isDay ? 'day' : 'night');
             }
 
-            // Загрузка сохранённой темы или по умолчанию (ночь)
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'day') {
                 setTheme(true);
             } else if (savedTheme === 'night') {
                 setTheme(false);
             } else {
-                // Если нет сохранения – тёмная по умолчанию
                 setTheme(false);
             }
 
-            // Переключение по клику
             function toggleTheme() {
                 const isDay = document.body.classList.contains('day-theme');
                 setTheme(!isDay);
@@ -2246,12 +2301,10 @@
                 dot.style.top = mouseY + 'px';
             });
 
-            // Скрываем прожектор через 3 секунды
             setTimeout(() => {
                 overlay.classList.add('hidden');
             }, 3000);
 
-            // При наведении на ссылки/кнопки – увеличиваем точку
             document.querySelectorAll('a, button, .btn-primary, .btn-secondary, .nav-cta, .tilt-card, .card-link, .messenger-btn').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     dot.classList.add('hover');
