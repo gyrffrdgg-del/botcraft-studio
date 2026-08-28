@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Карьера в BotCraft Studio</title>
+    <meta name="description" content="Присоединяйся к команде BotCraft Studio. Ищем веб-дизайнеров, разработчиков, копирайтеров. Полная удалёнка." />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0A0B10" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ===== БАЗА ===== */
+        :root {
+            --bg: #0A0B10;
+            --text: #E8E5DC;
+            --muted: #b0b3b8;
+            --dim: #7a7d86;
+            --faint: #4A4D56;
+            --accent: #C9A87C;
+            --accent-hover: #dabf92;
+            --accent-soft: rgba(201,168,124,0.06);
+            --line: rgba(201,168,124,0.1);
+            --line-strong: rgba(201,168,124,0.25);
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', sans-serif;
+            --mono: 'IBM Plex Mono', monospace;
+            --gradient-hero: linear-gradient(135deg, #c9a87c 0%, #dfcba3 60%, #c9a87c 100%);
+            --gradient-btn: linear-gradient(135deg, #c9a87c, #dabf92);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            font-weight: 200;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+        ::selection { background: var(--accent); color: var(--bg); }
+        a { color: inherit; text-decoration: none; }
+
+        .site-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+        @media (max-width: 768px) { .site-wrapper { padding: 0 20px; } }
+
+        /* ===== ФОН С ЧАСТИЦАМИ ===== */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        /* ===== НАВИГАЦИЯ ===== */
+        .navbar {
+            position: sticky; top: 0; z-index: 100;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(12px);
+            background: rgba(10,11,16,0.7);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-family: var(--mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .nav-links a {
+            color: var(--muted);
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gradient-hero);
+            transition: width 0.4s;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.current { color: var(--accent); }
+        .nav-links a.current::after { width: 100%; }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .nav-toggle span {
+            width: 24px;
+            height: 1px;
+            background: var(--text);
+            transition: 0.3s;
+            display: block;
+        }
+        .nav-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 150;
+            background: rgba(10,11,16,0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
+        .mobile-menu a {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-style: italic;
+            color: var(--text);
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+        .mobile-menu a:hover { opacity: 1; color: var(--accent); }
+
+        .wordmark {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: 22px;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+        .wordmark .wm-accent {
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-style: italic;
+        }
+        .wordmark .wm-sub {
+            font-family: var(--mono);
+            font-size: 0.5em;
+            text-transform: uppercase;
+            color: var(--muted);
+            letter-spacing: 2px;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 12px 36px;
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            border-radius: 4px;
+        }
+        .btn-primary {
+            background: var(--gradient-btn);
+            color: var(--bg);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201,168,124,0.25);
+        }
+        .btn-secondary {
+            border: 1px solid var(--line-strong);
+            color: var(--text);
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* ===== АНИМАЦИИ ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(201,168,124,0.05); }
+            50% { box-shadow: 0 0 40px rgba(201,168,124,0.12); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ===== HERO ===== */
+        .hero-career {
+            padding: 80px 0 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-career::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201,168,124,0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+        .hero-career::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201,168,124,0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        .hero-career .badge {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid var(--line-strong);
+            padding: 4px 16px;
+            border-radius: 20px;
+            background: var(--accent-soft);
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        .hero-career h1 {
+            font-family: var(--serif);
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 400;
+            line-height: 1.05;
+            color: var(--text);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-career h1 em {
+            font-style: italic;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-career p {
+            color: var(--muted);
+            font-size: 18px;
+            max-width: 500px;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-career .stats {
+            display: flex;
+            gap: 40px;
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--dim);
+            margin-top: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-career .stats span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero-career .stats strong {
+            font-size: 28px;
+            font-weight: 400;
+            font-family: var(--serif);
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-style: italic;
+        }
+
+        /* ===== SVG-ИКОНКИ ===== */
+        .icon-svg {
+            width: 32px;
+            height: 32px;
+            display: block;
+            margin: 0 auto 8px;
+            color: var(--accent);
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.4s ease;
+        }
+        .about-section .right .item:hover .icon-svg {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        /* ===== О КОМПАНИИ ===== */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .about-section .left h2 {
+            font-family: var(--serif);
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+        .about-section .left .year {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .about-section .left p {
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .about-section .right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .about-section .right .item {
+            border: 1px solid var(--line);
+            padding: 24px 20px;
+            border-radius: 12px;
+            background: var(--accent-soft);
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            animation: glow 4s ease-in-out infinite;
+        }
+        .about-section .right .item:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(201,168,124,0.08);
+        }
+        .about-section .right .item:nth-child(2) { animation-delay: 0.5s; }
+        .about-section .right .item:nth-child(3) { animation-delay: 1s; }
+        .about-section .right .item:nth-child(4) { animation-delay: 1.5s; }
+        .about-section .right .item h4 {
+            font-family: var(--serif);
+            font-size: 17px;
+            font-weight: 400;
+            color: var(--text);
+            margin: 6px 0 4px;
+        }
+        .about-section .right .item p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ===== ВАКАНСИИ ===== */
+        .vacancies-section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .vacancies-section .head {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .vacancies-section .head h2 {
+            font-family: var(--serif);
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .vacancies-section .head p {
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .vacancy-card {
+            border: 1px solid var(--line);
+            padding: 28px 32px;
+            border-radius: 12px;
+            background: var(--accent-soft);
+            transition: border-color 0.4s, background 0.4s, transform 0.4s, box-shadow 0.4s;
+            margin-bottom: 16px;
+            cursor: default;
+            animation: glow 4s ease-in-out infinite;
+        }
+        .vacancy-card:nth-child(2) { animation-delay: 0.5s; }
+        .vacancy-card:nth-child(3) { animation-delay: 1s; }
+        .vacancy-card:hover {
+            border-color: var(--accent);
+            background: rgba(201,168,124,0.08);
+            transform: translateX(8px);
+            box-shadow: -8px 0 30px rgba(201,168,124,0.06);
+        }
+        .vacancy-card .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .vacancy-card .title {
+            font-family: var(--serif);
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text);
+        }
+        .vacancy-card .salary {
+            font-family: var(--mono);
+            font-size: 20px;
+            color: var(--accent);
+            font-weight: 400;
+            background: var(--accent-soft);
+            padding: 2px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--line-strong);
+        }
+        .vacancy-card .meta {
+            font-size: 14px;
+            color: var(--dim);
+            font-family: var(--mono);
+            margin: 4px 0 12px;
+        }
+        .vacancy-card .desc {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 16px;
+            max-width: 600px;
+        }
+        .vacancy-card .tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .vacancy-card .tags span {
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            border: 1px solid var(--line-strong);
+            padding: 2px 14px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        .vacancy-card .tags span:hover {
+            background: var(--accent-soft);
+        }
+        .vacancy-card .btn-apply {
+            background: none;
+            border: 1px solid var(--line-strong);
+            color: var(--accent);
+            padding: 8px 28px;
+            border-radius: 6px;
+            font-family: var(--mono);
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 16px;
+            display: inline-block;
+        }
+        .vacancy-card .btn-apply:hover {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        /* ===== ПРОЦЕСС ===== */
+        .process-section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .process-section .head {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .process-section .head h2 {
+            font-family: var(--serif);
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .process-section .head p {
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .process-step {
+            border: 1px solid var(--line);
+            padding: 28px 20px;
+            border-radius: 12px;
+            background: var(--accent-soft);
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201,168,124,0.03) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+        .process-step:hover::before {
+            opacity: 1;
+        }
+        .process-step:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        .process-step .num {
+            font-family: var(--serif);
+            font-size: 36px;
+            font-weight: 400;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0.4;
+            display: block;
+            position: relative;
+        }
+        .process-step h4 {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text);
+            margin: 4px 0;
+            position: relative;
+        }
+        .process-step p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* ===== READY OR NOT ===== */
+        .ready-section {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .ready-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201,168,124,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -150px;
+            left: -150px;
+            animation: float 12s ease-in-out infinite;
+        }
+        .ready-section::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201,168,124,0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -100px;
+            right: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        .ready-section h2 {
+            font-family: var(--serif);
+            font-size: 48px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+        .ready-section h2 em {
+            font-style: italic;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .ready-section p {
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .btn-telegram {
+            background: var(--gradient-btn);
+            color: var(--bg);
+            padding: 14px 48px;
+            border-radius: 8px;
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        .btn-telegram:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(201,168,124,0.3);
+        }
+        .btn-telegram svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ===== ФУТЕР ===== */
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: var(--faint);
+            font-size: 12px;
+            font-family: var(--mono);
+        }
+        footer a { color: var(--dim); transition: color 0.3s; }
+        footer a:hover { color: var(--accent); }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+            .about-section { grid-template-columns: 1fr; }
+            .about-section .right { grid-template-columns: 1fr 1fr; }
+            .process-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .hero-career .stats { gap: 24px; }
+        }
+        @media (max-width: 768px) {
+            .hero-career h1 { font-size: 36px; }
+            .hero-career .stats { flex-direction: column; gap: 16px; }
+            .about-section .right { grid-template-columns: 1fr; }
+            .vacancy-card .top { flex-direction: column; }
+            .vacancy-card .salary { font-size: 18px; align-self: flex-start; }
+            .ready-section h2 { font-size: 32px; }
+            .vacancy-card .title { font-size: 20px; }
+            footer { flex-direction: column; align-items: flex-start; }
+            .hero-career::before, .hero-career::after { display: none; }
+            .ready-section::before, .ready-section::after { display: none; }
+        }
+        @media (max-width: 480px) {
+            .btn-primary, .btn-secondary { padding: 10px 24px; font-size: 12px; }
+            .vacancy-card { padding: 20px; }
+            .process-step { padding: 20px 16px; }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            .reveal { transition: opacity 0.3s ease; transform: none; }
+            .vacancy-card:hover { transform: none; }
+            .about-section .right .item:hover { transform: none; }
+            .process-step:hover { transform: none; }
+            .btn-telegram:hover { transform: none; }
+            .hero-career::before, .hero-career::after,
+            .ready-section::before, .ready-section::after { animation: none; }
+            .about-section .right .item { animation: none; }
+            .vacancy-card { animation: none; }
+            .hero-career .badge { animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== ЧАСТИЦЫ НА ФОНЕ ===== -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ===== НАВИГАЦИЯ ===== -->
+    <nav class="navbar">
+        <div class="site-wrapper nav-inner">
+            <a href="index.html" class="wordmark">
+                Bot<span class="wm-accent">Craft</span> <span class="wm-sub">Studio</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="index.html#work">Услуги</a>
+                <a href="cases.html">Кейсы</a>
+                <a href="career.html" class="current">Карьера</a>
+                <a href="index.html#lead">Контакты</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Главная</a>
+        <a href="index.html#work">Услуги</a>
+        <a href="cases.html">Кейсы</a>
+        <a href="career.html" class="current">Карьера</a>
+        <a href="index.html#lead">Контакты</a>
+    </div>
+
+    <div class="site-wrapper">
+
+        <!-- ===== HERO ===== -->
+        <section class="hero-career reveal">
+            <div class="badge">Присоединяйся</div>
+            <h1>Ищем <em>сильных</em></h1>
+            <p>Строим цифровые продукты с 2024 года. Полная удалёнка. Нам нужны профессионалы, готовые создавать и влиять.</p>
+            <div class="btn-row">
+                <a href="#vacancies" class="btn-primary">Вакансии</a>
+                <a href="#ready" class="btn-secondary">Написать</a>
+            </div>
+            <div class="stats">
+                <span><strong>10+</strong> проектов</span>
+                <span><strong>100%</strong> удалёнка</span>
+                <span><strong>∞</strong> возможности</span>
+            </div>
+        </section>
+
+        <!-- ===== О КОМПАНИИ ===== -->
+        <section class="about-section reveal">
+            <div class="left">
+                <span class="year">Основана в 2024</span>
+                <h2>Кто мы</h2>
+                <p>BotCraft Studio — команда разработчиков, дизайнеров и продюсеров. Мы создаём сайты, ботов, CRM и внедряем нейросети в бизнес. За год мы выросли с 2 до 12 человек и не собираемся останавливаться.</p>
+            </div>
+            <div class="right">
+                <div class="item">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                    <h4>Продуктовый подход</h4>
+                    <p>Мы не просто делаем — мы создаём продукты, которые приносят результат.</p>
+                </div>
+                <div class="item">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <h4>Гибкость</h4>
+                    <p>Работай из любой точки мира — мы ценим свободу.</p>
+                </div>
+                <div class="item">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <h4>Прозрачность</h4>
+                    <p>Честные условия, понятная оплата и открытое обсуждение задач.</p>
+                </div>
+                <div class="item">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <h4>Команда</h4>
+                    <p>Мы поддерживаем друг друга и растем вместе. Каждый голос имеет значение.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ВАКАНСИИ ===== -->
+        <section class="vacancies-section" id="vacancies">
+            <div class="head reveal">
+                <h2>Открытые позиции</h2>
+                <p>Выбери направление — мы ждём твой отклик.</p>
+            </div>
+
+            <div class="vacancy-card reveal reveal-delay-1">
+                <div class="top">
+                    <span class="title">Веб-дизайнер (UI/UX)</span>
+                    <span class="salary">от 120 000 ₽</span>
+                </div>
+                <div class="meta">Полный день · Удалёнка</div>
+                <div class="desc">Дизайн интерфейсов для сайтов, веб-приложений и ботов. Работа с Figma, создание прототипов, дизайн-систем.</div>
+                <div class="tags">
+                    <span>Figma</span>
+                    <span>UI/UX</span>
+                    <span>Прототипирование</span>
+                </div>
+                <a href="#ready" class="btn-apply">Откликнуться</a>
+            </div>
+
+            <div class="vacancy-card reveal reveal-delay-2">
+                <div class="top">
+                    <span class="title">HTML-верстальщик / Фронтенд-разработчик</span>
+                    <span class="salary">от 120 000 ₽</span>
+                </div>
+                <div class="meta">Полный день · Удалёнка</div>
+                <div class="desc">Вёрстка сайтов и веб-приложений. HTML, CSS, JavaScript, адаптивная вёрстка, работа с макетами.</div>
+                <div class="tags">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>Адаптив</span>
+                </div>
+                <a href="#ready" class="btn-apply">Откликнуться</a>
+            </div>
+
+            <div class="vacancy-card reveal reveal-delay-3">
+                <div class="top">
+                    <span class="title">Копирайтер / Контент-менеджер</span>
+                    <span class="salary">от 70 000 ₽</span>
+                </div>
+                <div class="meta">Полный день · Удалёнка</div>
+                <div class="desc">Написание текстов для сайтов, соцсетей и рассылок. Работа с контентом, умение писать понятно и убедительно.</div>
+                <div class="tags">
+                    <span>Копирайтинг</span>
+                    <span>Контент</span>
+                    <span>Тексты</span>
+                </div>
+                <a href="#ready" class="btn-apply">Откликнуться</a>
+            </div>
+
+            <div style="text-align:center;color:var(--dim);font-size:14px;font-family:var(--mono);margin-top:12px;">
+                Нет подходящей? Напиши нам — мы всегда ищем таланты.
+            </div>
+        </section>
+
+        <!-- ===== ПРОЦЕСС ===== -->
+        <section class="process-section">
+            <div class="head reveal">
+                <h2>Как попасть в команду</h2>
+                <p>Всё просто — никаких тестовых заданий.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step reveal reveal-delay-1">
+                    <span class="num">01</span>
+                    <h4>Отклик</h4>
+                    <p>Напиши в Telegram или оставь заявку — мы ответим в течение дня.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-2">
+                    <span class="num">02</span>
+                    <h4>Собеседование</h4>
+                    <p>Онлайн-встреча. Познакомимся, обсудим опыт, цели и ожидания.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-3">
+                    <span class="num">03</span>
+                    <h4>Оффер</h4>
+                    <p>Всё ок — подписываем договор и ты с нами. Без лишних этапов.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== READY OR NOT ===== -->
+        <section class="ready-section" id="ready">
+            <div class="reveal">
+                <h2>Ready <em>or Not</em></h2>
+                <p>Напиши нам — без формальностей и долгих ожиданий.</p>
+                <a href="https://t.me/Bot_Craft_StudioBot" target="_blank" class="btn-telegram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 4.5L2 13l5 3.5L17.5 7"/>
+                        <path d="M7 16.5L9 22l4.5-5.5"/>
+                    </svg>
+                    Написать в Telegram
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== ФУТЕР ===== -->
+        <footer>
+            <span>© 2026 BotCraft Studio · ИП Танский Леонид Анатольевич</span>
+            <div>
+                <a href="index.html">Главная</a>
+                <span style="margin:0 12px;color:var(--line);">|</span>
+                <a href="index.html#work">Услуги</a>
+                <span style="margin:0 12px;color:var(--line);">|</span>
+                <a href="cases.html">Кейсы</a>
+                <span style="margin:0 12px;color:var(--line);">|</span>
+                <a href="career.html" style="color:var(--accent);">Карьера</a>
+                <span style="margin:0 12px;color:var(--line);">|</span>
+                <a href="privacy.html">Политика</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // ===== ЧАСТИЦЫ =====
+        (function() {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            const particleCount = 60;
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.speedY = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > height) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(201, 168, 124, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function connectParticles() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 150) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(201, 168, 124, ${0.08 * (1 - dist / 150)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                connectParticles();
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+        })();
+
+        // ===== REVEAL =====
+        (function() {
+            const reveals = document.querySelectorAll('.reveal');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('visible');
+                    });
+                }, { threshold: 0.1 });
+                reveals.forEach(el => observer.observe(el));
+            } else {
+                reveals.forEach(el => el.classList.add('visible'));
+            }
+        })();
+
+        // ===== NAV TOGGLE =====
+        (function() {
+            const toggle = document.getElementById('navToggle');
+            const menu = document.getElementById('mobileMenu');
+            toggle.addEventListener('click', function() {
+                toggle.classList.toggle('active');
+                menu.classList.toggle('open');
+            });
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    toggle.classList.remove('active');
+                    menu.classList.remove('open');
+                });
+            });
+        })();
+
+        // ===== ПАРАЛЛАКС =====
+        (function() {
+            const stats = document.querySelector('.hero-career .stats');
+            if (!stats) return;
+            document.addEventListener('mousemove', function(e) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 6;
+                const y = (e.clientY / window.innerHeight - 0.5) * 6;
+                stats.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        })();
+    </script>
+</body>
+</html>
