@@ -60,7 +60,7 @@
         .navbar{position:sticky;top:0;z-index:100;padding:16px 0;border-bottom:1px solid var(--line);backdrop-filter:blur(12px);background:rgba(10,11,16,0.85);transition:transform .3s ease,opacity .3s ease}.navbar.hide{transform:translateY(-100%);opacity:0}
         .split-text{display:inline-block}.split-text .char{display:inline-block;transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .3s;will-change:transform}.split-text:hover .char{opacity:.7}.split-text .char:nth-child(1){transition-delay:.00s}.split-text .char:nth-child(2){transition-delay:.03s}.split-text .char:nth-child(3){transition-delay:.06s}.split-text .char:nth-child(4){transition-delay:.09s}.split-text .char:nth-child(5){transition-delay:.12s}.split-text .char:nth-child(6){transition-delay:.15s}.split-text .char:nth-child(7){transition-delay:.18s}.split-text .char:nth-child(8){transition-delay:.21s}.split-text .char:nth-child(9){transition-delay:.24s}.split-text .char:nth-child(10){transition-delay:.27s}.split-text .char:nth-child(11){transition-delay:.30s}.split-text .char:nth-child(12){transition-delay:.33s}.split-text .char:nth-child(13){transition-delay:.36s}.split-text .char:nth-child(14){transition-delay:.39s}.split-text .char:nth-child(15){transition-delay:.42s}.split-text .char:nth-child(16){transition-delay:.45s}.split-text .char:nth-child(17){transition-delay:.48s}.split-text .char:nth-child(18){transition-delay:.51s}.split-text .char:nth-child(19){transition-delay:.54s}.split-text .char:nth-child(20){transition-delay:.57s}.split-text .char:nth-child(odd):hover{transform:translateY(-20px) rotate(-10deg) scale(1.1)}.split-text .char:nth-child(even):hover{transform:translateY(20px) rotate(10deg) scale(1.1)}
         body.day-theme{--bg:#f5f3f0;--text:#1a1a1a;--muted:#555;--dim:#888;--faint:#bbb;--line:rgba(0,0,0,0.08);--line-strong:rgba(0,0,0,0.15);--accent-soft:rgba(201,168,124,0.12)}body.day-theme .navbar{background:rgba(245,243,240,0.85);border-bottom-color:rgba(0,0,0,0.06)}body.day-theme .hero h1 .big{background:linear-gradient(135deg,#a8895e,#c9a87c);-webkit-background-clip:text;background-clip:text;color:transparent}
-        #themeToggle{background:none;border:none;font-size:20px;cursor:pointer;padding:4px 8px;color:var(--text);transition:transform .2s;line-height:1}#themeToggle:hover{transform:scale(1.1)}
+        #themeToggle{background:none;border:none;font-size:14px;cursor:pointer;padding:4px 8px;color:var(--text);transition:transform .2s;line-height:1;font-family:var(--mono);letter-spacing:1px;text-transform:uppercase}#themeToggle:hover{transform:scale(1.1)}
         .site-wrapper{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:0 40px}@media(max-width:768px){.site-wrapper{padding:0 20px}}
         .wordmark{font-family:var(--serif);font-weight:400;letter-spacing:var(--letter-spacing-tight);display:inline-flex;align-items:baseline;gap:6px;line-height:1}.wordmark .wm-accent{background:var(--gradient-hero);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}.wordmark .wm-sub{font-family:var(--mono);font-size:.6em;letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;color:var(--muted);font-weight:300}.wordmark-lg{font-size:clamp(32px,6vw,44px)}.wordmark-lg .wm-sub{font-size:.5em}.wordmark-nav{font-size:19px}.wordmark-nav .wm-sub{font-size:.5em;letter-spacing:2px}.wordmark-sm{font-size:14px}.wordmark-sm .wm-sub{font-size:.45em;letter-spacing:1.5px}
         .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}.nav-right{display:flex;align-items:center;gap:26px}.nav-links{display:flex;gap:22px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;font-weight:300;text-transform:uppercase;letter-spacing:2px}.nav-links a{color:var(--muted);text-decoration:none;transition:color .3s;position:relative;padding:4px 0}.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gradient-hero);transition:width .4s}.nav-links a:hover{color:var(--text)}.nav-links a:hover::after{width:100%}.nav-links a.current{color:var(--accent)}.nav-links a.current::after{width:100%}
@@ -149,7 +149,7 @@
                     <a href="#constructor">Калькулятор</a>
                     <a href="#lead">Контакты</a>
                 </div>
-                <button id="themeToggle" aria-label="Переключить тему">🌙</button>
+                <button id="themeToggle" aria-label="Переключить тему">Тема</button>
                 <a href="#lead" class="nav-cta">Обсудить проект</a>
                 <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false">
                     <span></span><span></span><span></span>
@@ -168,7 +168,7 @@
         <a href="#constructor">Калькулятор</a>
         <a href="#lead">Контакты</a>
         <a href="#lead" class="mm-cta">Обсудить проект</a>
-        <button id="themeToggleMobile" aria-label="Переключить тему" style="background:none;border:none;color:var(--text);font-size:26px;font-family:var(--serif);cursor:pointer;">🌙</button>
+        <button id="themeToggleMobile" aria-label="Переключить тему" style="background:none;border:none;color:var(--text);font-size:16px;font-family:var(--mono);letter-spacing:1px;text-transform:uppercase;cursor:pointer;">Тема</button>
     </div>
 
     <div class="site-wrapper">
@@ -176,7 +176,7 @@
         <!-- HERO -->
         <header class="hero" id="hero">
             <div class="hero-content" style="position:relative;z-index:2;">
-                <div class="hero-badge">⟡ ЦИФРОВОЙ АПГРЕЙД</div>
+                <div class="hero-badge">ЦИФРОВОЙ АПГРЕЙД</div>
                 <h1>
                     <span style="font-size:clamp(32px,4.5vw,56px);font-weight:200;color:#b0b3b8;display:block;">Ваш бизнес достоин</span>
                     <span style="font-size:clamp(44px,7vw,88px);font-weight:200;background:linear-gradient(135deg,#c9a87c 20%,#dfcba3 60%,#c9a87c 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-top:-6px;">нормальной</span>
@@ -190,9 +190,9 @@
                     <a href="#cases" class="btn-secondary" style="border:1px solid rgba(201,168,124,0.2);color:#E8E5DC;padding:14px 36px;border-radius:8px;font-weight:300;letter-spacing:1px;font-size:14px;background:rgba(255,255,255,0.02);transition:all .3s;">Смотреть кейсы</a>
                 </div>
                 <div style="margin-top:28px;font-family:'Inter',sans-serif;font-size:11px;font-weight:200;letter-spacing:2px;color:#7a7d86;display:flex;gap:20px;flex-wrap:wrap;opacity:.5;border-top:1px solid rgba(201,168,124,0.08);padding-top:18px;">
-                    <span>✦ Бесплатный аудит</span>
-                    <span>✦ Фиксированная цена</span>
-                    <span>✦ Ведём до результата</span>
+                    <span>Бесплатный аудит</span>
+                    <span>Фиксированная цена</span>
+                    <span>Ведём до результата</span>
                 </div>
             </div>
             <div class="scroll-cue"><span class="line"></span> Листайте</div>
@@ -260,7 +260,7 @@
                 </div>
                 <div class="tilt-card reveal reveal-delay-1">
                     <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/></svg></div>
-                    <h3>Сайты и веб‑приложения</h3>
+                    <h3>Сайты и веб-приложения</h3>
                     <p>Разрабатываем нешаблонные сайты, лендинги и веб-приложения с интеграцией AI и CRM. Рабочий инструмент, а не визитка.</p>
                     <a href="service-web.html" class="card-link">Подробнее →</a>
                 </div>
@@ -273,7 +273,7 @@
             </div>
         </section>
 
-        <!-- ЦЕНЫ (НОВЫЕ) -->
+        <!-- ЦЕНЫ (НОВЫЕ, БЕЗ ЭМОДЗИ) -->
         <section id="prices">
             <div class="section-marker reveal">
                 <span class="section-index">02</span>
@@ -307,10 +307,10 @@
             <div style="text-align:center;margin-top:20px;color:var(--dim);font-size:14px;font-family:var(--mono);font-weight:300;">
                 Точная стоимость — после бесплатного аудита
             </div>
-            <!-- ПАКЕТ СТАРТ (один) -->
+            <!-- ПАКЕТ СТАРТ (без эмодзи) -->
             <div style="margin-top:40px;max-width:400px;margin-left:auto;margin-right:auto;">
                 <div class="price-item" style="border-color:var(--accent);text-align:center;">
-                    <div class="label">🚀 Пакет «Старт»</div>
+                    <div class="label">Пакет «Старт»</div>
                     <div class="price" style="font-size:24px;">175 000 ₽</div>
                     <div class="note">Сайт-лендинг + чат-бот для заявок<br><span style="color:var(--accent);">Экономия 20 000 ₽</span></div>
                 </div>
@@ -435,7 +435,7 @@
                 </div>
                 <div class="case-card reveal reveal-delay-3">
                     <div class="case-banner" aria-hidden="true"><svg viewBox="0 0 280 90"><rect x="86" y="16" width="46" height="30" fill="var(--accent)" opacity="0.9"/><rect x="138" y="16" width="46" height="30" fill="var(--line-strong)"/><rect x="86" y="52" width="46" height="22" fill="var(--line-strong)"/><rect x="138" y="52" width="46" height="22" fill="var(--accent)" opacity="0.6"/><rect x="190" y="16" width="12" height="58" fill="none" stroke="var(--dim)" stroke-width="1"/></svg></div>
-                    <span class="case-tag">MAX‑доска объявлений</span>
+                    <span class="case-tag">MAX-доска объявлений</span>
                     <p>Платформа для публикации объявлений в каналах MAX. Модерация, привязка автора, платная подписка за доступ.</p>
                     <div class="case-result">Монетизация аудитории через подписки</div>
                 </div>
@@ -661,12 +661,12 @@
             function setTheme(isDay) {
                 if (isDay) {
                     document.body.classList.add('day-theme');
-                    toggleBtn.textContent = '🌙';
-                    if (toggleBtnMobile) toggleBtnMobile.textContent = '🌙';
+                    toggleBtn.textContent = 'Тема';
+                    if (toggleBtnMobile) toggleBtnMobile.textContent = 'Тема';
                 } else {
                     document.body.classList.remove('day-theme');
-                    toggleBtn.textContent = '☀️';
-                    if (toggleBtnMobile) toggleBtnMobile.textContent = '☀️';
+                    toggleBtn.textContent = 'Тема';
+                    if (toggleBtnMobile) toggleBtnMobile.textContent = 'Тема';
                 }
                 localStorage.setItem('theme', isDay ? 'day' : 'night');
             }
