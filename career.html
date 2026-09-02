@@ -36,7 +36,7 @@
             --gradient-btn: linear-gradient(135deg, #c9a87c, #dabf92);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         body {
             font-family: var(--sans);
             font-weight: 200;
@@ -58,7 +58,7 @@
         }
         @media (max-width: 768px) { .site-wrapper { padding: 0 20px; } }
 
-        /* ===== ФОН С ЧАСТИЦАМИ ===== */
+        /* ===== ЧАСТИЦЫ ===== */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -338,24 +338,6 @@
             font-style: italic;
         }
 
-        /* ===== SVG-ИКОНКИ ===== */
-        .icon-svg {
-            width: 32px;
-            height: 32px;
-            display: block;
-            margin: 0 auto 8px;
-            color: var(--accent);
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: transform 0.4s ease;
-        }
-        .about-section .right .item:hover .icon-svg {
-            transform: scale(1.15) rotate(-5deg);
-        }
-
         /* ===== О КОМПАНИИ ===== */
         .about-section {
             display: grid;
@@ -406,6 +388,22 @@
         .about-section .right .item:nth-child(2) { animation-delay: 0.5s; }
         .about-section .right .item:nth-child(3) { animation-delay: 1s; }
         .about-section .right .item:nth-child(4) { animation-delay: 1.5s; }
+        .about-section .right .item .icon-svg {
+            width: 32px;
+            height: 32px;
+            display: block;
+            margin: 0 auto 8px;
+            color: var(--accent);
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.4s ease;
+        }
+        .about-section .right .item:hover .icon-svg {
+            transform: scale(1.15) rotate(-5deg);
+        }
         .about-section .right .item h4 {
             font-family: var(--serif);
             font-size: 17px;
@@ -617,82 +615,131 @@
             position: relative;
         }
 
-        /* ===== READY OR NOT ===== */
-        .ready-section {
-            padding: 80px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        /* ===== ФОРМА ОТКЛИКА ===== */
+        #apply-form {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--line);
+            background: var(--bg);
         }
-        .ready-section::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(201,168,124,0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -150px;
-            left: -150px;
-            animation: float 12s ease-in-out infinite;
+        #apply-form .form-wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--accent-soft);
+            border: 1px solid var(--line-strong);
+            border-radius: 16px;
+            padding: 32px 28px;
         }
-        .ready-section::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(201,168,124,0.04) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -100px;
-            right: -100px;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-        .ready-section h2 {
+        #apply-form h3 {
             font-family: var(--serif);
-            font-size: 48px;
+            font-size: 26px;
             font-weight: 400;
             color: var(--text);
-            margin-bottom: 8px;
-            letter-spacing: -0.02em;
-            position: relative;
-            z-index: 1;
+            margin: 0 0 8px;
         }
-        .ready-section h2 em {
-            font-style: italic;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .ready-section p {
+        #apply-form .form-desc {
             color: var(--muted);
-            font-size: 16px;
-            max-width: 500px;
-            margin: 0 auto 24px;
-            position: relative;
-            z-index: 1;
+            font-size: 15px;
+            margin: 0 0 24px;
+            line-height: 1.6;
         }
-        .btn-telegram {
+        #apply-form .form-group {
+            margin-bottom: 14px;
+        }
+        #apply-form input,
+        #apply-form textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(201,168,124,0.15);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        #apply-form input:focus,
+        #apply-form textarea:focus {
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.06);
+        }
+        #apply-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        #apply-form .btn-submit {
+            width: 100%;
+            padding: 14px;
             background: var(--gradient-btn);
             color: var(--bg);
-            padding: 14px 48px;
-            border-radius: 8px;
-            font-family: var(--sans);
+            border: none;
+            border-radius: 10px;
             font-size: 15px;
-            font-weight: 500;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+            margin-top: 6px;
+        }
+        #apply-form .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201,168,124,0.25);
+        }
+        #apply-form .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        #apply-form .form-status {
+            text-align: center;
+            font-size: 14px;
+            min-height: 1.4em;
+            margin-top: 10px;
+        }
+        #apply-form .form-status.success { color: #6FA98A; }
+        #apply-form .form-status.error { color: #E85A5A; }
+
+        #apply-form .telegram-alt {
+            margin-top: 20px;
+            text-align: center;
+            border-top: 1px solid var(--line);
+            padding-top: 20px;
+        }
+        #apply-form .telegram-alt p {
+            color: var(--dim);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        #apply-form .telegram-alt .btn-telegram {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            z-index: 1;
+            gap: 8px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--line-strong);
+            padding: 10px 24px;
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 14px;
+            transition: 0.3s;
+            font-family: var(--sans);
+            text-decoration: none;
         }
-        .btn-telegram:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 40px rgba(201,168,124,0.3);
+        #apply-form .telegram-alt .btn-telegram:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--accent);
+            transform: translateY(-2px);
         }
-        .btn-telegram svg {
-            width: 20px;
-            height: 20px;
+        #apply-form .telegram-alt .btn-telegram svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ===== READY OR NOT (устаревший, но оставим для совместимости, теперь используем форму) ===== */
+        .ready-section {
+            display: none;
         }
 
         /* ===== ФУТЕР ===== */
@@ -726,11 +773,10 @@
             .about-section .right { grid-template-columns: 1fr; }
             .vacancy-card .top { flex-direction: column; }
             .vacancy-card .salary { font-size: 18px; align-self: flex-start; }
-            .ready-section h2 { font-size: 32px; }
             .vacancy-card .title { font-size: 20px; }
             footer { flex-direction: column; align-items: flex-start; }
             .hero-career::before, .hero-career::after { display: none; }
-            .ready-section::before, .ready-section::after { display: none; }
+            #apply-form .form-wrapper { padding: 24px 16px; }
         }
         @media (max-width: 480px) {
             .btn-primary, .btn-secondary { padding: 10px 24px; font-size: 12px; }
@@ -744,7 +790,6 @@
             .process-step:hover { transform: none; }
             .btn-telegram:hover { transform: none; }
             .hero-career::before, .hero-career::after,
-            .ready-section::before, .ready-section::after { animation: none; }
             .about-section .right .item { animation: none; }
             .vacancy-card { animation: none; }
             .hero-career .badge { animation: none; }
@@ -753,7 +798,7 @@
 </head>
 <body>
 
-    <!-- ===== ЧАСТИЦЫ НА ФОНЕ ===== -->
+    <!-- ===== ЧАСТИЦЫ ===== -->
     <canvas id="particles-canvas"></canvas>
 
     <!-- ===== НАВИГАЦИЯ ===== -->
@@ -781,6 +826,7 @@
         <a href="cases.html">Кейсы</a>
         <a href="career.html" class="current">Карьера</a>
         <a href="index.html#lead">Контакты</a>
+        <a href="https://t.me/BotCraftStudioOfferBot" target="_blank" style="font-size:20px; font-style:normal; font-family:var(--mono); letter-spacing:2px;">Написать в Telegram</a>
     </div>
 
     <div class="site-wrapper">
@@ -792,7 +838,7 @@
             <p>Строим цифровые продукты с 2024 года. Полная удалёнка. Нам нужны профессионалы, готовые создавать и влиять.</p>
             <div class="btn-row">
                 <a href="#vacancies" class="btn-primary">Вакансии</a>
-                <a href="#ready" class="btn-secondary">Написать</a>
+                <a href="#apply-form" class="btn-secondary">Откликнуться</a>
             </div>
             <div class="stats">
                 <span><strong>10+</strong> проектов</span>
@@ -810,37 +856,22 @@
             </div>
             <div class="right">
                 <div class="item">
-                    <svg class="icon-svg" viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5"/>
-                        <path d="M2 12l10 5 10-5"/>
-                    </svg>
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                     <h4>Продуктовый подход</h4>
                     <p>Мы не просто делаем — мы создаём продукты, которые приносят результат.</p>
                 </div>
                 <div class="item">
-                    <svg class="icon-svg" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v6l4 2"/>
-                    </svg>
+                    <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                     <h4>Гибкость</h4>
                     <p>Работай из любой точки мира — мы ценим свободу.</p>
                 </div>
                 <div class="item">
-                    <svg class="icon-svg" viewBox="0 0 24 24">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                     <h4>Прозрачность</h4>
                     <p>Честные условия, понятная оплата и открытое обсуждение задач.</p>
                 </div>
                 <div class="item">
-                    <svg class="icon-svg" viewBox="0 0 24 24">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     <h4>Команда</h4>
                     <p>Мы поддерживаем друг друга и растем вместе. Каждый голос имеет значение.</p>
                 </div>
@@ -861,12 +892,8 @@
                 </div>
                 <div class="meta">Полный день · Удалёнка</div>
                 <div class="desc">Дизайн интерфейсов для сайтов, веб-приложений и ботов. Работа с Figma, создание прототипов, дизайн-систем.</div>
-                <div class="tags">
-                    <span>Figma</span>
-                    <span>UI/UX</span>
-                    <span>Прототипирование</span>
-                </div>
-                <a href="#ready" class="btn-apply">Откликнуться</a>
+                <div class="tags"><span>Figma</span><span>UI/UX</span><span>Прототипирование</span></div>
+                <a href="#apply-form" class="btn-apply">Откликнуться</a>
             </div>
 
             <div class="vacancy-card reveal reveal-delay-2">
@@ -876,13 +903,8 @@
                 </div>
                 <div class="meta">Полный день · Удалёнка</div>
                 <div class="desc">Вёрстка сайтов и веб-приложений. HTML, CSS, JavaScript, адаптивная вёрстка, работа с макетами.</div>
-                <div class="tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                    <span>Адаптив</span>
-                </div>
-                <a href="#ready" class="btn-apply">Откликнуться</a>
+                <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Адаптив</span></div>
+                <a href="#apply-form" class="btn-apply">Откликнуться</a>
             </div>
 
             <div class="vacancy-card reveal reveal-delay-3">
@@ -892,12 +914,8 @@
                 </div>
                 <div class="meta">Полный день · Удалёнка</div>
                 <div class="desc">Написание текстов для сайтов, соцсетей и рассылок. Работа с контентом, умение писать понятно и убедительно.</div>
-                <div class="tags">
-                    <span>Копирайтинг</span>
-                    <span>Контент</span>
-                    <span>Тексты</span>
-                </div>
-                <a href="#ready" class="btn-apply">Откликнуться</a>
+                <div class="tags"><span>Копирайтинг</span><span>Контент</span><span>Тексты</span></div>
+                <a href="#apply-form" class="btn-apply">Откликнуться</a>
             </div>
 
             <div style="text-align:center;color:var(--dim);font-size:14px;font-family:var(--mono);margin-top:12px;">
@@ -915,7 +933,7 @@
                 <div class="process-step reveal reveal-delay-1">
                     <span class="num">01</span>
                     <h4>Отклик</h4>
-                    <p>Напиши в Telegram или оставь заявку — мы ответим в течение дня.</p>
+                    <p>Заполни форму или напиши в Telegram — мы ответим в течение дня.</p>
                 </div>
                 <div class="process-step reveal reveal-delay-2">
                     <span class="num">02</span>
@@ -930,18 +948,37 @@
             </div>
         </section>
 
-        <!-- ===== READY OR NOT ===== -->
-        <section class="ready-section" id="ready">
-            <div class="reveal">
-                <h2>Ready <em>or Not</em></h2>
-                <p>Напиши нам — без формальностей и долгих ожиданий.</p>
-                <a href="https://t.me/BotCraftStudioOfferBot" target="_blank" class="btn-telegram">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21.5 4.5L2 13l5 3.5L17.5 7"/>
-                        <path d="M7 16.5L9 22l4.5-5.5"/>
-                    </svg>
-                    Написать в Telegram
-                </a>
+        <!-- ===== НОВАЯ ФОРМА ОТКЛИКА ===== -->
+        <section id="apply-form">
+            <div class="form-wrapper">
+                <h3>Оставить отклик</h3>
+                <p class="form-desc">Заполните форму — мы получим её мгновенно и свяжемся с вами.</p>
+                <form id="careerForm">
+                    <div class="form-group">
+                        <input type="text" id="careerName" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="careerPosition" placeholder="Какая позиция интересна?">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="careerMessage" placeholder="Коротко о себе / опыте" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="careerContact" placeholder="Телефон, почта или @username" required>
+                    </div>
+                    <button type="submit" id="careerSubmitBtn" class="btn-submit">Отправить отклик</button>
+                    <div id="careerStatus" class="form-status"></div>
+                </form>
+                <div class="telegram-alt">
+                    <p>Или напишите нам напрямую в Telegram</p>
+                    <a href="https://t.me/BotCraftStudioOfferBot" target="_blank" class="btn-telegram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 4.5L2 13l5 3.5L17.5 7"/>
+                            <path d="M7 16.5L9 22l4.5-5.5"/>
+                        </svg>
+                        Написать в Telegram
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -956,6 +993,10 @@
                 <a href="cases.html">Кейсы</a>
                 <span style="margin:0 12px;color:var(--line);">|</span>
                 <a href="career.html" style="color:var(--accent);">Карьера</a>
+                <span style="margin:0 12px;color:var(--line);">|</span>
+                <a href="https://t.me/BotCraftStudioOfferBot" target="_blank" rel="noopener">Бот для откликов</a>
+                <span style="margin:0 12px;color:var(--line);">|</span>
+                <a href="https://t.me/Bot_CraftStudio" target="_blank" rel="noopener">Telegram-канал</a>
                 <span style="margin:0 12px;color:var(--line);">|</span>
                 <a href="privacy.html">Политика</a>
             </div>
@@ -1069,6 +1110,57 @@
             });
         })();
 
+        // ===== ФОРМА =====
+        (function() {
+            const form = document.getElementById('careerForm');
+            const nameInput = document.getElementById('careerName');
+            const contactInput = document.getElementById('careerContact');
+            const statusEl = document.getElementById('careerStatus');
+            const submitBtn = document.getElementById('careerSubmitBtn');
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const name = nameInput.value.trim();
+                const contact = contactInput.value.trim();
+                if (!name || !contact) {
+                    statusEl.textContent = 'Укажите имя и контакт для связи';
+                    statusEl.className = 'form-status error';
+                    return;
+                }
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Отправка...';
+                statusEl.textContent = '';
+                statusEl.className = 'form-status';
+
+                try {
+                    const response = await fetch('https://botsevstroy.ru/submit_application', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: name,
+                            position: document.getElementById('careerPosition').value.trim(),
+                            message: document.getElementById('careerMessage').value.trim(),
+                            contact: contact
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.ok) {
+                        statusEl.textContent = 'Отклик отправлен! Мы свяжемся с вами.';
+                        statusEl.className = 'form-status success';
+                        form.reset();
+                    } else {
+                        throw new Error(result.error || 'Ошибка отправки');
+                    }
+                } catch (err) {
+                    statusEl.textContent = 'Что-то пошло не так. Попробуйте позже.';
+                    statusEl.className = 'form-status error';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Отправить отклик';
+                }
+            });
+        })();
+
         // ===== ПАРАЛЛАКС =====
         (function() {
             const stats = document.querySelector('.hero-career .stats');
@@ -1080,5 +1172,6 @@
             });
         })();
     </script>
+
 </body>
 </html>
