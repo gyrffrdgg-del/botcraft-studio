@@ -32,7 +32,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 #cursor-dot{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:difference}
 #cursor-dot.hover{width:30px;height:30px;background:#fff}
 
-/* ===== ЧАТ-ЗАСТАВКА ===== */
 #loader{position:fixed;inset:0;z-index:100000;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;padding:24px;transition:opacity .9s ease,visibility .9s ease;opacity:1;visibility:visible;overflow:hidden}
 #loader.hide{opacity:0;visibility:hidden;pointer-events:none}
 .loader-chat{max-width:680px;width:100%;display:flex;flex-direction:column;gap:22px;padding:0}
@@ -45,10 +44,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .typing-dots span:nth-child(3){animation-delay:.4s}
 @keyframes typing{0%,80%,100%{transform:scale(.5);opacity:.3}40%{transform:scale(1);opacity:1}}
 @keyframes fadeUp{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}
-@media(max-width:480px){
-.loader-chat{gap:18px}
-.loader-chat .msg{font-size:17px;max-width:100%}
-}
+@media(max-width:480px){.loader-chat{gap:18px}.loader-chat .msg{font-size:17px;max-width:100%}}
 
 #scroll-circle{position:fixed;bottom:22px;right:22px;z-index:9996;width:50px;height:50px;cursor:pointer;opacity:0;transform:scale(.85);transition:opacity .3s,transform .3s}
 #scroll-circle.visible{opacity:1;transform:scale(1)}
@@ -101,7 +97,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 .btn-row{display:flex;gap:16px;flex-wrap:wrap}
 
-/* ===== РАЗЛЕТАЮЩИЕСЯ БУКВЫ ===== */
 .split-text{display:inline-block}
 .split-text .char{display:inline-block;transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .3s;will-change:transform}
 .split-text:hover .char{opacity:.7}
@@ -176,28 +171,25 @@ section{padding:70px 0;border-top:1px solid var(--line);width:100%}
 .tilt-card .card-link{font-family:var(--mono);font-size:11px;font-weight:300;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:6px;transition:gap .3s}
 .tilt-card .card-link:hover{gap:10px}
 
-/* ===== СЕГМЕНТЫ ===== */
-.segments-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px}
-.segment-card{border:1px solid var(--line);padding:26px 22px;background:var(--gradient-card);border-radius:8px;transition:border-color .3s,transform .3s}
-.segment-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 30px rgba(201,168,124,.06)}
-.segment-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--accent);border:1px solid var(--line-strong);margin-bottom:16px}
-.segment-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
-.segment-card h3{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--text);margin-bottom:8px;line-height:1.3}
-.segment-card p{font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:14px;font-weight:300}
-.segment-slogan{font-family:var(--serif);font-size:13.5px;font-style:italic;font-weight:400;color:var(--accent);display:block;border-top:1px solid var(--line);padding-top:14px;line-height:1.5}
-.pain-points{margin-top:52px}
-.pain-points h3{font-family:var(--serif);font-size:21px;font-weight:400;color:var(--text);text-align:center;margin-bottom:24px;letter-spacing:-.01em}
-.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.pain-item{display:flex;align-items:flex-start;gap:14px;border:1px solid var(--line);padding:16px 18px;border-radius:6px;background:var(--gradient-card)}
-.pain-item .pain-icon{width:22px;height:22px;flex-shrink:0;color:var(--accent);margin-top:2px}
-.pain-item .pain-icon svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
-.pain-item p{font-size:13px;color:var(--muted);line-height:1.6;margin:0;font-weight:300}
-.pain-item strong{color:var(--text);font-weight:400;display:block;margin-bottom:2px;font-size:13.5px}
-.segment-cta{margin-top:52px}
-.segment-cta-box{background:var(--gradient-hero);color:var(--bg);padding:44px 32px;border-radius:16px;text-align:center}
-.segment-cta-box p{font-family:var(--serif);font-size:19px;line-height:1.6;max-width:720px;margin:0 auto 26px;color:var(--bg);font-weight:400;font-style:italic}
-.segment-cta-box .btn-primary{background:var(--bg);color:var(--accent);padding:15px 44px;border-radius:6px;font-size:13px;font-weight:400}
-.segment-cta-box .btn-primary:hover{background:#000;transform:translateY(-2px)}
+/* ===== СЕГМЕНТЫ (ПЕРЕРАБОТАННЫЕ) ===== */
+#segments{background:var(--bg);background-image:none}
+#segments::before,#segments::after{display:none}
+.segments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px;background:none}
+.segment-card{border:1px solid var(--line);padding:32px 26px;background:var(--gradient-card);border-radius:8px;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative}
+.segment-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(201,168,124,.08)}
+.segment-icon{width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:var(--accent);border:1px solid var(--line-strong);margin-bottom:22px;background:rgba(201,168,124,.03)}
+.segment-icon svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.segment-card h3{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--text);margin-bottom:10px;line-height:1.3}
+.segment-card p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px;font-weight:300}
+.segment-slogan{font-family:var(--mono);font-size:12px;letter-spacing:.5px;color:#E8E5DC;display:block;border-top:1px solid var(--line);padding-top:16px;line-height:1.5;font-weight:400}
+.segment-slogan::before{content:'→ ';color:var(--accent);font-family:var(--sans)}
+.segment-cta{margin-top:56px}
+.segment-cta-box{background:var(--gradient-card);border:1px solid var(--line-strong);color:var(--text);padding:48px 40px;border-radius:16px;text-align:center}
+.segment-cta-box p{font-family:var(--serif);font-size:20px;line-height:1.55;max-width:720px;margin:0 auto 28px;color:var(--text);font-weight:400;font-style:italic}
+.segment-cta-box .btn-primary{background:var(--gradient-btn);color:var(--bg);padding:16px 48px;border-radius:6px;font-size:13px;font-weight:400}
+.segment-cta-box .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,124,.25)}
+@media(max-width:1000px){.segments-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.segments-grid{grid-template-columns:1fr}.segment-cta-box{padding:32px 22px}.segment-cta-box p{font-size:17px}}
 
 .digital-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .digital-step{border:1px solid var(--line);padding:28px 20px;text-align:center;background:var(--gradient-card);transition:border-color .3s,transform .3s,box-shadow .3s;border-radius:8px}
@@ -215,7 +207,6 @@ section{padding:70px 0;border-top:1px solid var(--line);width:100%}
 .process-step h4{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--text);margin-bottom:8px}
 .process-step p{font-size:12.5px;color:var(--muted);line-height:1.6;font-weight:300}
 
-/* ===== ПРЕИМУЩЕСТВА ===== */
 .benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 24px}
 .benefit-item{padding-top:18px;border-top:1px solid var(--line-strong)}
 .b-graphic{width:28px;height:28px;margin-bottom:14px;color:var(--accent)}
@@ -337,7 +328,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;display:flex;flex-directi
 @media(max-width:1200px){
 .service-grid{grid-template-columns:repeat(3,1fr)}
 .digital-grid{grid-template-columns:repeat(2,1fr)}
-.segments-grid{grid-template-columns:repeat(3,1fr)}
 .benefit-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:1000px){
@@ -354,8 +344,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;display:flex;flex-directi
 .process-grid{grid-template-columns:1fr 1fr}
 .lead-grid{grid-template-columns:1fr;gap:40px}
 .digital-grid{grid-template-columns:1fr 1fr}
-.segments-grid{grid-template-columns:1fr 1fr}
-.pain-grid{grid-template-columns:1fr 1fr}
 .why-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
@@ -367,8 +355,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;display:flex;flex-directi
 .stat-strip{grid-template-columns:1fr;gap:24px}
 .process-grid{grid-template-columns:1fr}
 .digital-grid{grid-template-columns:1fr}
-.segments-grid{grid-template-columns:1fr}
-.pain-grid{grid-template-columns:1fr}
 .why-grid{grid-template-columns:1fr}
 .benefit-grid{grid-template-columns:1fr}
 #three-canvas{display:none}
@@ -385,8 +371,6 @@ a{cursor:auto}
 .result-card .total-price{font-size:30px}
 .hero{padding:60px 0 50px}
 .section-title{font-size:26px}
-.segment-cta-box{padding:32px 20px}
-.segment-cta-box p{font-size:16px}
 section{padding:60px 0}
 #lead{padding:60px 0}
 .hl-inner{padding:0 20px}
@@ -403,6 +387,10 @@ section{padding:60px 0}
 .hero h1 .l3{font-size:40px}
 .hero-meta{flex-direction:column;gap:8px;align-items:flex-start}
 .why-item,.segment-card,.tilt-card{padding:22px 18px}
+}
+@media (hover: none), (pointer: coarse) {
+#cursor-overlay,#cursor-dot{display:none!important}
+body,a,button,.btn-primary,.btn-secondary,.nav-cta{cursor:auto!important}
 }
 @media(prefers-reduced-motion:reduce){
 .reveal{transition:opacity .3s ease;transform:none}
@@ -476,7 +464,6 @@ body{cursor:auto}
 
 <div class="site-wrapper">
 
-<!-- HERO -->
 <header class="hero" id="hero">
 <div class="hero-content">
 <div class="hero-badge">Цифровой апгрейд</div>
@@ -499,7 +486,6 @@ body{cursor:auto}
 <div class="scroll-cue"><span class="line"></span> Листайте</div>
 </header>
 
-<!-- СТАТИСТИКА -->
 <section id="proof" style="padding-top:0;padding-bottom:24px;border-top:none;">
 <div class="stat-strip reveal">
 <div class="stat-item">
@@ -524,7 +510,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- ПОЧЕМУ МЫ -->
 <section id="why">
 <div class="section-marker reveal"><span class="section-index">01</span><span class="section-rule"></span><span class="section-eyebrow">Надёжность</span></div>
 <h2 class="section-title reveal">Почему бизнес выбирает нас</h2>
@@ -538,7 +523,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- ИНТЕГРАЦИИ -->
 <div class="marquee-wrap" aria-label="Интеграции">
 <div class="marquee-label">Работаем поверх ваших систем</div>
 <div class="marquee">
@@ -549,7 +533,6 @@ body{cursor:auto}
 </div>
 </div>
 
-<!-- УСЛУГИ -->
 <section id="work">
 <div class="section-marker reveal"><span class="section-index">02</span><span class="section-rule"></span><span class="section-eyebrow">Услуги</span></div>
 <h2 class="section-title reveal">Что мы строим</h2>
@@ -588,102 +571,59 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- КОМУ МЫ НУЖНЫ -->
+<!-- ===== КОМУ МЫ НУЖНЫ (ПЕРЕРАБОТАННЫЙ) ===== -->
 <section id="segments">
 <div class="section-marker reveal"><span class="section-index">03</span><span class="section-rule"></span><span class="section-eyebrow">Кому мы нужны</span></div>
-<h2 class="section-title reveal">Мы шарим. И вот кому мы нужны</h2>
-<p class="section-sub reveal">Вы потеряли контроль? Клиенты есть, но они не ваши — они у площадок, у дилеров, у случайных звонков. Хватит кормить чужих.</p>
+<h2 class="section-title reveal">Кому мы нужны</h2>
+<p class="section-sub reveal">Работаем с бизнесом, у которого уже есть продукт или услуга — и который теряет деньги на посредниках, комиссиях или ручных процессах.</p>
 
 <div class="segments-grid">
 <div class="segment-card reveal reveal-delay-1">
 <div class="segment-icon"><svg viewBox="0 0 24 24"><path d="M3 3h2l2 12h12l2-8H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg></div>
 <h3>Селлеры маркетплейсов</h3>
-<p>Штрафы, блокировки, заморозка денег. Забираем ассортимент на ваш сайт с автовыгрузкой остатков.</p>
-<span class="segment-slogan">«Wildberries — для трафика, твой сайт — для денег»</span>
+<p>Штрафы, блокировки, комиссии. Переносим ассортимент на ваш сайт с автовыгрузкой остатков.</p>
+<span class="segment-slogan">−30% зависимости от одной площадки</span>
 </div>
 <div class="segment-card reveal reveal-delay-2">
 <div class="segment-icon"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9v11h18V9"/><path d="M8 13h8v7H8z"/></svg></div>
 <h3>Офлайн-ритейл</h3>
-<p>Аренда растёт, проходимость падает. Превращаем магазин в сайт с доставкой СДЭК.</p>
-<span class="segment-slogan">«Аренда — это налог на старомодность»</span>
+<p>Аренда растёт, проходимость падает. Запускаем онлайн-канал с доставкой СДЭК.</p>
+<span class="segment-slogan">Онлайн-продажи без роста аренды</span>
 </div>
 <div class="segment-card reveal reveal-delay-3">
 <div class="segment-icon"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg></div>
 <h3>Производители</h3>
-<p>Дилеры накручивают 100% сверху. Открываем прямой канал до покупателя.</p>
-<span class="segment-slogan">«Фабрика + СДЭК = маржа без посредников»</span>
+<p>Дилеры забирают маржу. Открываем прямой канал продаж до конечного покупателя.</p>
+<span class="segment-slogan">Прямые продажи без наценки посредников</span>
 </div>
 <div class="segment-card reveal reveal-delay-1">
 <div class="segment-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
 <h3>Оптовики и дистрибьюторы</h3>
-<p>Клиенты хотят заказывать быстро и без звонков. Создаём закрытый B2B-портал.</p>
-<span class="segment-slogan">«Excel — для бухгалтерии, сайт — для продаж»</span>
+<p>Клиенты хотят заказывать сами. Создаём закрытый B2B-портал с персональными ценами.</p>
+<span class="segment-slogan">Автоповторные заказы без звонков</span>
 </div>
 <div class="segment-card reveal reveal-delay-2">
 <div class="segment-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2 2.8-2.8Z"/></svg></div>
 <h3>Сфера услуг</h3>
-<p>Клиенты сравнивают цены, запись только по телефону. Сайт с онлайн-записью и расчётом.</p>
-<span class="segment-slogan">«Телефон звонит — деньги тают. Сайт работает 24/7»</span>
+<p>Записи теряются в мессенджерах. Внедряем онлайн-запись и автоматический расчёт стоимости.</p>
+<span class="segment-slogan">Заявки принимаются 24/7 без потерь</span>
 </div>
 <div class="segment-card reveal reveal-delay-3">
 <div class="segment-icon"><svg viewBox="0 0 24 24"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 1 20 0h-3"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg></div>
 <h3>Фермеры и продовольствие</h3>
-<p>Перекупщики диктуют цены. Сайт с подпиской на сезонные продукты, доставка с термобоксами.</p>
-<span class="segment-slogan">«Продай сам — и урожай, и прибыль твои»</span>
-</div>
-<div class="segment-card reveal reveal-delay-1">
-<div class="segment-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-<h3>Мастера ручной работы</h3>
-<p>Уникальные вещи тонут в море китайского ширпотреба. Сайт-портфолио с процессом создания.</p>
-<span class="segment-slogan">«Масс-маркет убивает уникальность»</span>
-</div>
-<div class="segment-card reveal reveal-delay-2">
-<div class="segment-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
-<h3>Образование, тренеры</h3>
-<p>Запись через директ или ватсап — хаос. Сайт с расписанием, онлайн-записью и оплатой.</p>
-<span class="segment-slogan">«Запись в мессенджерах — путь к потерянным ученикам»</span>
-</div>
-</div>
-
-<div class="pain-points reveal">
-<h3>Независимо от ниши, вы страдаете от одного и того же</h3>
-<div class="pain-grid">
-<div class="pain-item">
-<span class="pain-icon"><svg viewBox="0 0 24 24"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></span>
-<p><strong>Потеря клиентов без онлайна</strong>Если тебя нет в интернете — ты теряешь</p>
-</div>
-<div class="pain-item">
-<span class="pain-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.2"/><circle cx="16" cy="8" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="8" cy="16" r="1.2"/><circle cx="16" cy="16" r="1.2"/></svg></span>
-<p><strong>Зависимость от одного канала</strong>Один клиент, одна площадка — это русская рулетка</p>
-</div>
-<div class="pain-item">
-<span class="pain-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
-<p><strong>Высокие комиссии</strong>Каждый рубль посреднику — рубль не вложенный в качество</p>
-</div>
-<div class="pain-item">
-<span class="pain-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
-<p><strong>Сложная логистика</strong>СДЭК решит 90% проблем с доставкой</p>
-</div>
-<div class="pain-item">
-<span class="pain-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-<p><strong>Отсутствие аналитики</strong>Сайт даст данные — маркетплейсы не дают</p>
-</div>
-<div class="pain-item">
-<span class="pain-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-<p><strong>Низкая лояльность</strong>На своём сайте ты — король</p>
-</div>
+<p>Перекупы диктуют цены. Запускаем подписку на сезонные продукты и доставку с термобоксами.</p>
+<span class="segment-slogan">Продажа по вашей цене, а не перекупа</span>
 </div>
 </div>
 
 <div class="segment-cta reveal">
 <div class="segment-cta-box">
-<p>«Хватит кормить чужих. Приходи на аудит — мы посчитаем, сколько ты потерял за последний год на посредниках, комиссиях и недопродажах. Если цифра не впечатлит — мы заплатим тебе 5000 ₽ за потраченное время».</p>
-<a href="#lead" class="btn-primary">Забрать свои деньги назад</a>
+<p>Посчитаем, сколько вы теряете на текущих процессах — на комиссиях, посредниках и ручной работе. Если цифра не впечатлит, заплатим 5 000 ₽ за потраченное время.</p>
+<a href="#lead" class="btn-primary">Заказать аудит</a>
 </div>
 </div>
 </section>
 
-<!-- ЦИФРОВОЙ СТАРТ -->
 <section id="digital">
 <div class="section-marker reveal"><span class="section-index">04</span><span class="section-rule"></span><span class="section-eyebrow">Полный цикл</span></div>
 <h2 class="section-title reveal">Цифровой старт <span style="color:var(--accent);font-style:italic;">за руку</span></h2>
@@ -696,7 +636,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- ПРОЦЕСС -->
 <section id="process">
 <div class="section-marker reveal"><span class="section-index">05</span><span class="section-rule"></span><span class="section-eyebrow">Как мы работаем</span></div>
 <h2 class="section-title reveal">Процесс</h2>
@@ -710,7 +649,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- ПРЕИМУЩЕСТВА -->
 <section id="benefits">
 <div class="section-marker reveal"><span class="section-index">06</span><span class="section-rule"></span><span class="section-eyebrow">Почему мы</span></div>
 <h2 class="section-title reveal">Преимущества</h2>
@@ -751,7 +689,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- КЕЙСЫ -->
 <section id="cases">
 <div class="section-marker reveal"><span class="section-index">07</span><span class="section-rule"></span><span class="section-eyebrow">Портфолио</span></div>
 <h2 class="section-title reveal">Реальные проекты</h2>
@@ -793,7 +730,6 @@ body{cursor:auto}
 <div class="reveal" style="margin-top:32px;"><a href="cases.html" class="btn-secondary">Все кейсы</a></div>
 </section>
 
-<!-- HIGHLIGHT -->
 <section class="highlight-band">
 <div class="hl-inner">
 <span class="h-eyebrow reveal">Цифры, а не обещания</span>
@@ -801,7 +737,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- КАЛЬКУЛЯТОР -->
 <section id="constructor">
 <div class="section-marker reveal"><span class="section-index">08</span><span class="section-rule"></span><span class="section-eyebrow">Рассчитать проект</span></div>
 <h2 class="section-title reveal">Калькулятор цифровизации</h2>
@@ -888,7 +823,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- ГАРАНТИЯ -->
 <section style="padding-top:0;border-top:none;">
 <div class="guarantee-block reveal">
 <h3>Гарантируем результат</h3>
@@ -896,7 +830,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- КАРЬЕРА -->
 <section class="career-cta-band">
 <div class="site-wrapper">
 <div class="career-cta-content reveal">
@@ -907,7 +840,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
 <div class="section-marker reveal"><span class="section-index">09</span><span class="section-rule"></span><span class="section-eyebrow">Часто спрашивают</span></div>
 <h2 class="section-title reveal">Ответы на вопросы</h2>
@@ -919,7 +851,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- ФОРМА -->
 <section id="lead">
 <div class="section-marker reveal"><span class="section-index">10</span><span class="section-rule"></span><span class="section-eyebrow">Начните цифровой старт</span></div>
 <div class="lead-grid">
@@ -954,7 +885,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- CTA FINAL -->
 <section class="cta-final">
 <div class="wrapper">
 <h2>Получите бесплатный план цифровизации за 24 часа</h2>
@@ -991,384 +921,372 @@ body{cursor:auto}
 <button id="back-to-top" aria-label="Наверх" style="position:fixed;bottom:80px;right:18px;z-index:9995;background:rgba(10,11,16,.7);border:1px solid var(--line-strong);border-radius:50%;width:42px;height:42px;color:var(--accent);font-size:15px;cursor:pointer;opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;">↑</button>
 
 <script>
-// ===== КУРСОР-ПРОЖЕКТОР =====
 (function(){
-    if(window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var overlay = document.getElementById('cursor-overlay');
-    var dot = document.getElementById('cursor-dot');
-    if(!overlay || !dot) return;
-    document.addEventListener('mousemove', function(e){
-        overlay.style.setProperty('--mouse-x', e.clientX + 'px');
-        overlay.style.setProperty('--mouse-y', e.clientY + 'px');
-        dot.style.left = e.clientX + 'px';
-        dot.style.top = e.clientY + 'px';
-    });
-    setTimeout(function(){overlay.classList.add('hidden')}, 3000);
-    document.querySelectorAll('a, button, .btn-primary, .btn-secondary, .nav-cta, .tilt-card, .card-link').forEach(function(el){
-        el.addEventListener('mouseenter', function(){dot.classList.add('hover')});
-        el.addEventListener('mouseleave', function(){dot.classList.remove('hover')});
-    });
+if(window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+var overlay = document.getElementById('cursor-overlay');
+var dot = document.getElementById('cursor-dot');
+if(!overlay || !dot) return;
+document.addEventListener('mousemove', function(e){
+overlay.style.setProperty('--mouse-x', e.clientX + 'px');
+overlay.style.setProperty('--mouse-y', e.clientY + 'px');
+dot.style.left = e.clientX + 'px';
+dot.style.top = e.clientY + 'px';
+});
+setTimeout(function(){overlay.classList.add('hidden')}, 3000);
+document.querySelectorAll('a, button, .btn-primary, .btn-secondary, .nav-cta, .tilt-card, .card-link').forEach(function(el){
+el.addEventListener('mouseenter', function(){dot.classList.add('hover')});
+el.addEventListener('mouseleave', function(){dot.classList.remove('hover')});
+});
 })();
 
-// ===== ЧАТ-ЗАСТАВКА =====
 (function(){
-    var loader = document.getElementById('loader');
-    var chat = document.getElementById('loaderChat');
-    if (!loader || !chat) return;
-    function addMsg(text, sender, delay) {
-        return new Promise(function(resolve){
-            setTimeout(function(){
-                var msg = document.createElement('div');
-                msg.className = 'msg ' + sender;
-                msg.innerHTML = text;
-                chat.appendChild(msg);
-                chat.scrollTop = chat.scrollHeight;
-                resolve();
-            }, delay);
-        });
-    }
-    function showTyping() {
-        var t = document.createElement('div');
-        t.className = 'msg bot';
-        t.id = 'typingIndicator';
-        t.innerHTML = '<span class="typing-dots"><span></span><span></span><span></span></span>';
-        chat.appendChild(t);
-        chat.scrollTop = chat.scrollHeight;
-    }
-    function hideTyping() {
-        var el = document.getElementById('typingIndicator');
-        if (el) el.remove();
-    }
-    async function start() {
-        try {
-            await addMsg('Где всё? Куда пропал сайт? Я ничего не вижу…', 'user', 1600);
-            await new Promise(function(r){ setTimeout(r, 2400); });
-            showTyping();
-            await new Promise(function(r){ setTimeout(r, 1400); });
-            hideTyping();
-            await addMsg('Всё ясно и без слов, <b style="font-weight:400;color:var(--accent)">BotCraft Studio</b>.<br>Мы уже загружаем для вас полный цифровой инструментарий.<br>Подождите пару секунд — сайт появится.', 'bot', 0);
-            await new Promise(function(r){ setTimeout(r, 1400); });
-        } catch(e) { console.warn(e); }
-        finally {
-            loader.classList.add('hide');
-            var canvas = document.getElementById('three-canvas');
-            if (canvas) canvas.classList.add('visible');
-            document.getElementById('scroll-circle').classList.add('visible');
-        }
-    }
-    setTimeout(start, 250);
+var loader = document.getElementById('loader');
+var chat = document.getElementById('loaderChat');
+if (!loader || !chat) return;
+function addMsg(text, sender, delay) {
+return new Promise(function(resolve){
+setTimeout(function(){
+var msg = document.createElement('div');
+msg.className = 'msg ' + sender;
+msg.innerHTML = text;
+chat.appendChild(msg);
+chat.scrollTop = chat.scrollHeight;
+resolve();
+}, delay);
+});
+}
+function showTyping() {
+var t = document.createElement('div');
+t.className = 'msg bot';
+t.id = 'typingIndicator';
+t.innerHTML = '<span class="typing-dots"><span></span><span></span><span></span></span>';
+chat.appendChild(t);
+chat.scrollTop = chat.scrollHeight;
+}
+function hideTyping() {
+var el = document.getElementById('typingIndicator');
+if (el) el.remove();
+}
+async function start() {
+try {
+await addMsg('Где всё? Куда пропал сайт? Я ничего не вижу…', 'user', 1600);
+await new Promise(function(r){ setTimeout(r, 2400); });
+showTyping();
+await new Promise(function(r){ setTimeout(r, 1400); });
+hideTyping();
+await addMsg('Всё ясно и без слов, <b style="font-weight:400;color:var(--accent)">BotCraft Studio</b>.<br>Мы уже загружаем для вас полный цифровой инструментарий.<br>Подождите пару секунд — сайт появится.', 'bot', 0);
+await new Promise(function(r){ setTimeout(r, 1400); });
+} catch(e) { console.warn(e); }
+finally {
+loader.classList.add('hide');
+var canvas = document.getElementById('three-canvas');
+if (canvas) canvas.classList.add('visible');
+document.getElementById('scroll-circle').classList.add('visible');
+}
+}
+setTimeout(start, 250);
 })();
 
-// ===== РАЗЛЕТАЮЩИЕСЯ БУКВЫ =====
 (function(){
-    document.querySelectorAll('.split-text').forEach(function(el){
-        var text = el.textContent;
-        el.innerHTML = text.split('').map(function(ch, i){
-            if(ch === ' ') return ' ';
-            return '<span class="char" style="transition-delay:' + (i * 0.03) + 's">' + ch + '</span>';
-        }).join('');
-    });
+document.querySelectorAll('.split-text').forEach(function(el){
+var text = el.textContent;
+el.innerHTML = text.split('').map(function(ch, i){
+if(ch === ' ') return ' ';
+return '<span class="char" style="transition-delay:' + (i * 0.03) + 's">' + ch + '</span>';
+}).join('');
+});
 })();
 
-// ===== СКРОЛЛ-ПРОГРЕСС =====
 (function(){
-    var c = document.getElementById('scrollCircleProgress');
-    if(!c) return;
-    var circum = 2 * Math.PI * 23;
-    c.style.strokeDasharray = circum;
-    function u(){
-        var s = window.scrollY;
-        var h = document.documentElement.scrollHeight - window.innerHeight;
-        var p = h > 0 ? s / h : 0;
-        c.style.strokeDashoffset = circum - p * circum;
-    }
-    window.addEventListener('scroll', u, {passive:true});
-    window.addEventListener('resize', u);
-    u();
-    document.getElementById('scroll-circle').addEventListener('click', function(){window.scrollTo({top:0,behavior:'smooth'})});
+var c = document.getElementById('scrollCircleProgress');
+if(!c) return;
+var circum = 2 * Math.PI * 23;
+c.style.strokeDasharray = circum;
+function u(){
+var s = window.scrollY;
+var h = document.documentElement.scrollHeight - window.innerHeight;
+var p = h > 0 ? s / h : 0;
+c.style.strokeDashoffset = circum - p * circum;
+}
+window.addEventListener('scroll', u, {passive:true});
+window.addEventListener('resize', u);
+u();
+document.getElementById('scroll-circle').addEventListener('click', function(){window.scrollTo({top:0,behavior:'smooth'})});
 })();
 
-// ===== ХЕДЕР =====
 (function(){
-    var nav = document.getElementById('mainNav');
-    var last = 0, hidden = false;
-    window.addEventListener('scroll', function(){
-        var cur = window.scrollY;
-        if(cur > 100){
-            if(cur - last > 20 && !hidden){nav.classList.add('hide'); hidden = true;}
-            else if(last - cur > 20 && hidden){nav.classList.remove('hide'); hidden = false;}
-        } else {nav.classList.remove('hide'); hidden = false;}
-        last = cur;
-    }, {passive:true});
+var nav = document.getElementById('mainNav');
+var last = 0, hidden = false;
+window.addEventListener('scroll', function(){
+var cur = window.scrollY;
+if(cur > 100){
+if(cur - last > 20 && !hidden){nav.classList.add('hide'); hidden = true;}
+else if(last - cur > 20 && hidden){nav.classList.remove('hide'); hidden = false;}
+} else {nav.classList.remove('hide'); hidden = false;}
+last = cur;
+}, {passive:true});
 })();
 
-// ===== NAV TOGGLE =====
 (function(){
-    var t = document.getElementById('navToggle');
-    var m = document.getElementById('mobileMenu');
-    if(!t || !m) return;
-    t.addEventListener('click', function(){
-        m.classList.toggle('open');
-        t.classList.toggle('active');
-    });
-    m.querySelectorAll('a').forEach(function(a){
-        a.addEventListener('click', function(){
-            m.classList.remove('open');
-            t.classList.remove('active');
-        });
-    });
+var t = document.getElementById('navToggle');
+var m = document.getElementById('mobileMenu');
+if(!t || !m) return;
+t.addEventListener('click', function(){
+m.classList.toggle('open');
+t.classList.toggle('active');
+});
+m.querySelectorAll('a').forEach(function(a){
+a.addEventListener('click', function(){
+m.classList.remove('open');
+t.classList.remove('active');
+});
+});
 })();
 
-// ===== REVEAL =====
 (function(){
-    var els = document.querySelectorAll('.reveal');
-    if('IntersectionObserver' in window){
-        var o = new IntersectionObserver(function(en){
-            en.forEach(function(e){
-                if(e.isIntersecting) e.target.classList.add('visible');
-            });
-        }, {threshold:0.08});
-        els.forEach(function(e){o.observe(e)});
-    } else {
-        els.forEach(function(e){e.classList.add('visible')});
-    }
+var els = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+var o = new IntersectionObserver(function(en){
+en.forEach(function(e){
+if(e.isIntersecting) e.target.classList.add('visible');
+});
+}, {threshold:0.08});
+els.forEach(function(e){o.observe(e)});
+} else {
+els.forEach(function(e){e.classList.add('visible')});
+}
 })();
 
-// ===== BACK TO TOP =====
 (function(){
-    var b = document.getElementById('back-to-top');
-    window.addEventListener('scroll', function(){
-        b.style.opacity = window.scrollY > 500 ? '1' : '0';
-    }, {passive:true});
-    b.addEventListener('click', function(){window.scrollTo({top:0,behavior:'smooth'})});
+var b = document.getElementById('back-to-top');
+window.addEventListener('scroll', function(){
+b.style.opacity = window.scrollY > 500 ? '1' : '0';
+}, {passive:true});
+b.addEventListener('click', function(){window.scrollTo({top:0,behavior:'smooth'})});
 })();
 
-// ===== STATS =====
 (function(){
-    function an(){
-        document.querySelectorAll('.stat-num').forEach(function(c){
-            var t = parseInt(c.dataset.target);
-            var s = c.dataset.suffix || '';
-            var st = performance.now();
-            function u(n){
-                var p = Math.min((n - st)/2000, 1);
-                var e = 1 - Math.pow(1 - p, 3);
-                c.textContent = Math.floor(e * t) + s;
-                if(p < 1) requestAnimationFrame(u);
-                else c.textContent = t + s;
-            }
-            requestAnimationFrame(u);
-        });
-    }
-    function ac(){
-        var c = document.querySelector('.stat-circle .progress');
-        if(!c) return;
-        var t = 56.6, so = 283, b = performance.now();
-        function u(n){
-            var p = Math.min((n - b)/2000, 1);
-            var e = 1 - Math.pow(1 - p, 3);
-            c.style.strokeDashoffset = so - (so - t) * e;
-            if(p < 1) requestAnimationFrame(u);
-        }
-        requestAnimationFrame(u);
-    }
-    var bl = document.querySelector('#proof .stat-strip');
-    if(bl && 'IntersectionObserver' in window){
-        var o = new IntersectionObserver(function(en){
-            if(en[0].isIntersecting){an(); ac(); o.unobserve(bl);}
-        }, {threshold:0.3});
-        o.observe(bl);
-    } else if(bl) { an(); ac(); }
+function an(){
+document.querySelectorAll('.stat-num').forEach(function(c){
+var t = parseInt(c.dataset.target);
+var s = c.dataset.suffix || '';
+var st = performance.now();
+function u(n){
+var p = Math.min((n - st)/2000, 1);
+var e = 1 - Math.pow(1 - p, 3);
+c.textContent = Math.floor(e * t) + s;
+if(p < 1) requestAnimationFrame(u);
+else c.textContent = t + s;
+}
+requestAnimationFrame(u);
+});
+}
+function ac(){
+var c = document.querySelector('.stat-circle .progress');
+if(!c) return;
+var t = 56.6, so = 283, b = performance.now();
+function u(n){
+var p = Math.min((n - b)/2000, 1);
+var e = 1 - Math.pow(1 - p, 3);
+c.style.strokeDashoffset = so - (so - t) * e;
+if(p < 1) requestAnimationFrame(u);
+}
+requestAnimationFrame(u);
+}
+var bl = document.querySelector('#proof .stat-strip');
+if(bl && 'IntersectionObserver' in window){
+var o = new IntersectionObserver(function(en){
+if(en[0].isIntersecting){an(); ac(); o.unobserve(bl);}
+}, {threshold:0.3});
+o.observe(bl);
+} else if(bl) { an(); ac(); }
 })();
 
-// ===== FORM =====
 document.addEventListener('DOMContentLoaded', function(){
-    var f = document.getElementById('leadForm');
-    if(!f) return;
-    var n = document.getElementById('nameInput');
-    var p = document.getElementById('phoneInput');
-    var s = document.getElementById('formStatus');
-    var b = document.getElementById('submitBtn');
-    p.addEventListener('input', function(){
-        var v = this.value.replace(/\D/g, '');
-        if(!v){this.value = ''; return;}
-        if(v.startsWith('7')) v = v.slice(1);
-        else if(v.startsWith('8')) v = v.slice(1);
-        var pr = v.match(/^(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
-        var fo = '+7';
-        if(pr){
-            if(pr[1]) fo += ' (' + pr[1];
-            if(pr[2]) fo += ') ' + pr[2];
-            if(pr[3]) fo += '-' + pr[3];
-            if(pr[4]) fo += '-' + pr[4];
-        }
-        this.value = fo.trim();
-    });
-    f.addEventListener('submit', async function(e){
-        e.preventDefault();
-        var na = n.value.trim() || 'Аноним';
-        var ph = p.value.replace(/\D/g, '');
-        if(ph.length < 10){s.textContent = 'Введите корректный номер'; s.className = 'error'; return;}
-        b.disabled = true;
-        b.innerHTML = 'Отправка...';
-        s.textContent = '';
-        s.className = '';
-        try {
-            var r = await fetch('https://botsevstroy.ru/submit_lead', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({phone: ph, name: na})
-            });
-            var res = await r.json();
-            if(res.ok){
-                s.textContent = 'Заявка принята. Мы свяжемся с вами.';
-                s.className = 'success';
-                p.value = '';
-                n.value = '';
-                setTimeout(function(){window.location.href = '/thank-you.html'}, 2000);
-            } else throw new Error(res.error || 'Ошибка');
-        } catch(err){
-            s.textContent = 'Что-то пошло не так. Попробуйте позже.';
-            s.className = 'error';
-        } finally {
-            b.disabled = false;
-            b.innerHTML = '<span>Получить план</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
-        }
-    });
+var f = document.getElementById('leadForm');
+if(!f) return;
+var n = document.getElementById('nameInput');
+var p = document.getElementById('phoneInput');
+var s = document.getElementById('formStatus');
+var b = document.getElementById('submitBtn');
+p.addEventListener('input', function(){
+var v = this.value.replace(/\D/g, '');
+if(!v){this.value = ''; return;}
+if(v.startsWith('7')) v = v.slice(1);
+else if(v.startsWith('8')) v = v.slice(1);
+var pr = v.match(/^(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+var fo = '+7';
+if(pr){
+if(pr[1]) fo += ' (' + pr[1];
+if(pr[2]) fo += ') ' + pr[2];
+if(pr[3]) fo += '-' + pr[3];
+if(pr[4]) fo += '-' + pr[4];
+}
+this.value = fo.trim();
+});
+f.addEventListener('submit', async function(e){
+e.preventDefault();
+var na = n.value.trim() || 'Аноним';
+var ph = p.value.replace(/\D/g, '');
+if(ph.length < 10){s.textContent = 'Введите корректный номер'; s.className = 'error'; return;}
+b.disabled = true;
+b.innerHTML = 'Отправка...';
+s.textContent = '';
+s.className = '';
+try {
+var r = await fetch('https://botsevstroy.ru/submit_lead', {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+body: JSON.stringify({phone: ph, name: na})
+});
+var res = await r.json();
+if(res.ok){
+s.textContent = 'Заявка принята. Мы свяжемся с вами.';
+s.className = 'success';
+p.value = '';
+n.value = '';
+setTimeout(function(){window.location.href = '/thank-you.html'}, 2000);
+} else throw new Error(res.error || 'Ошибка');
+} catch(err){
+s.textContent = 'Что-то пошло не так. Попробуйте позже.';
+s.className = 'error';
+} finally {
+b.disabled = false;
+b.innerHTML = '<span>Получить план</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+}
+});
 });
 
-// ===== CALCULATOR =====
 (function(){
-    var cs = 1, ts = 4;
-    var st = {business:null, services:[], pain:null};
-    var sp = {'bot-simple':100000, 'bot-catalog':150000, 'crm':120000, 'site':80000, 'ads':30000, 'neuro':50000};
-    var sl = {'bot-simple':'Чат-бот для заявок', 'bot-catalog':'Бот с каталогом и оплатой', 'crm':'Интеграция с CRM + AI', 'site':'Сайт с интеграциями', 'ads':'Настройка рекламы', 'neuro':'Нейросети для бизнеса'};
-    var bl = {'service':'Услуги', 'delivery':'Доставка', 'trade':'Торговля', 'production':'Производство', 'medicine':'Медицина', 'other':'Другое'};
-    var pl = {'rutine':'Много рутины', 'lose':'Теряем клиентов', 'conversion':'Плохая конверсия', 'ads-cost':'Дорогая реклама', 'orders':'Сложно с заказами', 'manual':'Всё вручную'};
-    var em = {'rutine':'сокращение рутины на 60%', 'lose':'рост конверсии на 40%', 'conversion':'рост заявок на 50%', 'ads-cost':'снижение стоимости заявки на 30%', 'orders':'автоматизация заказов на 80%', 'manual':'ускорение обработки в 3 раза'};
-    var tm = {'bot-simple':2, 'bot-catalog':3, 'crm':4, 'site':3, 'ads':1, 'neuro':5};
-    window.selectOption = function(el, step){
-        var par = el.closest('.option-grid') || el.closest('.option-grid-2');
-        par.querySelectorAll('.option-card').forEach(function(c){c.classList.remove('selected')});
-        el.classList.add('selected');
-        if(step === 1){st.business = el.dataset.value; document.getElementById('step1Hint').textContent = '';}
-        else if(step === 3){st.pain = el.dataset.value; document.getElementById('step3Hint').textContent = '';}
-    };
-    window.toggleService = function(el){
-        el.classList.toggle('selected');
-        st.services = Array.from(document.querySelectorAll('#step2Options .option-card.selected')).map(function(c){return c.dataset.value});
-        document.getElementById('serviceCount').textContent = st.services.length;
-        var d = st.services.length >= 4 ? 17 : st.services.length >= 3 ? 12 : st.services.length >= 2 ? 7 : 0;
-        var h = document.getElementById('discountHint');
-        if(d > 0){h.style.display = 'inline'; document.getElementById('discountPercent').textContent = d;}
-        else {h.style.display = 'none';}
-        document.getElementById('step2Hint').textContent = '';
-        if(cs === 4) gen();
-    };
-    function showHint(step, msg){
-        var h = document.getElementById('step' + step + 'Hint');
-        if(h) h.textContent = msg;
-    }
-    function up(){
-        var p = cs / ts * 100;
-        document.getElementById('progressBar').style.width = p + '%';
-        document.getElementById('progressText').textContent = Math.round(p) + '%';
-        document.getElementById('stepNum').textContent = cs;
-        document.getElementById('prevBtn').style.visibility = cs === 1 ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').textContent = cs === ts ? 'Получить план' : 'Далее →';
-        document.querySelectorAll('.validation-hint').forEach(function(h){h.textContent = ''});
-    }
-    function showS(n){
-        document.querySelectorAll('.step').forEach(function(e){e.classList.remove('active')});
-        document.querySelector('.step[data-step="' + n + '"]').classList.add('active');
-        cs = n; up();
-    }
-    window.nextStep = function(){
-        if(cs === 1 && !st.business){showHint(1, 'Выберите сферу'); return;}
-        if(cs === 2 && st.services.length === 0){showHint(2, 'Выберите хотя бы одну услугу'); return;}
-        if(cs === 3 && !st.pain){showHint(3, 'Выберите проблему'); return;}
-        if(cs === ts){gen(); return;}
-        showS(cs + 1);
-    };
-    window.prevStep = function(){if(cs > 1) showS(cs - 1)};
-    function gen(){
-        var sv = st.services || [];
-        var t = 0, am = 0, bd = [];
-        sv.forEach(function(s){
-            var p = sp[s] || 0;
-            if(s === 'ads'){am = p; bd.push(sl[s] + ': ' + p.toLocaleString() + ' ₽/мес');}
-            else {t += p; bd.push(sl[s] + ': ' + p.toLocaleString() + ' ₽');}
-        });
-        var d = sv.length >= 4 ? 17 : sv.length >= 3 ? 12 : sv.length >= 2 ? 7 : 0;
-        var da = 0;
-        if(d > 0 && t > 0) da = Math.round(t * d / 100);
-        var ft = t - da;
-        document.getElementById('resultPrice').textContent = ft.toLocaleString() + ' ₽';
-        var b = bd.join('<br>');
-        if(d > 0 && da > 0) b += '<br><span style="color:var(--accent);">Скидка ' + d + '%: -' + da.toLocaleString() + ' ₽</span>';
-        if(am > 0) b += '<br><span style="color:var(--muted);">Реклама: ' + am.toLocaleString() + ' ₽/мес (отдельно)</span>';
-        document.getElementById('resultBreakdown').innerHTML = b;
-        var mw = 2;
-        sv.forEach(function(s){var w = tm[s] || 2; if(w > mw) mw = w;});
-        document.getElementById('resultTimeline').textContent = mw + '–' + (mw + 1) + ' недель';
-        document.getElementById('effectText').textContent = em[st.pain] || 'повышение эффективности';
-        document.getElementById('resultServices').innerHTML = sv.map(function(s){return '<span class="service-tag">' + (sl[s] || s) + '</span>'}).join('');
-        document.getElementById('resultBusiness').textContent = bl[st.business] || '—';
-        document.getElementById('resultPain').textContent = pl[st.pain] || '—';
-        showS(4);
-    }
-    showS(1);
+var cs = 1, ts = 4;
+var st = {business:null, services:[], pain:null};
+var sp = {'bot-simple':100000, 'bot-catalog':150000, 'crm':120000, 'site':80000, 'ads':30000, 'neuro':50000};
+var sl = {'bot-simple':'Чат-бот для заявок', 'bot-catalog':'Бот с каталогом и оплатой', 'crm':'Интеграция с CRM + AI', 'site':'Сайт с интеграциями', 'ads':'Настройка рекламы', 'neuro':'Нейросети для бизнеса'};
+var bl = {'service':'Услуги', 'delivery':'Доставка', 'trade':'Торговля', 'production':'Производство', 'medicine':'Медицина', 'other':'Другое'};
+var pl = {'rutine':'Много рутины', 'lose':'Теряем клиентов', 'conversion':'Плохая конверсия', 'ads-cost':'Дорогая реклама', 'orders':'Сложно с заказами', 'manual':'Всё вручную'};
+var em = {'rutine':'сокращение рутины на 60%', 'lose':'рост конверсии на 40%', 'conversion':'рост заявок на 50%', 'ads-cost':'снижение стоимости заявки на 30%', 'orders':'автоматизация заказов на 80%', 'manual':'ускорение обработки в 3 раза'};
+var tm = {'bot-simple':2, 'bot-catalog':3, 'crm':4, 'site':3, 'ads':1, 'neuro':5};
+window.selectOption = function(el, step){
+var par = el.closest('.option-grid') || el.closest('.option-grid-2');
+par.querySelectorAll('.option-card').forEach(function(c){c.classList.remove('selected')});
+el.classList.add('selected');
+if(step === 1){st.business = el.dataset.value; document.getElementById('step1Hint').textContent = '';}
+else if(step === 3){st.pain = el.dataset.value; document.getElementById('step3Hint').textContent = '';}
+};
+window.toggleService = function(el){
+el.classList.toggle('selected');
+st.services = Array.from(document.querySelectorAll('#step2Options .option-card.selected')).map(function(c){return c.dataset.value});
+document.getElementById('serviceCount').textContent = st.services.length;
+var d = st.services.length >= 4 ? 17 : st.services.length >= 3 ? 12 : st.services.length >= 2 ? 7 : 0;
+var h = document.getElementById('discountHint');
+if(d > 0){h.style.display = 'inline'; document.getElementById('discountPercent').textContent = d;}
+else {h.style.display = 'none';}
+document.getElementById('step2Hint').textContent = '';
+if(cs === 4) gen();
+};
+function showHint(step, msg){
+var h = document.getElementById('step' + step + 'Hint');
+if(h) h.textContent = msg;
+}
+function up(){
+var p = cs / ts * 100;
+document.getElementById('progressBar').style.width = p + '%';
+document.getElementById('progressText').textContent = Math.round(p) + '%';
+document.getElementById('stepNum').textContent = cs;
+document.getElementById('prevBtn').style.visibility = cs === 1 ? 'hidden' : 'visible';
+document.getElementById('nextBtn').textContent = cs === ts ? 'Получить план' : 'Далее →';
+document.querySelectorAll('.validation-hint').forEach(function(h){h.textContent = ''});
+}
+function showS(n){
+document.querySelectorAll('.step').forEach(function(e){e.classList.remove('active')});
+document.querySelector('.step[data-step="' + n + '"]').classList.add('active');
+cs = n; up();
+}
+window.nextStep = function(){
+if(cs === 1 && !st.business){showHint(1, 'Выберите сферу'); return;}
+if(cs === 2 && st.services.length === 0){showHint(2, 'Выберите хотя бы одну услугу'); return;}
+if(cs === 3 && !st.pain){showHint(3, 'Выберите проблему'); return;}
+if(cs === ts){gen(); return;}
+showS(cs + 1);
+};
+window.prevStep = function(){if(cs > 1) showS(cs - 1)};
+function gen(){
+var sv = st.services || [];
+var t = 0, am = 0, bd = [];
+sv.forEach(function(s){
+var p = sp[s] || 0;
+if(s === 'ads'){am = p; bd.push(sl[s] + ': ' + p.toLocaleString() + ' ₽/мес');}
+else {t += p; bd.push(sl[s] + ': ' + p.toLocaleString() + ' ₽');}
+});
+var d = sv.length >= 4 ? 17 : sv.length >= 3 ? 12 : sv.length >= 2 ? 7 : 0;
+var da = 0;
+if(d > 0 && t > 0) da = Math.round(t * d / 100);
+var ft = t - da;
+document.getElementById('resultPrice').textContent = ft.toLocaleString() + ' ₽';
+var b = bd.join('<br>');
+if(d > 0 && da > 0) b += '<br><span style="color:var(--accent);">Скидка ' + d + '%: -' + da.toLocaleString() + ' ₽</span>';
+if(am > 0) b += '<br><span style="color:var(--muted);">Реклама: ' + am.toLocaleString() + ' ₽/мес (отдельно)</span>';
+document.getElementById('resultBreakdown').innerHTML = b;
+var mw = 2;
+sv.forEach(function(s){var w = tm[s] || 2; if(w > mw) mw = w;});
+document.getElementById('resultTimeline').textContent = mw + '–' + (mw + 1) + ' недель';
+document.getElementById('effectText').textContent = em[st.pain] || 'повышение эффективности';
+document.getElementById('resultServices').innerHTML = sv.map(function(s){return '<span class="service-tag">' + (sl[s] || s) + '</span>'}).join('');
+document.getElementById('resultBusiness').textContent = bl[st.business] || '—';
+document.getElementById('resultPain').textContent = pl[st.pain] || '—';
+showS(4);
+}
+showS(1);
 })();
 
-// ===== 3D =====
 (function(){
-    if(window.innerWidth < 1024 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var s = document.createElement('script');
-    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-    s.async = true;
-    s.onload = function(){
-        var c = document.getElementById('three-canvas');
-        if(!c) return;
-        var sc = new THREE.Scene();
-        var cam = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100);
-        cam.position.set(0,0,8);
-        var r = new THREE.WebGLRenderer({antialias:true, alpha:true});
-        r.setSize(window.innerWidth, window.innerHeight);
-        r.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        r.setClearColor(0, 0);
-        c.appendChild(r.domElement);
-        var g = new THREE.Group(); sc.add(g);
-        var geo = new THREE.TorusKnotGeometry(1.5, 0.4, 120, 16);
-        var e = new THREE.EdgesGeometry(geo);
-        var m = new THREE.LineBasicMaterial({color:0xC9A87C, transparent:true, opacity:.3});
-        var w = new THREE.LineSegments(e, m);
-        w.rotation.x = .5; w.rotation.y = .3; g.add(w);
-        var geo2 = new THREE.TorusKnotGeometry(1, 0.25, 100, 12);
-        var e2 = new THREE.EdgesGeometry(geo2);
-        var m2 = new THREE.LineBasicMaterial({color:0x7A7D86, transparent:true, opacity:.16});
-        var w2 = new THREE.LineSegments(e2, m2);
-        w2.rotation.x = -.3; w2.rotation.y = .8; g.add(w2);
-        var mx = 0, my = 0;
-        document.addEventListener('mousemove', function(ev){
-            mx = (ev.clientX/window.innerWidth - .5) * .5;
-            my = (ev.clientY/window.innerHeight - .5) * .5;
-        });
-        function an(){
-            requestAnimationFrame(an);
-            g.rotation.x += (my * .02 - g.rotation.x) * .02;
-            g.rotation.y += (mx * .02 - g.rotation.y) * .02;
-            w.rotation.x += .001; w.rotation.y += .002;
-            w2.rotation.x += .0008; w2.rotation.y += .0015;
-            r.render(sc, cam);
-        }
-        an();
-        window.addEventListener('resize', function(){
-            cam.aspect = window.innerWidth/window.innerHeight;
-            cam.updateProjectionMatrix();
-            r.setSize(window.innerWidth, window.innerHeight);
-        });
-    };
-    document.head.appendChild(s);
+if(window.innerWidth < 1024 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+var s = document.createElement('script');
+s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+s.async = true;
+s.onload = function(){
+var c = document.getElementById('three-canvas');
+if(!c) return;
+var sc = new THREE.Scene();
+var cam = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100);
+cam.position.set(0,0,8);
+var r = new THREE.WebGLRenderer({antialias:true, alpha:true});
+r.setSize(window.innerWidth, window.innerHeight);
+r.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+r.setClearColor(0, 0);
+c.appendChild(r.domElement);
+var g = new THREE.Group(); sc.add(g);
+var geo = new THREE.TorusKnotGeometry(1.5, 0.4, 120, 16);
+var e = new THREE.EdgesGeometry(geo);
+var m = new THREE.LineBasicMaterial({color:0xC9A87C, transparent:true, opacity:.3});
+var w = new THREE.LineSegments(e, m);
+w.rotation.x = .5; w.rotation.y = .3; g.add(w);
+var geo2 = new THREE.TorusKnotGeometry(1, 0.25, 100, 12);
+var e2 = new THREE.EdgesGeometry(geo2);
+var m2 = new THREE.LineBasicMaterial({color:0x7A7D86, transparent:true, opacity:.16});
+var w2 = new THREE.LineSegments(e2, m2);
+w2.rotation.x = -.3; w2.rotation.y = .8; g.add(w2);
+var mx = 0, my = 0;
+document.addEventListener('mousemove', function(ev){
+mx = (ev.clientX/window.innerWidth - .5) * .5;
+my = (ev.clientY/window.innerHeight - .5) * .5;
+});
+function an(){
+requestAnimationFrame(an);
+g.rotation.x += (my * .02 - g.rotation.x) * .02;
+g.rotation.y += (mx * .02 - g.rotation.y) * .02;
+w.rotation.x += .001; w.rotation.y += .002;
+w2.rotation.x += .0008; w2.rotation.y += .0015;
+r.render(sc, cam);
+}
+an();
+window.addEventListener('resize', function(){
+cam.aspect = window.innerWidth/window.innerHeight;
+cam.updateProjectionMatrix();
+r.setSize(window.innerWidth, window.innerHeight);
+});
+};
+document.head.appendChild(s);
 })();
 </script>
 </body>
