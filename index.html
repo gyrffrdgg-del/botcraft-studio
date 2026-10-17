@@ -171,11 +171,10 @@ section{padding:70px 0;border-top:1px solid var(--line);width:100%}
 .tilt-card .card-link{font-family:var(--mono);font-size:11px;font-weight:300;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:6px;transition:gap .3s}
 .tilt-card .card-link:hover{gap:10px}
 
-/* ===== СЕГМЕНТЫ (ПЕРЕРАБОТАННЫЕ) ===== */
+/* ===== СЕГМЕНТЫ ===== */
 #segments{background:var(--bg);background-image:none}
-#segments::before,#segments::after{display:none}
-.segments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px;background:none}
-.segment-card{border:1px solid var(--line);padding:32px 26px;background:var(--gradient-card);border-radius:8px;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative}
+.segments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+.segment-card{border:1px solid var(--line);padding:32px 26px;background:var(--gradient-card);border-radius:8px;transition:border-color .3s,transform .3s,box-shadow .3s}
 .segment-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(201,168,124,.08)}
 .segment-icon{width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:var(--accent);border:1px solid var(--line-strong);margin-bottom:22px;background:rgba(201,168,124,.03)}
 .segment-icon svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
@@ -282,6 +281,14 @@ section{padding:70px 0;border-top:1px solid var(--line);width:100%}
 .cta-final p{font-size:17px;color:var(--bg);opacity:.8;margin-bottom:26px;max-width:520px;margin-left:auto;margin-right:auto;font-weight:300}
 .cta-final .btn-primary{background:var(--bg);color:var(--accent);padding:15px 44px;border-radius:6px;font-size:14px}
 .cta-final .btn-primary:hover{background:#000;transform:translateY(-2px)}
+
+/* ===== DESIGNED BY ===== */
+.designed-by{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:48px 20px 32px;border-top:1px solid var(--line);background:var(--bg)}
+.signature-img{width:140px;height:auto;max-width:40vw;opacity:.55;mix-blend-mode:screen;transition:opacity .4s ease;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.designed-by:hover .signature-img{opacity:.9}
+.designed-text{font-family:var(--sans);font-size:10px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);text-align:center;opacity:.65;transition:opacity .3s}
+.designed-by:hover .designed-text{opacity:1}
+@media(max-width:768px){.designed-by{padding:36px 16px 24px}.signature-img{width:110px}.designed-text{font-size:9.5px;letter-spacing:.14em}}
 
 footer{border-top:1px solid var(--line);padding:32px 0;display:flex;flex-direction:column;gap:16px;color:var(--faint);font-size:12px;font-weight:300;letter-spacing:.5px}
 .footer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
@@ -571,7 +578,6 @@ body{cursor:auto}
 </div>
 </section>
 
-<!-- ===== КОМУ МЫ НУЖНЫ (ПЕРЕРАБОТАННЫЙ) ===== -->
 <section id="segments">
 <div class="section-marker reveal"><span class="section-index">03</span><span class="section-rule"></span><span class="section-eyebrow">Кому мы нужны</span></div>
 <h2 class="section-title reveal">Кому мы нужны</h2>
@@ -892,6 +898,12 @@ body{cursor:auto}
 <a href="#lead" class="btn-primary">Получить план</a>
 </div>
 </section>
+
+<!-- ===== DESIGNED BY ===== -->
+<div class="designed-by">
+<img src="signature.png" alt="Подпись BotCraft Studio" class="signature-img" loading="lazy">
+<span class="designed-text">Designed by BotCraft Studio</span>
+</div>
 
 <footer>
 <div class="footer-top">
